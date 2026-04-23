@@ -1,8 +1,9 @@
 -- don't use, not ready
+-- I needed to change some names because they were reserved.
 CREATE TABLE department(
 	dept_id INT PRIMARY KEY AUTO_INCREMENT,
 	dept_name varchar(20) NOT NULL UNIQUE,
-	description varchar(50) UNIQUE
+	descrpt varchar(50) UNIQUE
 );
 
 CREATE TABLE doctor(
@@ -42,16 +43,16 @@ CREATE TABLE patient(
 	allergies ?,
 	phone_num char(11) UNIQUE NOT NULL,
 	email varchar(15) UNIQUE NOT NULL,
-	password varchar(8) NOT NULL,
-	role char(7) CHECK(role IN ('ADMIN', 'PATIENT')),
-	CONSTRAINT chk_password_length CHECK(CHAR_LENGTH(password) >= 8)
+	pat_password varchar(8) NOT NULL,
+	pat_role char(7) CHECK(role IN ('ADMIN', 'PATIENT')),
+	CONSTRAINT chk_password_length CHECK(CHAR_LENGTH(pat_password) >= 8)
 );	
 
 CREATE TABLE appointment(
 	appointment_id INT PRIMARY KEY AUTO_INCREMENT,
 	patient_id INT NOT NULL,
 	schedule_id INT NOT NULL,
-	status varchar(10) CHECK(status IN('ACTIVE', 'ABSENT', 'DONE'),
+	ap_status varchar(10) CHECK(status IN('ACTIVE', 'ABSENT', 'DONE'),
 	CONSTRAINT fk_appTpat FOREIGN KEY patient_id REFERENCES patient(patient_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_appTsch FOREIGN KEY schedule_id REFERENCES doctor_schedule(schedule_id)
@@ -73,3 +74,11 @@ CREATE TABLE bill(
 	CONSTRAINT fk_bilTtre FOREIGN KEY treatment_id REFERENCES treatment(treatment_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE admin(
+	admin_id INT PRIMARY KEY AUTO_INCREMENT,
+	username varchar(10) NOT NULL,
+	ad_password varchar(8) NOT NULL,
+	ad_role char(7) CHECK(role IN('ADMIN', 'PATIENT')),
+	CONSTRAINT chk_password_length CHECK(CHAR_LENGTH(pt_password) >= 8)
+)

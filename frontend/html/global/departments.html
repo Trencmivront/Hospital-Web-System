@@ -5,6 +5,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/frontend/css/dept.css">
+        <script src="../../js/dept.js" defer></script>
     </head>
 
     <body class="flex-container">
@@ -13,16 +14,16 @@
             <!-- gap between custom -->
             <div class="flex-container" style="margin-right: 30px;">
                 <h1 style="margin-left: 50px;
-                margin-right: 10px;font-size: 20px;" title="hospital name">WELCOME TO OUR HOSPITAL</h1>
+                margin-right: 10px;font-size: 20px;" title="hospital name">HOSPITAL</h1>
                 <img src="/imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif"
                 width="40px" height="40px" draggable="false">
             </div>
             
-            <textarea id="search" placeholder="Doctors, Departments, Q&A" title="search"></textarea>
+            <textarea id="search" placeholder="Doctors, Departments" title="search"></textarea>
             <button id="logInButton">Log In</button>
             <!-- Dropdown lang change container-->
             <div class="dropdown">
-                <button title="lang" class="dropbtn">Lang</button>
+                <button title="lang" class="dropbtn">EN</button>
                 <ul id="lang" class="dropdown-content">
                     <li>
                         <a>TR</a>
@@ -35,8 +36,11 @@
        </header>
 
        <nav style="background-color: rgb(133, 226, 245);">
-            
+ 
        </nav>
+       <main id="dept_container">
+
+       </main>
 
     </body>
 
