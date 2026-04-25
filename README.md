@@ -26,7 +26,7 @@ A full-stack hospital web application template. Patients can log in to see their
         // next file that includes or requires this file. Remember that.
     // Throw PDOException 
     } catch (PDOException $e) {
-        // Bağlantı hatası olursa burası çalışır
+        // Works as exit(). Prints value just before exit.
         die("Connection error: " . $e->getMessage());
     }
 ?>
