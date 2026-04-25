@@ -1,47 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/frontend/css/dept.css">
-        <script src="../../js/dept.js" defer></script>
-    </head>
-
-    <body class="flex-container">
-
-       <header class="flex-container" style="background-color: rgb(196, 232, 255);">
-            <!-- gap between custom -->
-            <div class="flex-container" style="margin-right: 30px;">
-                <h1 style="margin-left: 50px;
-                margin-right: 10px;font-size: 20px;" title="hospital name">HOSPITAL</h1>
-                <img src="/imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif"
-                width="40px" height="40px" draggable="false">
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Departments</title>
+    <link rel="stylesheet" href="/frontend/css/dept.css">
+    <script src="/frontend/js/dept.js" defer></script>
+</head>
+<body class="page-shell">
+    <header class="page-header">
+        <div class="brand">
+            <h1 title="hospital name">HOSPITAL</h1>
+            <img src="/imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif" width="40" height="40" draggable="false" alt="Hospital logo">
+        </div>
+        <div class="header-actions">
             
-            <textarea id="search" placeholder="Doctors, Departments" title="search"></textarea>
-            <button id="logInButton">Log In</button>
-            <!-- Dropdown lang change container-->
+            <button id="logInButton" type="button">Log In</button>
             <div class="dropdown">
-                <button title="lang" class="dropbtn">EN</button>
+                <button title="lang" class="dropbtn" type="button">EN</button>
                 <ul id="lang" class="dropdown-content">
-                    <li>
-                        <a>TR</a>
-                    </li>
-                    <li>
-                        <a>EN</a>
-                    </li>
+                    <li><a href="#">TR</a></li>
+                    <li><a href="#">EN</a></li>
                 </ul>
             </div>
-       </header>
+        </div> 
+    </header>
 
-       <nav style="background-color: rgb(133, 226, 245);">
+    <nav aria-label="Hospital navigation"></nav>
  
-       </nav>
-       <main id="dept_container">
+    <div id="filterContainer">
+        <table id="searchTableItem">
+            <tr><td><input id="searchField" type="search" placeholder="Search By Name" title="search"></td>
+            <td>
+              <button id="searchButton">
+                <img src="/imgs/search_icon.jpg" style="height: 34px; width: 34px;border-radius: 10px;">
+              </button>
+            </td>
+        </tr>
+        </table>
+    </div>
 
-       </main>
-
-    </body>
-
+    <main id="dept_container" class="dept-container">
+    </main>
+</body>
 </html>

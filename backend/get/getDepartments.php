@@ -2,7 +2,7 @@
     include '../dbConnect.php';
     header("Content-Type: application/json; charset=utf-8");
 
-    $query = 'SELECT dept_name, descrpt FROM Department';
+    $query = 'SELECT dept_name, descrpt FROM department';
 
     $result = $pdo->query($query);
     // Normally it contains values with index and name at their

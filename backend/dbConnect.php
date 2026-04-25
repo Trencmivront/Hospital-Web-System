@@ -17,7 +17,6 @@ try {
      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      // After that if the connection is success, our $pdo element will be sent to
      // next file that includes or requires this file. Remember that.
-     echo "Connected to the database";
 // Throw PDOException 
 } catch (PDOException $e) {
      // Bağlantı hatası olursa burası çalışır
