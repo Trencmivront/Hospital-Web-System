@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Departments</title>
-    <link rel="stylesheet" href="/frontend/css/dept.css">
+    <link rel="stylesheet" href="../../css/dept.css">
     <script src="/frontend/js/dept.js" defer></script>
 </head>
 <body class="page-shell">
@@ -26,7 +26,14 @@
         </div> 
     </header>
 
-    <nav aria-label="Hospital navigation"></nav>
+    <nav aria-label="Hospital navigation">
+        <a href="home.html">Home</a>
+        <a href="departments.html">Departments</a>
+        <a href="#">Doctors</a>
+        <a href="#">Appointments</a>
+        <a href="about.html">About Us</a>
+        <a href="../user/login.html">Contact</a>
+    </nav>
  
     <div id="filterContainer">
         <table id="searchTableItem">
@@ -42,5 +49,34 @@
 
     <main id="dept_container" class="dept-container">
     </main>
+
+    <section class="social-section">
+        <h2>Connect With Nova Hospital</h2>
+        <div class="social-icons">
+            <a href="#"><img src="https://img.freepik.com/free-psd/social-media-logo-design_23-2151299463.jpg?semt=ais_hybrid&w=740&q=80" alt="Facebook"></a>
+            <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8lv-iEOWtRxGDqsOR-Pa1kIiqN298569zVA&s" alt="Instagram"></a>
+            <a href="#"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?w=360" alt="Twitter"></a>
+            <a href="#"><img src="https://img.freepik.com/premium-vector/mobile_874723-99.jpg?semt=ais_hybrid&w=740&q=80" alt="Youtube"></a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-box">
+            <h3>About Nova</h3>
+            <p>Modern healthcare with trusted medical services.</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <p>Doctors</p>
+            <p>Departments</p>
+            <p>Appointments</p>
+        </div>
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p>Balikesir, Türkiye</p>
+            <p>+90 555 000 000</p>
+            <p>info@novahospital.com</p>
+        </div>
+    </footer>
 </body>
 </html>
