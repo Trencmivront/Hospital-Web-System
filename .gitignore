@@ -9,7 +9,6 @@ composer.lock
 # Veritabanı ve Çevresel ayarlar (ÖNEMLİ)
 .env
 backend/dbConnect.php
-*.sql
 *.sqlite
 
 # Log dosyaları
