@@ -81,9 +81,9 @@ nav a:hover {
 }
 
 .dept-container {
-    display: flex;
+    display: block;
+    box-sizing: border-box;
     flex-direction: column;
-    justify-content: start;
     max-width: 1200px;
     background-color: #f1f1f1;
     margin: 0 auto;
