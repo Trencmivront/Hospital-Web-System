@@ -1,0 +1,21 @@
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# PHP & Paket yöneticileri
+/vendor/
+composer.lock
+
+# Veritabanı ve Çevresel ayarlar (ÖNEMLİ)
+.env
+dbConnect.php
+*.sql
+*.sqlite
+
+# Log dosyaları
+*.log
+npm-debug.log*
+
+# IDE (Kod editörü) ayarları
+.vscode/
+.idea/
