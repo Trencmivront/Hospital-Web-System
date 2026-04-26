@@ -24,7 +24,10 @@ const listDepartments = async () => {
         deptContainer.innerHTML = "";
 
         dataSet.forEach(data => {
-            deptContainer.innerHTML += "<div>" +
+
+            let divId = 1;
+
+            deptContainer.innerHTML += "<div class='dept-container-div flex-wrap-space'>" +
             "<h3>" + data.dept_name + "</h3>" +
             "<p>" + data.descrpt + "</p>" +
             "</div>";
