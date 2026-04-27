@@ -1,9 +1,12 @@
 -- only for development
-DROP TABLE admin;
-DROP TABLE bill;
-DROP TABLE treatment;
-DROP TABLE appointment;
-DROP TABLE patient;
-DROP TABLE doctor_schedule;
-DROP TABLE doctor;
-DROP TABLE department;
+DROP TABLE IF EXISTS admin;
+DROP TABLE IF EXISTS bill;
+DROP TABLE IF EXISTS treatment;
+DROP TABLE IF EXISTS appointment;
+DROP TABLE IF EXISTS patient_allergy;
+DROP TABLE IF EXISTS allergy;
+DROP TABLE IF EXISTS patient;
+DROP TABLE IF EXISTS doctor_schedule;
+DROP TABLE IF EXISTS schedule;
+DROP TABLE IF EXISTS doctor;
+DROP TABLE IF EXISTS department;

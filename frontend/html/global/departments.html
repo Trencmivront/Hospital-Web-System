@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Departments</title>
-    <link rel="stylesheet" href="../../css/dept.css">
-    <link rel="stylesheet" href="../../css/global.css">
-    <script src="/frontend/js/dept.js" defer></script>
+    <link rel="stylesheet" href="../../css/dept.css?v=1.2">
+    <link rel="stylesheet" href="../../css/global.css?v=1.2">
+    <script src="/frontend/js/dept.js?v=1.1" defer></script>
 </head>
 <body class="page-shell">
     <header class="page-header flex-wrap-space">
@@ -15,7 +15,6 @@
             <img src="/imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif" width="40" height="40" draggable="false" alt="Hospital logo">
         </div>
         <div class="header-actions">
-            
             <button id="logInButton" type="button">Log In</button>
             <div class="dropdown">
                 <button title="lang" class="dropbtn" type="button">EN</button>
@@ -28,10 +27,9 @@
     </header>
 
     <nav aria-label="Hospital navigation">
-        <a href="home.html">Home</a>
-        <a href="departments.html">Departments</a>
+        <a href="index.html">Home</a>
+        <a href="departments.html" style="background-color: rgb(255, 255, 255, 1);">Departments</a>
         <a href="#">Doctors</a>
-        <a href="#">Appointments</a>
         <a href="about.html">About Us</a>
         <a href="q&a.html">Q&A</a>
         <a href="../user/login.html">Contact</a>
@@ -49,8 +47,9 @@
         </table>
     </div>
 
-    <main id="dept_container" class="dept-container flex-wrap-space">
-
+    <main class="main-dept-container flex-wrap-space" style="justify-content: space-evenly;">
+        <div id="left-dept-container-div"></div>
+        <div id="right-dept-container-div"></div>
     </main>
 
     <section class="social-section">

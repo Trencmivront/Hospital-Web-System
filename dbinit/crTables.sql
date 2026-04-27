@@ -1,4 +1,4 @@
--- allergies row of patient table is not completely ready.
+-- renamed some attributes to escape keywords
 CREATE TABLE department(
 	dept_id INT PRIMARY KEY AUTO_INCREMENT,
 	dept_name varchar(100) NOT NULL UNIQUE,
@@ -10,22 +10,35 @@ CREATE TABLE doctor(
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
 	specialization varchar(50) NOT NULL,
-	phone_num char(11) NOT NULL UNIQUE,
+	phone_num varchar(11) NOT NULL UNIQUE,
 	email varchar(50) UNIQUE,
-	doc_gender char(1),
+	doc_gender varchar(1),
 	dept_id INT NULL,
 	CONSTRAINT fk_docTdept FOREIGN KEY (dept_id)
 	REFERENCES department(dept_id)
 	ON UPDATE CASCADE ON DELETE SET NULL,
-	CONSTRAINT chk_dr_gender CHECK (doc_gender = 'M' OR doc_gender = 'F')
+	CONSTRAINT chk_dr_gender
+	CHECK (doc_gender = 'M' OR doc_gender = 'F')
 );
 
-CREATE TABLE doctor_schedule(
+-- This is new table
+CREATE TABLE schedule(
 	schedule_id INT PRIMARY KEY AUTO_INCREMENT,
 	s_date DATE NOT NULL,
-	s_time TIME NOT NULL,
-	doctor_id INT,
-	CONSTRAINT fk_schTdoc FOREIGN KEY (doctor_id)
+	s_time TIME NOT NULL
+);
+
+-- Changed this table and made it connection table
+CREATE TABLE doctor_schedule(
+	doctor_schedule_id INT PRIMARY KEY AUTO_INCREMENT,
+	schedule_id INT NOT NULL,
+	doctor_id INT NOT NULL,
+	-- if it is false, then user can't select it
+	schedule_status BOOLEAN NOT NULL,
+	CONSTRAINT fk_dsTsch FOREIGN KEY (schedule_id)
+	REFERENCES schedule(schedule_id)
+	ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_dsTdoc FOREIGN KEY (doctor_id)
 	REFERENCES doctor(doctor_id)
 	ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -34,32 +47,56 @@ CREATE TABLE patient(
 	patient_id INT PRIMARY KEY AUTO_INCREMENT,
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
-	tc_no char(11) NOT NULL UNIQUE ,
+	tc_no varchar(11) NOT NULL UNIQUE ,
 	birth_date DATE,
-	pat_gender char(1),
-	blood_group char(3),
-	allergies varchar(20), -- for now
-	phone_num char(11) NOT NULL UNIQUE,
+	pat_gender varchar(1),
+	-- create a selection for this
+	blood_group varchar(3),
+	-- allergies INT, removed allergies and created connection below
+	phone_num varchar(11) NOT NULL UNIQUE,
 	email varchar(50) NOT NULL UNIQUE,
-	pat_password varchar(70) NOT NULL,
-	pat_role char(7),
-	CONSTRAINT chk_pat_password_length CHECK(CHAR_LENGTH(pat_password) >= 8),
-	CONSTRAINT chk_tc_no_length CHECK(CHAR_LENGTH(tc_no) = 11),
+	pat_password varchar(256) NOT NULL,
+	-- usr_role will be given by database
+	usr_role varchar(7) NOT NULL,
+	CONSTRAINT chk_pat_password_length CHECK(LENGTH(pat_password) >= 8),
+	CONSTRAINT chk_tc_no_length CHECK(LENGTH(tc_no) = 11),
 	CONSTRAINT chk_pat_gender CHECK(pat_gender = 'M' OR pat_gender = 'F'),
-	CONSTRAINT chk_pat_blood_group CHECK (blood_group IN ('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-')),
-	CONSTRAINT chk_pat_role CHECK(pat_role IN ('ADMIN', 'PATIENT'))
+	CONSTRAINT chk_pat_blood_group
+	CHECK (blood_group IN ('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-')),
+	CONSTRAINT chk_pat_role CHECK(usr_role='PATIENT')
 );	
+
+-- This is new table
+CREATE TABLE allergy(
+	allergy_id INT PRIMARY KEY AUTO_INCREMENT,
+	allergy_descrpt varchar(100) NOT NULL,
+	icd10_code varchar(10) NOT NULL
+);
+
+-- This is new table
+-- Here we have connection between patients and allergies
+CREATE TABLE patient_allergy(
+	patient_allergy_id INT PRIMARY KEY AUTO_INCREMENT,
+	allergy_id INT NOT NULL,
+	patient_id INT NOT NULL,
+	CONSTRAINT fk_paTalr FOREIGN KEY (allergy_id)
+	REFERENCES allergy(allergy_id)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_paTpat FOREIGN KEY (patient_id)
+	REFERENCES patient(patient_id)
+	ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 CREATE TABLE appointment(
 	appointment_id INT PRIMARY KEY AUTO_INCREMENT,
 	patient_id INT NOT NULL,
-	schedule_id INT NOT NULL,
+	doctor_schedule_id INT NOT NULL,
 	ap_status varchar(10),
 	CONSTRAINT fk_appTpat FOREIGN KEY (patient_id)
 	REFERENCES patient(patient_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT fk_appTsch FOREIGN KEY (schedule_id)
-	REFERENCES doctor_schedule(schedule_id)
+	CONSTRAINT fk_appTsch FOREIGN KEY (doctor_schedule_id)
+	REFERENCES doctor_schedule(doctor_schedule_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT chk_ap_status CHECK(ap_status IN('ACTIVE', 'ABSENT', 'DONE'))
 );
@@ -67,7 +104,7 @@ CREATE TABLE appointment(
 CREATE TABLE treatment(
 	treatment_id INT PRIMARY KEY AUTO_INCREMENT,
 	appointment_id INT NOT NULL,
-	icd_code varchar(50) NOT NULL,
+	icd10_code varchar(10) NOT NULL,
 	CONSTRAINT fk_treTapp FOREIGN KEY (appointment_id)
 	REFERENCES appointment(appointment_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
@@ -85,8 +122,8 @@ CREATE TABLE bill(
 CREATE TABLE admin(
 	admin_id INT PRIMARY KEY AUTO_INCREMENT,
 	username varchar(50) NOT NULL,
-	ad_password varchar(50) NOT NULL,
-	ad_role char(7),
-	CONSTRAINT chk_admin_password_length CHECK(CHAR_LENGTH(ad_password) >= 8),
-	CONSTRAINT chk_ad_role CHECK(ad_role IN('ADMIN', 'PATIENT'))
+	ad_password varchar(256) NOT NULL,
+	usr_role varchar(7) NOT NULL,
+	CONSTRAINT chk_admin_password_length CHECK(LENGTH(ad_password) >= 8),
+	CONSTRAINT chk_ad_role CHECK(usr_role='ADMIN')
 );

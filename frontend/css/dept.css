@@ -1,17 +1,13 @@
-.dept-container {
-    border: solid red;
+.main-dept-container {
     flex-direction: row;
-    max-width: 1200px;
-    min-width: 400px;
-    background-color: #f1f1f1;
+    flex-wrap: wrap;
+    min-width: 100%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
 }
 .dept-container-div{
+    display: flex;
     flex-direction: column;
-    max-height: 1200px;
-    border: solid;
-    margin: 10px;
 }
 /*Placeholder style text*/
 .placeholder {

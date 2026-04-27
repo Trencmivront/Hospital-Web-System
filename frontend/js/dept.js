@@ -1,4 +1,5 @@
-const deptContainer = document.getElementById("dept_container");
+const leftDeptContainer = document.getElementById("left-dept-container-div");
+const rightDeptContainer = document.getElementById("right-dept-container-div");
 
 window.addEventListener('load', () => {
     listDepartments();
@@ -8,51 +9,64 @@ document.getElementById("searchButton").addEventListener("click", () => {
     filterDepartmentsByName();
 });
 
-const listDepartments = async () => {
-    // placeholder until all departments fetched
-    deptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
+// adding html elements to main
+const createDepartmentContainerHtmls = (dataSet) => {
+    // clearing placeholder first
+        leftDeptContainer.innerHTML = "";
 
-    try{
-        const config = {
-            method: "GET"
-        }
-
-        const response = await fetch("/backend/get/getDepartments.php", config);
-
-        const dataSet = await response.json();
-
-        deptContainer.innerHTML = "";
+        let itemCount = dataSet.length / 2;
+        let counter = 0;
 
         dataSet.forEach(data => {
 
-            let divId = 1;
+            if(counter < itemCount){
+                leftDeptContainer.innerHTML += "<div class='dept-container-div extend-container'>" +
+                "<button class='extendbtn'><h3><span class='extendbtn-arrow'> > </span>" + data.dept_name + "</h3></button>" +
+                "<div class='extend-item'><p>" + data.descrpt + "</p></div>" +
+                "</div>";
+                counter++;
+            }
+            else{
+                rightDeptContainer.innerHTML += "<div class='dept-container-div extend-container'>" +
+                "<button class='extendbtn'><h3><span class='extendbtn-arrow'> > </span>" + data.dept_name + "</h3></button>" +
+                "<div class='extend-item'><p>" + data.descrpt + "</p></div>" +
+                "</div>";
+            }
+    });
+    addEventListenerToButtons();
+}
 
-            deptContainer.innerHTML += "<div class='dept-container-div flex-wrap-space'>" +
-            "<h3>" + data.dept_name + "</h3>" +
-            "<p>" + data.descrpt + "</p>" +
-            "</div>";
-        });
+// extending description on click 
+const addEventListenerToButtons = () => {
+    const buttons = document.querySelectorAll(".extendbtn");
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            let a = button.classList.toggle('active');
+        })
+    })
+}
+
+const listDepartments = async () => {
+    // placeholder until all departments fetched
+    leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
+
+    try{
+        const response = await fetch("/backend/get/getDepartments.php");
+        const dataSet = await response.json();
+        createDepartmentContainerHtmls(dataSet);
     }catch(error){
         console.log(error);
     }
 }
 
 const filterDepartmentsByName = async () => {
-    deptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
+    leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
 
     try{
         // TODO: Fetch departments by name
         const response = await fetch(`/backend/get/filterDepartmentsByName.php?name=${document.getElementById("searchField").value}`);
-
         const dataSet = await response.json();
-        deptContainer.innerHTML = "";
-
-        dataSet.forEach(data => {
-            deptContainer.innerHTML += "<div>" +
-            "<h3>" + data.dept_name + "</h3>" +
-            "<p>" + data.descrpt + "</p>" +
-            "</div>";
-        }); 
+        createDepartmentContainerHtmls(dataSet);
     }catch(error){
         // I would like to show all departments if filter won't work
         listDepartments();

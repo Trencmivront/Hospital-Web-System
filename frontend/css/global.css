@@ -136,6 +136,61 @@ nav a:hover {
     color: #1a1a1a;
 }
 
+.extendbtn{
+    display: inline-block;
+    border: none;
+    background:none ;
+    box-sizing: border-box;
+    width: max-content;
+    height: max-content;
+    font-size: 16px;
+    cursor: pointer;
+    color: rgb(0, 0, 20);
+    transition: color 0.2s, transform 0.2s;
+}
+.extendbtn:hover{
+    transform: scale(1.1);
+    color: rgb(150, 20, 100);
+    /*Transform doesn't push neighour elements
+    and changes scale of element*/
+    transition: color 0.2s, transform 0.2s;
+}
+.extendbtn.active{
+    color: rgb(0,150,200);
+    transform: scale(1.1);
+}
+.extend-container .extendbtn.active{
+    background-color: antiquewhite;
+    border-radius: 20px;
+    border-bottom: solid 1px darkcyan;
+    transition: background-color 0.2s ease-out, border-radius 0.2s ease-in,
+    border 0.2s ease-in;
+}
+.extend-item{
+    text-align: left;
+    max-height: 0px;
+    box-sizing: border-box;
+    width: max-content;
+    height: max-content;
+    border-radius: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    overflow: hidden;
+    /*From top to bottom*/
+    transition: max-height 0.3s ease-out, margin 0.3s ease-out, border 0.2s ease-out,
+    justify-content 0.3s ease-out;
+    font-size: 14px;
+    background-color: #f0f0f0;
+}
+.extendbtn.active .extendbtn-arrow{
+    transform: rotate(90deg);
+}
+.extendbtn.active + .extend-item{
+    border-top: solid 1px darkcyan;
+    max-height: 40px;
+    margin: 10px 0px 10px 0px;
+    justify-content: center;
+}
 .dropbtn {
     background-color: #ffffff;
     color: black;
@@ -173,12 +228,11 @@ nav a:hover {
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 .dropdown:hover .dropbtn {
     background-color: #ddffdd;
+}
+.dropdown:hover .dropdown-content{
+    display: block;
 }
 
 @media (max-width: 720px){
