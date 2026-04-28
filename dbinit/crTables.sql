@@ -5,20 +5,27 @@ CREATE TABLE department(
 	descrpt varchar(300) UNIQUE
 );
 
+-- This is new table
+-- Only contains male or female
+CREATE TABLE gender(
+	gender_name varchar(7) PRIMARY KEY,
+	CONSTRAINT chk_gender_name CHECK (gender_name='female' OR gender_name='male')
+);
+
 CREATE TABLE doctor(
 	doctor_id INT PRIMARY KEY AUTO_INCREMENT,
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
-	specialization varchar(50) NOT NULL,
 	phone_num varchar(11) NOT NULL UNIQUE,
 	email varchar(50) UNIQUE,
-	doc_gender varchar(1),
+	gender_name varchar(6) NULL,
 	dept_id INT NULL,
 	CONSTRAINT fk_docTdept FOREIGN KEY (dept_id)
 	REFERENCES department(dept_id)
 	ON UPDATE CASCADE ON DELETE SET NULL,
-	CONSTRAINT chk_dr_gender
-	CHECK (doc_gender = 'M' OR doc_gender = 'F')
+	CONSTRAINT fk_docTgen FOREIGN KEY (gender_name)
+	REFERENCES gender(gender_name)
+	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- This is new table
@@ -43,13 +50,31 @@ CREATE TABLE doctor_schedule(
 	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+-- This is new table
+CREATE TABLE specialization(
+	spec_id INT PRIMARY KEY AUTO_INCREMENT,
+	name varchar(100) NOT NULL
+);
+
+CREATE TABLE doctor_specialization(
+	doctor_spec_id INT PRIMARY KEY AUTO_INCREMENT,
+	spec_id INT NOT NULL,
+	doctor_id INT NOT NULL,
+	CONSTRAINT fk_dspTdoc FOREIGN KEY (doctor_id)
+	REFERENCES doctor(doctor_id)
+	ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_dspTspc FOREIGN KEY (spec_id)
+	REFERENCES specialization(spec_id)
+	ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 CREATE TABLE patient(
 	patient_id INT PRIMARY KEY AUTO_INCREMENT,
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
 	tc_no varchar(11) NOT NULL UNIQUE ,
 	birth_date DATE,
-	pat_gender varchar(1),
+	gender_name varchar(6),
 	-- create a selection for this
 	blood_group varchar(3),
 	-- allergies INT, removed allergies and created connection below
@@ -60,10 +85,11 @@ CREATE TABLE patient(
 	usr_role varchar(7) NOT NULL,
 	CONSTRAINT chk_pat_password_length CHECK(LENGTH(pat_password) >= 8),
 	CONSTRAINT chk_tc_no_length CHECK(LENGTH(tc_no) = 11),
-	CONSTRAINT chk_pat_gender CHECK(pat_gender = 'M' OR pat_gender = 'F'),
-	CONSTRAINT chk_pat_blood_group
-	CHECK (blood_group IN ('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-')),
-	CONSTRAINT chk_pat_role CHECK(usr_role='PATIENT')
+	CONSTRAINT chk_pat_blood_group CHECK (blood_group IN ('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-')),
+	CONSTRAINT chk_pat_role CHECK(usr_role='PATIENT'),
+	CONSTRAINT fk_patTgen FOREIGN KEY (gender_name)
+	REFERENCES gender(gender_name)
+	ON DELETE CASCADE ON UPDATE CASCADE
 );	
 
 -- This is new table
@@ -91,14 +117,15 @@ CREATE TABLE appointment(
 	appointment_id INT PRIMARY KEY AUTO_INCREMENT,
 	patient_id INT NOT NULL,
 	doctor_schedule_id INT NOT NULL,
-	ap_status varchar(10),
+	-- Instead of writing multiple types of reasons,
+	-- we can check reason on backend, reducing data need.
+	ap_status BOOLEAN NOT NULL,
 	CONSTRAINT fk_appTpat FOREIGN KEY (patient_id)
 	REFERENCES patient(patient_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_appTsch FOREIGN KEY (doctor_schedule_id)
 	REFERENCES doctor_schedule(doctor_schedule_id)
-	ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT chk_ap_status CHECK(ap_status IN('ACTIVE', 'ABSENT', 'DONE'))
+	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE treatment(
