@@ -53,6 +53,15 @@ const listDepartments = async () => {
 
     try{
         const response = await fetch("/backend/controllers/departmentController.php?action=getDepartments");
+
+        // show error upon error?...
+        if(!response.ok){
+            const error = await response.json();
+            console.log("error");
+            leftDeptContainer.innerHTML = `<p style="color:red;">${error}</p>`;
+            return;
+        }
+
         const dataSet = await response.json();
         createDepartmentContainerHtmls(dataSet);
     }catch(error){
@@ -66,6 +75,15 @@ const filterDepartmentsByName = async () => {
     try{
         // TODO: Fetch departments by name
         const response = await fetch(`/backend/controllers/departmentController.php?action=filterDepartmentsByName&name=${document.getElementById("searchField").value}`);
+        
+        // show error upon error?...
+        if(!response.ok){
+            const error = await response.json();
+            console.log("error");
+            leftDeptContainer.innerHTML = `<p style="color:red;">${error}</p>`;
+            return;
+        }
+        
         const dataSet = await response.json();
         createDepartmentContainerHtmls(dataSet);
     }catch(error){

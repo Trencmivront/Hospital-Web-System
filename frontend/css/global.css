@@ -43,6 +43,21 @@ nav a:hover {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
+.logButton {
+    text-decoration-line: none;
+    border: solid 1px;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: #ffebcd;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.logButton:hover {
+    background-color: #ffffcd;
+}
+
 .flex-wrap-space{
     display: flex;
     flex-wrap: wrap;

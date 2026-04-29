@@ -4,6 +4,10 @@
     foreach (glob("../services/department/*/*.php") as $filename) {
         require_once $filename;
     }
+    // load all exceptions regarding to this table
+    foreach(glob("../exceptions/department/*.php") as $filename){
+        require_once $filename;
+    }
     header("Content-Type: application/json; charset=utf-8");
 
     $action = $_GET['action'];
@@ -32,12 +36,10 @@
             break;
     }
 
-    }catch(FetchDepartmentsException $f){  
-        http_response_code($f->getCode());
-        echo responseEntity($f);
-    }
-
-    
+    }catch(FetchDepartmentsException $e){  
+        http_response_code($e->getCode());
+        echo responseEntity($e->getMessage());
+    } 
 
     // for simplifying the code
     function responseEntity($dataSet){

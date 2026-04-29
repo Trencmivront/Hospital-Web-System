@@ -73,10 +73,10 @@ CREATE TABLE patient(
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
 	tc_no varchar(11) NOT NULL UNIQUE ,
-	birth_date DATE,
-	gender_name varchar(6),
+	birth_date DATE NOT NULL,
+	gender_name varchar(6) NOT NULL,
 	-- create a selection for this
-	blood_group varchar(3),
+	blood_group varchar(3) NOT NULL,
 	-- allergies INT, removed allergies and created connection below
 	phone_num varchar(11) NOT NULL UNIQUE,
 	email varchar(50) NOT NULL UNIQUE,

@@ -62,20 +62,6 @@
     border-color: darkturquoise;
 }
 
-#logInButton {
-    border: solid 1px;
-    border-radius: 10px;
-    font-size: 20px;
-    background-color: #ffebcd;
-    padding: 6px 12px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-#logInButton:hover {
-    background-color: #ffffcd;
-}
-
 #lang {
     list-style: none;
     padding: 0;
