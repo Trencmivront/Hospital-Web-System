@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS appointment;
 DROP TABLE IF EXISTS patient_allergy;
 DROP TABLE IF EXISTS allergy;
 DROP TABLE IF EXISTS patient;
+DROP TABLE IF EXISTS blood_type;
 DROP TABLE IF EXISTS doctor_specialization;
 DROP TABLE IF EXISTS specialization;
 DROP TABLE IF EXISTS doctor_schedule;

@@ -68,6 +68,12 @@ CREATE TABLE doctor_specialization(
 	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+-- This is new table
+CREATE TABLE blood_type(
+	blood_id INT PRIMARY KEY AUTO_INCREMENT,
+	type_name varchar(3) NOT NULL UNIQUE
+);
+
 CREATE TABLE patient(
 	patient_id INT PRIMARY KEY AUTO_INCREMENT,
 	first_name varchar(50) NOT NULL,
@@ -76,7 +82,7 @@ CREATE TABLE patient(
 	birth_date DATE NOT NULL,
 	gender_name varchar(6) NOT NULL,
 	-- create a selection for this
-	blood_group varchar(3) NOT NULL,
+	blood_id INT NOT NULL,
 	-- allergies INT, removed allergies and created connection below
 	phone_num varchar(11) NOT NULL UNIQUE,
 	email varchar(50) NOT NULL UNIQUE,
@@ -85,12 +91,14 @@ CREATE TABLE patient(
 	usr_role varchar(7) NOT NULL,
 	CONSTRAINT chk_pat_password_length CHECK(LENGTH(pat_password) >= 8),
 	CONSTRAINT chk_tc_no_length CHECK(LENGTH(tc_no) = 11),
-	CONSTRAINT chk_pat_blood_group CHECK (blood_group IN ('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-')),
 	CONSTRAINT chk_pat_role CHECK(usr_role='PATIENT'),
 	CONSTRAINT fk_patTgen FOREIGN KEY (gender_name)
 	REFERENCES gender(gender_name)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_patTbld FOREIGN KEY (blood_id)
+	REFERENCES blood_type(blood_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
-);	
+);
 
 -- This is new table
 CREATE TABLE allergy(
