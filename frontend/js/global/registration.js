@@ -1,11 +1,8 @@
 const errorTextContainer = document.getElementById("error_message");
 
 window.addEventListener("load", () => {
-
     loadBloodTypes();
-    // TODO: load genders from database
-    // loadGenders();
-
+    loadGenders();
 });
 
 document.getElementById("form_submit").addEventListener("submit", (e) => {
@@ -24,14 +21,12 @@ const loadBloodTypes = async () => {
     try{
         const response = await fetch("/backend/controllers/bloodTypeController.php?action=getBloodTypes");
 
+        const dataSet = await response.json();
         if(!response.ok){
-            const message = await response.json();
-            document.getElementById("errorMessage").innerHTML = `<p style="color: red;"> ${message} </p>`;
-            console.log(message);
+            document.getElementById("errorMessage").innerHTML = `<p style="color: red;"> ${dataSet} </p>`;
+            console.log(dataSet);
             return;
         }
-
-        const dataSet = await response.json();
 
         const bloodContainer = document.getElementById("blood_group");
 
@@ -42,4 +37,24 @@ const loadBloodTypes = async () => {
     }catch(error){
         console.log(error);
     } 
+}
+
+const loadGenders = async () => {
+    try{
+        const response = await fetch("/backend/controllers/genderController.php?action=getGenders");
+        
+        const dataSet = await response.json();
+        if(!response.ok){
+            document.getElementById("errorMessage").innerHTML = `<p style="color: red;"> ${dataSet} </p>`;
+            console.log(dataSet);
+            return;
+        }
+
+        const genderContainer = document.getElementById("gender");
+        dataSet.forEach(data => {
+            genderContainer.innerHTML += `<option value="${data.gender_name}">${data.gender_name}</option>`;
+        });
+    }catch(error){
+        console.log(error);
+    }
 }

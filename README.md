@@ -4,6 +4,8 @@ A full-stack hospital web application template. Patients can log in to see their
 
 ## Database Connection File
 
+This file must be put under "backend" folder. Otherwise, you'll need to configure it's path on all controllers.
+
 ```php
     <?php
     $host = 'localhost';
