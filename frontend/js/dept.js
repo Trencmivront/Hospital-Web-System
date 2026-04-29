@@ -13,6 +13,7 @@ document.getElementById("searchButton").addEventListener("click", () => {
 const createDepartmentContainerHtmls = (dataSet) => {
     // clearing placeholder first
         leftDeptContainer.innerHTML = "";
+        rightDeptContainer.innerHTML = "";
 
         let itemCount = dataSet.length / 2;
         let counter = 0;
@@ -51,7 +52,7 @@ const listDepartments = async () => {
     leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
 
     try{
-        const response = await fetch("/backend/get/getDepartments.php");
+        const response = await fetch("/backend/controllers/departmentController.php?action=getDepartments");
         const dataSet = await response.json();
         createDepartmentContainerHtmls(dataSet);
     }catch(error){
@@ -64,7 +65,7 @@ const filterDepartmentsByName = async () => {
 
     try{
         // TODO: Fetch departments by name
-        const response = await fetch(`/backend/get/filterDepartmentsByName.php?name=${document.getElementById("searchField").value}`);
+        const response = await fetch(`/backend/controllers/departmentController.php?action=filterDepartmentsByName&name=${document.getElementById("searchField").value}`);
         const dataSet = await response.json();
         createDepartmentContainerHtmls(dataSet);
     }catch(error){

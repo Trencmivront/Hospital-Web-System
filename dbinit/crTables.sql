@@ -41,7 +41,7 @@ CREATE TABLE doctor_schedule(
 	schedule_id INT NOT NULL,
 	doctor_id INT NOT NULL,
 	-- if it is false, then user can't select it
-	schedule_status BOOLEAN NOT NULL,
+	is_active BOOLEAN NOT NULL,
 	CONSTRAINT fk_dsTsch FOREIGN KEY (schedule_id)
 	REFERENCES schedule(schedule_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
