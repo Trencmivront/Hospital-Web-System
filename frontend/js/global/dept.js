@@ -92,6 +92,10 @@ const filterDepartmentsByName = async () => {
         alert("Filter Error");
         console.log(error);
     }
+<<<<<<< HEAD
 }
 
 
+=======
+}
+>>>>>>> 1b829bb (a)

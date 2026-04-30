@@ -31,7 +31,11 @@ nav {
 }
 
 nav a {
+<<<<<<< HEAD
     color: #040404;
+=======
+    color: #000;
+>>>>>>> 1b829bb (a)
     text-decoration: none;
     padding: 10px 14px;
     border-radius: 10px;
@@ -265,6 +269,7 @@ nav a:hover {
         width: 100%;
         justify-content: center;
     }
+<<<<<<< HEAD
 }
 /* Q&A Page Styling */
 
@@ -322,3 +327,6 @@ background:white;
 .qa-item.active .qa-answer{
 display:block;
 }
+=======
+}
+>>>>>>> 1b829bb (a)
