@@ -3,90 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Nova Hospital</title>
+    <title>Hospital Departments</title>
+    <link rel="stylesheet" href="../../css/dept.css">
     <link rel="stylesheet" href="../../css/style.css">
-    <style>
-        .about-hero {
-            height: 40vh;
-            background: linear-gradient(rgba(8, 29, 74, 0.8), rgba(8, 29, 74, 0.8)), url("your-hospital-image.jpg");
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
+    <link rel="stylesheet" href="../../css/global.css">
+    <script src="/frontend/js/dept.js" defer></script>
+    <script src="../../js/qa.js" defer></script>
+</head>
+<body class="page-shell">
+    <header class="page-header flex-wrap-space">
+        <div class="brand">
+            <h1 title="hospital name">HOSPITAL</h1>
+            <img src="../../../imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif" width="40" height="40" draggable="false" alt="Hospital logo">
+        </div>
+        <div class="header-actions">
+            
+            <button id="logInButton" type="button"><a href="../user/login.html">Log In</a></button>
+            <div class="dropdown">
+                <button title="lang" class="dropbtn" type="button">EN</button>
+                <ul id="lang" class="dropdown-content">
+                    <li><a href="#">TR</a></li>
+                    <li><a href="#">EN</a></li>
+                    <li><a href="#">AR</a></li>
+                </ul>
+            </div>
+        </div> 
+    </header>
 
-        .about-content {
+    <nav aria-label="Hospital navigation">
+        <a href="home.html">Home</a>
+        <a href="departments.html">Departments</a>
+        <a href="#">Doctors</a>
+        <a href="#">Appointments</a>
+        <a href="about.html">About Us</a>
+        <a href="q&a.html">Q&A</a>
+        <a href="../user/login.html">Contact</a>
+    </nav>
+    
+    <style>
+        .about-section {
             padding: 60px 10%;
             line-height: 1.8;
             color: #333;
         }
-
-        .about-grid {
-            display: flex;
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .about-header h2 {
+            font-size: 2.5rem;
+            color: #0b0c0c;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
-            margin-top: 40px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background: #f9f9f9;
+            padding: 25px;
+            border-left: 5px solid #0e0f0f;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .info-card h3 {
+            margin-top: 0;
+            color: #070808;
+        }
+        .stats-section {
+            margin-top: 50px;
+            background-color: rgb(133, 226, 245);
+            color: rgb(11, 11, 11);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
             flex-wrap: wrap;
         }
-
-        .about-box {
-            flex: 1;
-            min-width: 300px;
-            background: #f9f9f9;
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid #1d3fa6;
+        .stat-item h4 {
+            font-size: 2rem;
+            margin: 10px 0;
         }
-
-        .about-box h3 {
-            color: #1d3fa6;
-            margin-bottom: 15px;
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body>
-
-    <header class="header-container">
-        <div class="left"><h1 class="logo">NOVA HOSPITAL</h1></div>
-        <div class="right"><a href="index.html" class="login-btn">Back to Home</a></div>
-    </header>
-
-    <section class="about-hero">
-        <div>
-            <h1>About Nova Hospital</h1>
-            <p>Leading the way in medical excellence since 2010</p>
+<body class="page-shell">
+    <main class="about-section">
+        <div class="about-header">
+            <h2>Compassionate Care, Advanced Medicine</h2>
+            <p>Welcome to Nova Hospital, where your health and well-being are our top priorities. Since our founding, we have been dedicated to serving the community with excellence and integrity.</p>
         </div>
-    </section>
 
-    <main class="about-content">
-        <h2>Our Story</h2>
-        <p>Nova Hospital was founded with a single mission: to provide world-class healthcare with a human touch. Located in Balikesir, we have grown from a small clinic to a leading multi-specialty hospital, serving thousands of patients every year with dedication and advanced medical technology.</p>
-
-        <div class="about-grid">
-            <div class="about-box">
+        <div class="content-grid">
+            <div class="info-card">
                 <h3>Our Mission</h3>
-                <p>To improve the health and well-being of our community through compassionate care and medical innovation.</p>
+                <p>To provide high-quality, patient-centered healthcare services that improve the lives of our community through innovation, compassion, and clinical excellence.</p>
             </div>
-            <div class="about-box">
+            <div class="info-card">
                 <h3>Our Vision</h3>
-                <p>To be the most trusted healthcare provider in the region, recognized for clinical excellence and patient safety.</p>
+                <p>To be the leading healthcare provider in the region, recognized for our medical breakthroughs, expert team, and commitment to human dignity.</p>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h3>Nova Hospital by the Numbers</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>20+</h4>
+                    <p>Years of Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h4>100+</h4>
+                    <p>Expert Doctors</p>
+                </div>
+                <div class="stat-item">
+                    <h4>50,000+</h4>
+                    <p>Happy Patients</p>
+                </div>
+                <div class="stat-item">
+                    <h4>24/7</h4>
+                    <p>Emergency Support</p>
+                </div>
             </div>
         </div>
 
         <div style="margin-top: 50px;">
-            <h3>Our Core Values</h3>
-            <ul>
-                <li><strong>Integrity:</strong> We act with honesty and transparency.</li>
-                <li><strong>Compassion:</strong> We treat every patient like family.</li>
-                <li><strong>Excellence:</strong> We strive for the highest standards in everything we do.</li>
-            </ul>
+            <h3>Who We Are</h3>
+            <p>Nova Hospital is a state-of-the-art facility located in Balikesir, equipped with the latest medical technologies. Our multidisciplinary team works together to provide comprehensive care across various departments, from cardiology to pediatrics. We believe that every patient deserves personalized treatment in a safe and supportive environment.</p>
         </div>
     </main>
 
     <footer class="footer">
-        <p>Nova Hospital © 2026 | Dedicated to Your Health</p>
+        <p>© Nova Hospital - All Rights Reserved</p>
     </footer>
 
 </body>

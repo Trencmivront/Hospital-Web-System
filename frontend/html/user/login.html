@@ -1,148 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Hospital - Patient Login</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    
-    <style>
-        /* General page reset and background setup */
-        body.login-page {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Replace 'your-image.jpg' with your local image filename */
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("/imgs/nova\ hospital.jpeg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Hospital - Patient Login</title>
 
-        /* Centered login card styling */
-        .login-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
+<link rel="stylesheet" href="../../css/style.css">
 
-        .login-card:hover {
-            transform: translateY(-5px);
-        }
+<style>
 
-        .login-card h2 {
-            color: #081d4a;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
+/* Login Page Background */
+body.login-page{
+margin:0;
+padding:0;
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+background-image:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url("../../../imgs/novamm.jpeg");
+background-size:cover;
+background-position:center;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
 
-        .login-card p {
-            color: #555;
-            margin-bottom: 30px;
-        }
 
-        /* Form input styling */
-        .input-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
+/* Login Card */
+.login-card{
+background:rgba(255,255,255,.96);
+padding:40px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,.35);
+width:100%;
+max-width:420px;
+text-align:center;
+}
 
-        .input-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-        }
+.login-card h2{
+color:#081d4a;
+font-size:30px;
+margin-bottom:10px;
+}
 
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-sizing: border-box;
-            font-size: 15px;
-            transition: border-color 0.3s;
-        }
+.login-card p{
+color:#666;
+margin-bottom:25px;
+}
 
-        .input-group input:focus {
-            outline: none;
-            border-color: #1d3fa6;
-        }
 
-        /* Action button styling */
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: #1d3fa6;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-        }
+/* Inputs */
+.input-group{
+text-align:left;
+margin-bottom:20px;
+}
 
-        .submit-btn:hover {
-            background: #081d4a;
-            transform: scale(1.02);
-        }
+.input-group label{
+display:block;
+font-weight:600;
+margin-bottom:8px;
+}
 
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #1d3fa6;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
+.input-group input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:10px;
+box-sizing:border-box;
+}
 
-        .back-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+.input-group input:focus{
+outline:none;
+border-color:#1d3fa6;
+}
+
+
+/* Remember Me */
+.remember{
+text-align:left;
+margin-bottom:18px;
+font-size:14px;
+}
+
+
+/* Login Button */
+.submit-btn{
+width:100%;
+padding:15px;
+background:#1d3fa6;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.submit-btn:hover{
+background:#081d4a;
+}
+
+
+/* Links */
+.extra-links{
+margin-top:20px;
+line-height:2;
+}
+
+.extra-links a{
+text-decoration:none;
+color:#1d3fa6;
+font-weight:500;
+}
+
+.extra-links a:hover{
+text-decoration:underline;
+}
+
+.back-link{
+display:inline-block;
+margin-top:20px;
+font-size:14px;
+text-decoration:none;
+color:#1d3fa6;
+}
+
+</style>
 </head>
+
+
 <body class="login-page">
 
-    <div class="login-card">
-        <h2>Patient Portal</h2>
-        <p>Access your medical records and appointments</p>
-        
-        <form action="home.html">
-            <div class="input-group">
-                <label>Full Name</label>
-                <input type="text" placeholder="Enter your full name" required>
-            </div>
+<div class="login-card">
 
-            <div class="input-group">
-                <label>Date of Birth</label>
-                <input type="date" required>
-            </div>
+<h2>Patient Login</h2>
 
-            <div class="input-group">
-                <label>Email Address</label>
-                <input type="email" placeholder="name@example.com" required>
-            </div>
+<p>
+Sign in to access your appointments and medical records
+</p>
 
-            <div class="input-group">
-                <label>Phone Number</label>
-                <input type="tel" placeholder="+90 555 000 0000" required>
-            </div>
 
-            <button type="submit" class="submit-btn">Sign In</button>
-        </form>
-        
-        <a href="../global/home.html" class="back-link">Return to Home</a>
-    </div>
+<form action="../global/home.html">
+
+<!-- Email -->
+<div class="input-group">
+<label>Email Address</label>
+<input
+type="email"
+placeholder="name@example.com"
+required>
+</div>
+
+
+<!-- Password -->
+<div class="input-group">
+<label>Password</label>
+<input
+type="password"
+placeholder="Enter your password"
+required>
+</div>
+
+
+<!-- Remember Me -->
+<div class="remember">
+<input type="checkbox">
+Remember Me
+</div>
+
+
+<button type="submit" class="submit-btn">
+Sign In
+</button>
+
+</form>
+
+
+<div class="extra-links">
+
+<p>
+<a href="#">Forgot Password?</a>
+</p>
+
+<p>
+Don't have an account?
+<a href="#">Register</a>
+</p>
+
+</div>
+
+
+<a href="../global/home.html" class="back-link">
+Return to Home
+</a>
+
+</div>
 
 </body>
 </html>

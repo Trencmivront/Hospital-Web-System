@@ -93,3 +93,5 @@ const filterDepartmentsByName = async () => {
         console.log(error);
     }
 }
+
+

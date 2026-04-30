@@ -31,7 +31,7 @@ nav {
 }
 
 nav a {
-    color: #000;
+    color: #040404;
     text-decoration: none;
     padding: 10px 14px;
     border-radius: 10px;
@@ -265,4 +265,60 @@ nav a:hover {
         width: 100%;
         justify-content: center;
     }
+}
+/* Q&A Page Styling */
+
+.qa-section{
+width:80%;
+margin:60px auto;
+}
+
+.qa-section h1{
+text-align:center;
+font-size:42px;
+margin-bottom:20px;
+}
+
+.faq-intro{
+text-align:center;
+max-width:800px;
+margin:0 auto 50px;
+}
+
+.qa-section h2{
+margin-top:40px;
+padding-bottom:10px;
+border-bottom:2px solid #bdeeee;
+}
+
+.qa-item{
+margin-top:20px;
+border:1px solid #ddd;
+border-radius:8px;
+overflow:hidden;
+}
+
+.qa-question{
+width:100%;
+padding:18px;
+background:#fafafa;
+border:none;
+text-align:left;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.qa-question:hover{
+background:#f0f0f0;
+}
+
+.qa-answer{
+display:none;
+padding:18px;
+background:white;
+}
+
+.qa-item.active .qa-answer{
+display:block;
 }
