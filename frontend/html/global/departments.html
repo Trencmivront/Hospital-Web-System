@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="../../css/dept.css?v=1.3">
     <link rel="stylesheet" href="../../css/global.css?v=1.4">
     <script src="/frontend/js/global/dept.js" defer></script>
-    <link rel="stylesheet" href="../../css/dept.css">
-    <link rel="stylesheet" href="../../css/global.css">
-    <script src="/frontend/js/dept.js" defer></script>
 </head>
 <body class="page-shell">
     <header class="page-header flex-wrap-space">
@@ -21,7 +18,6 @@
             <a class="logButton" href="logIn.html">Log In</a>
             <a class="logButton" style="background-color: palegreen;" href="registration.html">Register</a>
             
-            <button id="logInButton" type="button">Log In</button>
             <div class="dropdown">
                 <button title="lang" class="dropbtn" type="button">EN</button>
                 <ul id="lang" class="dropdown-content">
@@ -37,7 +33,6 @@
         <a href="home.html">Home</a>
         <a href="departments.html">Departments</a>
         <a href="#">Doctors</a>
-        <a href="#">Appointments</a>
         <a href="about.html">About Us</a>
         <a href="q&a.html">Q&A</a>
         <a href="../user/login.html">Contact</a>
@@ -48,24 +43,25 @@
             <tr><td><input id="searchField" type="search" placeholder="Search By Name" title="search"></td>
             <td>
               <button id="searchButton">
-                <img src="../../../imgs/search_icon.jpg" style="height: 34px; width: 34px;border-radius: 10px;">
+                <img src="/imgs/search_icon.jpg" style="height: 34px; width: 34px;border-radius: 10px;">
               </button>
             </td>
         </tr>
         </table>
     </div>
 
-    <main id="dept_container" class="dept-container flex-wrap-space">
-
+    <main class="main-dept-container flex-wrap-space" style="justify-content: space-evenly;">
+        <div id="left-dept-container-div"></div>
+        <div id="right-dept-container-div"></div>
     </main>
 
     <section class="social-section">
         <h2>Connect With Nova Hospital</h2>
         <div class="social-icons">
-        <a href="#"><img src="../../../imgs/Facebook.png"></a>
-        <a href="#"><img src="../../../imgs/instagram.jpg"></a>
-        <a href="#"><img src="../../../imgs/X-logo.jpg"></a>
-        <a href="#"><img src="../../../imgs/youtube.avif"></a>
+        <a href="#"><img src="/imgs/Facebook.png"></a>
+        <a href="#"><img src="/imgs/instagram.jpg"></a>
+        <a href="#"><img src="/imgs/X-logo.jpg"></a>
+        <a href="#"><img src="/imgs/youtube.avif"></a>
         </div>
     </section>
 

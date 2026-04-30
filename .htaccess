@@ -1,0 +1,18 @@
+Options -MultiViews
+RewriteEngine On
+
+# 1. Eğer dosya uzantısı .js, .css, .png, .jpg ise engelleme kuralını atla
+RewriteCond %{REQUEST_FILENAME} \.(js|css|png|jpg|jpeg|gif|ico)$ [NC]
+
+# 2. PHP engelleme kuralın (bunun altında kalmalı)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.php\ HTTP/
+RewriteRule ^.*\.php$ - [F,L]
+
+# 3. .html uzantısını gizle (Örn: /index yazınca index.html çalışır)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# Kullanıcı /panel yazarsa arka planda /admin/dashboard.html açılır
+# RewriteRule ^panel$ admin/dashboard.html [L]
+RewriteRule ^main$ /frontend/html/global/index.html [L]
