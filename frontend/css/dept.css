@@ -1,7 +1,8 @@
-.main-dept-container {
+.main-dept-container { 
+    border: 1px solid #707070;
     flex-direction: row;
     flex-wrap: wrap;
-    min-width: 100%;
+    min-width: 60%;
     margin: 0 auto;
     padding: 10px;
 }
@@ -69,8 +70,19 @@
 }
 
 @media (max-width: 720px) {
-    #search {
-        width: 100%;
-        max-width: 360px;
+    .main-dept-container{
+        width: 90%;
+        flex-direction: column;
     }
+    .dept-container-div{
+        width: auto;
+    }
+
+    .vertical-line{
+        display: none;
+    }
+    #searchTableItem {
+        width: 90%;
+    }
+
 }
