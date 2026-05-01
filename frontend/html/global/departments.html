@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Departments</title>
-    <link rel="stylesheet" href="../../css/dept.css?v=1.2">
-    <link rel="stylesheet" href="../../css/global.css?v=1.1">
-    <script src="../../../frontend/js/global/dept.js" defer></script>
+    <link rel="stylesheet" href="../../css/dept.css?v=1.1">
+    <link rel="stylesheet" href="../../css/global.css?v=1.2">
+    <script src="/frontend/js/global/dept.js?v=1.1" defer></script>
 </head>
 <body class="page-shell">
     <header class="page-header flex-wrap-space">
@@ -15,7 +15,7 @@
             <img src="../../../imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif" width="40" height="40" draggable="false" alt="Hospital logo">
         </div>
         <div class="header-actions">
-            <a class="logButton" href="logIn.html">Log In</a>
+            <a class="logButton" href="../user/logIn.html">Log In</a>
             <a class="logButton" style="background-color: palegreen;" href="registration.html">Register</a>
             
             <div class="dropdown">
@@ -35,9 +35,9 @@
         <a href="#">Doctors</a>
         <a href="about.html">About Us</a>
         <a href="q&a.html">Q&A</a>
-        <a href="../../../user/login.html">Contact</a>
+        <a href="">Contact</a>
     </nav>
- 
+    
     <div id="filterContainer">
         <table id="searchTableItem">
             <tr><td><input id="searchField" type="search" placeholder="Search By Name" title="search"></td>
@@ -52,7 +52,7 @@
 
     <main class="main-dept-container flex-wrap-space" style="justify-content: space-evenly;">
         <div id="left-dept-container-div"></div>
-        <div class="vertical-line"></div>
+        <div id="vertical-line" class="vertical_line"></div>
         <div id="right-dept-container-div"></div>
     </main>
 
@@ -75,7 +75,6 @@
             <h3><u>Quick Links</u></h3>
             <p><a>Doctors</a></p>
             <p><a href="departments.html">Departments</a></p>
-            <p>Appointments</p>
         </div>
         <div class="footer-div">
             <h3><u>Contact</u></h3>

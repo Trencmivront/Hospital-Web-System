@@ -2,11 +2,12 @@ const leftDeptContainer = document.getElementById("left-dept-container-div");
 const rightDeptContainer = document.getElementById("right-dept-container-div");
 
 window.addEventListener('load', () => {
-    listDepartments();
-});
 
-document.getElementById("searchButton").addEventListener("click", () => {
-    filterDepartmentsByName();
+    document.getElementById("searchButton").addEventListener("click", () => {
+        filterDepartmentsByName();
+    });
+    listDepartments();
+
 });
 
 // adding html elements to main
@@ -15,12 +16,15 @@ const createDepartmentContainerHtmls = (dataSet) => {
         leftDeptContainer.innerHTML = "";
         rightDeptContainer.innerHTML = "";
 
+        const line = document.getElementById('vertical-line');
+
         let itemCount = dataSet.length / 2;
         let counter = 0;
 
         dataSet.forEach(data => {
 
             if(counter < itemCount){
+                line.style.display = 'none';
                 leftDeptContainer.innerHTML += "<div class='dept-container-div extend-container'>" +
                 "<button class='extendbtn'><h3><span class='extendbtn-arrow'> > </span>" + data.dept_name + "</h3></button>" +
                 "<div class='extend-item'><p>" + data.descrpt + "</p></div>" +
@@ -28,6 +32,7 @@ const createDepartmentContainerHtmls = (dataSet) => {
                 counter++;
             }
             else{
+                line.style.display = 'block';
                 rightDeptContainer.innerHTML += "<div class='dept-container-div extend-container'>" +
                 "<button class='extendbtn'><h3><span class='extendbtn-arrow'> > </span>" + data.dept_name + "</h3></button>" +
                 "<div class='extend-item'><p>" + data.descrpt + "</p></div>" +
@@ -49,6 +54,7 @@ const addEventListenerToButtons = () => {
 
 const listDepartments = async () => {
     // placeholder until all departments fetched
+    rightDeptContainer.innerHTML = '';
     leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
 
     try{
@@ -70,6 +76,9 @@ const listDepartments = async () => {
 }
 
 const filterDepartmentsByName = async () => {
+
+    const leftDeptContainer = document.getElementById("left-dept-container-div");
+
     leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
 
     try{
@@ -79,7 +88,7 @@ const filterDepartmentsByName = async () => {
         // show error upon error?...
         if(!response.ok){
             const error = await response.json();
-            console.log("error");
+            console.log(error);
             leftDeptContainer.innerHTML = `<p style="color:red;">${error}</p>`;
             return;
         }
