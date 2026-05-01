@@ -18,4 +18,3 @@ npm-debug.log*
 # IDE (Kod editörü) ayarları
 .vscode/
 .idea/
-.htaccess
