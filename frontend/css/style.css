@@ -1,101 +1,16 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    height: 70px;
-    padding: 0 40px;
-    align-items: center;
-    gap: 20px;
-    background-color: rgb(196, 232, 255);
-}
-
-.logo {
-    color: #161515;
-    font-size: 35px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.search-box {
-    display: inline-flex;
-    gap: 5px;
-}
-
-.search-box input,
-.search-box button {
-    height: 30px;
-    padding: 0 8px;
-}
-
-.right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.login-btn {
-    text-decoration: none;
-    color: black;
-    border: 2px solid black;
-    padding: 10px 28px;
-    border-radius: 30px;
-    font-weight: bold;
-    background: white;
-}
-
-.login-btn:hover {
-    background: #0755f0;
-    color: white;
-}
-
-.language {
-    border: none;
-    background: transparent;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-
+/* to control the background color that show behind the moving images*/
 .hero-section-container {
     width: 100%;
-    background-color: #f8f9fa;
+    background-color: #f9fbfc;
     padding: 20px 0;
 }
 
 .hero-wrapper {
     max-width: 1200px;
-   
     margin: 0 auto;
     display: flex;
     gap: 12px;
     height: 480px;
-}
-
-.side-strip {
-    flex: 0 0 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.strip-item {
-    flex: 1;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.strip-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
 }
 
 .hero-main {
@@ -105,6 +20,7 @@ body {
     border-radius: 12px;
 }
 
+/*to control the moving of images*/
 .slider {
     display: flex;
     width: 300%;
@@ -118,18 +34,21 @@ body {
     position: relative;
 }
 
+/* to control the size and positioning of moving images */
 .slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+/* this the function that control the moving of images in the hero section */
 @keyframes slideAnimation {
 
     0%,
     30% {
         transform: translateX(0);
     }
+
     33%,
     63% {
         transform: translateX(-33.33%);
@@ -143,12 +62,6 @@ body {
     100% {
         transform: translateX(0);
     }
-}
-
-
-
-.card:hover {
-    transform: translateY(-8px);
 }
 
 .why-us {
@@ -182,54 +95,21 @@ body {
     text-align: center;
 }
 
-.reviews {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
 
-.social-section {
-    text-align: center;
-    padding: 70px 20px;
-    background: #f5f8ff;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 35px;
-}
-
-.social-icons img {
-    width: 60px;
-    height: 60px;
-    transition: .3s;
-}
-
-.social-icons img:hover {
-    transform: scale(1.2);
-}
-
-.footer {
-    background: #a4d8f0;
-    color: rgb(3, 2, 2);
-    display: flex;
-    justify-content: space-around;
-    padding: 60px 40px;
-}
 
 .slide {
     position: relative;
 }
 
+/* to control the box the text that show on the moving images in the hero section*/
 .hero-text {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: white;
-    background: rgba(0, 0, 0, 0.4);
+    color: rgb(248, 247, 247);
+    background: rgba(20, 20, 20, 0.507);
     padding: 30px;
     border-radius: 15px;
     width: 60%;
@@ -246,13 +126,16 @@ body {
 
 .feature-box,
 .review {
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /*to control how fast will the box in why choose nova hospital  will be bigger*/
+    transition: transform .3s ease, box-shadow 0.4s ease;
 }
 
+/* here to control the boxs in "Why Choose nova hospital */
 .feature-box:hover,
 .review:hover {
-    transform: scale(1.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    /* control  the scaling and shadow in boxs */
+    transform: scale(1.2);
+    box-shadow: 0 10px 30px rgba(68, 228, 249, 0.2);
     cursor: pointer;
     z-index: 10;
 }
@@ -287,15 +170,19 @@ body {
     text-decoration: none;
     font-size: 14px;
 }
+
 /* Styling for the image strip below the hero */
 .image-strip-container {
 
     width: 100%;
     height: 100px;
-    padding: 0 0; /* pace before Why Choose Us section */
-    background-color:#8bddef55; /* Light background to separate sections */
+    padding: 0 0;
+    /* pace before Why Choose Us section */
+    background-color: #8bddef55;
+    /* Light background to separate sections */
 }
 
+/* to control the size and spacing of images  that show under the moving images in the hero*/
 .image-strip {
     display: flex;
     justify-content: center;
@@ -308,63 +195,28 @@ body {
 /* Modified for smaller size */
 .strip-item {
     flex: 1;
-    max-width: 200px; /* Limits the width of each thumbnail */
-    height: 100px;    /* Reduced height from 200px to 130px */
+    max-width: 200px;
+    /* Limits the width of each thumbnail */
+    height: 100px;
+    /* Reduced height from 200px to 130px */
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(246, 248, 249, 0.853);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* to control the size and cropping of images  that show under the moving images */
 .strip-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Important to keep images looking good */
+    object-fit: cover;
+    /* Important to keep images looking good */
     transition: transform 0.5s ease;
 }
 
 /* Interaction Effects */
 .strip-item:hover {
-    transform: translateY(-10px); /* Lift up effect */
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
-
-.strip-item:hover img {
-    transform: scale(1.1); /* Zoom effect on the image */
-}
-/* Lightbox Styles */
-.lightbox {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 9999; /* Above everything */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Black background with opacity */
-    justify-content: center;
-    align-items: center;
-}
-
-.lightbox-content {
-    max-width: 80%;
-    max-height: 80%;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    animation: zoomIn 0.3s ease;
-}
-
-.close-btn {
-    position: absolute;
-    top: 30px;
-    right: 50px;
-    color: white;
-    font-size: 50px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-@keyframes zoomIn {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    transform: translateY(-20px);
+    /* Lift up effect */
+    box-shadow: 0 12px 25px rgba(22, 5, 5, 0.709);
 }
