@@ -8,7 +8,7 @@
 .hero-wrapper {
     margin: auto;
     gap: 12px;
-    max-width: 80%;
+    max-width: 50%;
 }
 .hero-main{
     flex: 1;
