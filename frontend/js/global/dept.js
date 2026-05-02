@@ -77,8 +77,7 @@ const listDepartments = async () => {
 
 const filterDepartmentsByName = async () => {
 
-    const leftDeptContainer = document.getElementById("left-dept-container-div");
-
+    rightDeptContainer = "";
     leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
 
     try{

@@ -1,16 +1,164 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile - Nova Hospital</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/user/profile.css">
+</head>
+<body class="profile-layout">
+    <header class="profile-top-bar">
+        <div class="top-bar-content">
+            <a href="../global/index.html" class="top-bar-brand">
+                <img src="/imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif" alt="Logo">
+                <span>Nova Hospital</span>
+            </a>
+            <div class="top-bar-user">
+                <span>Welcome, <strong>John Doe</strong></span>
+                <a href="logout.php" class="logout-link">Logout</a>
+            </div>
+        </div>
+    </header>
 
-<html>
+    <div class="profile-wrapper">
+        <aside class="profile-sidebar">
+            <nav class="sidebar-menu">
+                <button class="menu-item active" data-section="account-details">
+                    <span class="icon">👤</span> Account Details
+                </button>
+                <button class="menu-item" data-section="medical-records">
+                    <span class="icon">📄</span> Medical Records
+                </button>
+                <button class="menu-item" data-section="payments">
+                    <span class="icon">💳</span> Payments
+                </button>
+                <button class="menu-item" data-section="messages">
+                    <span class="icon">✉</span> Messages
+                </button>
+                <button class="menu-item" data-section="settings">
+                    <span class="icon">⚙</span> Settings
+                </button>
+            </nav>
+        </aside>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Patient Profile</title>
-        <link rel="stylesheet" href="../../css/global.css">
-    </head>
+        <main class="profile-main-content">
+            <!-- Account Details Section -->
+            <section id="account-details" class="content-section active">
+                <h1>Account Details</h1>
+                
+                <div class="details-grid">
+                    <!-- Patient Information Box -->
+                    <div class="info-box">
+                        <div class="box-header">
+                            <h3>Personal Information</h3>
+                            <button class="edit-icon-btn">Edit</button>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-row">
+                                <span class="label">Full Name:</span>
+                                <span class="value">John Doe</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">TC Number:</span>
+                                <span class="value">12345678901</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Email:</span>
+                                <span class="value">john.doe@example.com</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Phone:</span>
+                                <span class="value">+90 555 123 45 67</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Blood Type:</span>
+                                <span class="value">A+</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Date of Birth:</span>
+                                <span class="value">01/01/1990</span>
+                            </div>
+                        </div>
+                    </div>
 
-    <body>
+                    <!-- Appointments Box -->
+                    <div class="appointments-box">
+                        <div class="box-header">
+                            <h3>Your Appointments</h3>
+                            <a href="../global/index.html" class="book-new-btn">+ Book New</a>
+                        </div>
+                        <div class="appointments-content">
+                            <div class="appointment-sub-section">
+                                <h4>Upcoming</h4>
+                                <table class="profile-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Department</th>
+                                            <th>Doctor</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>15/05/2026 10:30</td>
+                                            <td>Cardiology</td>
+                                            <td>Dr. Smith</td>
+                                            <td><button class="cancel-btn">Cancel</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="appointment-sub-section">
+                                <h4>Past</h4>
+                                <table class="profile-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Department</th>
+                                            <th>Doctor</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>10/01/2026 09:15</td>
+                                            <td>Dermatology</td>
+                                            <td>Dr. Taylor</td>
+                                            <td>Completed</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    </body>
+            <!-- Other sections (hidden by default) -->
+            <section id="medical-records" class="content-section">
+                <h1>Medical Records</h1>
+                <p>No medical records found.</p>
+            </section>
+            
+            <section id="payments" class="content-section">
+                <h1>Payments</h1>
+                <p>No pending payments.</p>
+            </section>
 
+            <section id="messages" class="content-section">
+                <h1>Messages</h1>
+                <p>No new messages.</p>
+            </section>
+
+            <section id="settings" class="content-section">
+                <h1>Settings</h1>
+                <p>Profile settings will be here.</p>
+            </section>
+        </main>
+    </div>
+
+    <script src="../../js/user/profile.js"></script>
+</body>
 </html>

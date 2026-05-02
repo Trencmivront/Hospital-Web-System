@@ -22,10 +22,7 @@ nav {
     background-color: rgb(133, 226, 245);
     min-height: 40px;
     width: 100%;
-    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     gap: 12px;
     padding: 8px 16px;
 }
@@ -41,6 +38,18 @@ nav a {
 
 nav a:hover {
     background-color: rgba(255, 255, 255, 0.7);
+}
+
+.flex-center-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-wrap-space{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .vertical_line{        
@@ -65,12 +74,6 @@ nav a:hover {
     background-color: #ffffcd;
 }
 
-.flex-wrap-space{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
 .page-header {
     align-items: center;
     gap: 20px;
@@ -79,8 +82,6 @@ nav a:hover {
 }
 
 .brand {
-    display: flex;
-    align-items: center;
     gap: 10px;
     margin-top: 20px;
     margin-left: 20px;
@@ -100,8 +101,6 @@ nav a:hover {
 }
 
 .header-actions {
-    display: flex;
-    align-items: center;
     gap: 10px;
     flex-wrap: wrap;
     margin-right: 20px;
@@ -120,6 +119,7 @@ nav a:hover {
 
 .social-icons {
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 16px;
     flex-wrap: wrap;
@@ -269,22 +269,51 @@ nav a:hover {
     display: block;
 }
 
-@media (max-width: 720px){
-    .page-header {
-        padding: 16px 16px;
-    }
 
-    .brand {
-        margin-left: 0;
-        width: 100%;
-        justify-content: center;
-    }
-
-    .header-actions {
-        width: 100%;
-        justify-content: center;
-    }
+ /* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
 /* Q&A Page Styling */
 
 .qa-section{
@@ -340,4 +369,27 @@ background:white;
 
 .qa-item.active .qa-answer{
 display:block;
+}
+
+
+/* On smaller screens, nav to sidenav and center the header content */
+@media screen and (max-width: 768px) {
+    .sidenav a {font-size: 18px;}
+    .page-header {
+        padding: 16px;
+    }
+    .brand {
+        width: 100%;
+        margin: 0;
+        justify-content: center;
+    }
+    .header-actions {
+        width: 100%;
+        margin: 0;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 630px){
+
 }
