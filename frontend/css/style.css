@@ -1,3 +1,21 @@
+
+/* to control the background color that show behind the moving images*/
+.hero-section-container {
+    width: 100%;
+    background-color: #f9fbfc;
+    padding: 20px 0;
+}
+.hero-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 12px;
+    height: 480px;
+}
+.hero-main{
+    flex: 1;
+    overflow: hidden;
+    border-radius: 12px;
+}
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -93,8 +111,9 @@ nav a:hover {
 }
 
 .slide {
-    width: 100%;
+    width: 33.33%;
     height: 100%;
+    position: relative;
 }
 
 .slide img {
@@ -104,9 +123,9 @@ nav a:hover {
 }
 
 @keyframes slideAnimation {
-    0%, 25% { transform: translateX(0); }
-    33%, 58% { transform: translateX(-33.33%); }
-    66%, 91% { transform: translateX(-66.66%); }
+    0%, 30% { transform: translateX(0); }
+    33%, 63% { transform: translateX(-33.33%); }
+    66%, 96% { transform: translateX(-66.66%); }
     100% { transform: translateX(0); }
 }
 
@@ -246,6 +265,56 @@ nav a:hover {
 
 .submit-btn:hover { background: #081d4a; }
 .back-link { display: block; margin-top: 15px; color: #1d3fa6; text-decoration: none; font-size: 14px; } 
+
+/* Styling for the image strip below the hero */
+.image-strip-container {
+
+    width: 100%;
+    height: 100px;
+    padding: 0 0;
+    /* pace before Why Choose Us section */
+    background-color: #8bddef55;
+    /* Light background to separate sections */
+}
+
+/* to control the size and spacing of images  that show under the moving images in the hero*/
+.image-strip {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Modified for smaller size */
+.strip-item {
+    flex: 1;
+    max-width: 200px;
+    /* Limits the width of each thumbnail */
+    height: 100px;
+    /* Reduced height from 200px to 130px */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(246, 248, 249, 0.853);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* to control the size and cropping of images  that show under the moving images */
+.strip-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Important to keep images looking good */
+    transition: transform 0.5s ease;
+}
+
+/* Interaction Effects */
+.strip-item:hover {
+    transform: translateY(-20px);
+    /* Lift up effect */
+    box-shadow: 0 12px 25px rgba(22, 5, 5, 0.709);
+}
 
 /* doctor section */
 .doctors-section {
