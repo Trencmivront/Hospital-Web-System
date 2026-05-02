@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors</title>
+
+    <!-- CSS (same as departments for consistency) -->
+    <link rel="stylesheet" href="../../css/dept.css?v=1.2">
+    <link rel="stylesheet" href="../../css/global.css?v=1.2">
+    <link rel="stylesheet" href="../../css/style.css?v=1.2">
+
+    <!-- JS -->
+    <script src="/frontend/js/dept.js?v=1.1" defer></script>
+</head>
+
+<body>
+
+<!-- ===== HEADER (from your system) ===== -->
+<header class="header-container">
+    <h1 class="logo">NOVA HOSPITAL</h1>
+
+    <div class="search-box">
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </div>
+
+    <div class="right">
+        <a href="../user/login.html" class="login-btn">Login</a>
+        <button class="language">EN</button>
+    </div>
+</header>
+
+<!-- ===== NAVBAR (your provided one) ===== -->
+<nav aria-label="Hospital navigation">
+    <a href="index.html">Home</a>
+    <a href="departments.html">Departments</a>
+    <a href="doctors.html" style="background-color: rgba(255,255,255,0.2);">Doctors</a>
+    <a href="about.html">About Us</a>
+    <a href="q&a.html">Q&A</a>
+    <a href="../user/login.html">Contact</a>
+</nav>
+
+<!-- ===== DOCTORS CONTENT ===== -->
+<div class="container">
+
+    <h1 class="title">Our Doctors</h1>
+
+    <div class="card-container" id="cards-container"></div>
+    <script src="../../js/doc.js" defer></script>
+                      
+</div>
+
+</body>
+</html>
