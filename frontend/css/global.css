@@ -40,8 +40,7 @@ nav a:hover {
 }
 /*For side navigation*/
 nav.open{
-    width: 50%;
-
+    width: 300px;
 }
 
 #close_button{
@@ -351,7 +350,7 @@ display:block;
         width: 0px;
         position: fixed;
         z-index: 1;
-        overflow-x: hidden;
+        overflow: visible;
         padding: 30px 0px 0px 0px;
         /*Apply transition to all elements*/
         transition: 0.5s ;
@@ -361,17 +360,26 @@ display:block;
         font-size: 25px;
         display: block;
         transition: 0.3s;
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.open a {
+        opacity: 1;
+        pointer-events: auto;
     }
     /* Display close button when page is thight*/
     #close_button {
         display: block;
+        position: absolute;
+        top: 10px;
+        right: -60px; /* Positioned outside so it's visible when nav width is 0 */
         font-size: 36px;
-        /*Increasing the are where button can be clicked.*/
-        padding: 20px;
+        padding: 10px;
         border: none;
         background: none;
         color: black;
         cursor: pointer;
+        transition: 0.5s; /* Match nav transition */
     }
     .page-header {
         padding: 16px;
