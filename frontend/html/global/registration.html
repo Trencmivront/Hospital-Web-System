@@ -7,13 +7,43 @@
         <title>Register</title>
         <link rel="stylesheet" href="../../css/global.css">
         <link rel="stylesheet" href="../../css/global/register.css">
+        <script src="/frontend/js/global/global.js" defer></script>
         <script src="/frontend/js/global/registration.js" defer></script>
     </head>
 
 
-    <body background="/imgs/registration_background.png">
+<body class="page-shell" style="background-image: url('/imgs/registration_background.png'); background-size: cover; background-attachment: fixed;">
+    <header class="page-header flex-wrap-space">
+        <div class="brand flex-center-content">
+            <h1 title="hospital name">HOSPITAL</h1>
+            <img src="/imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif" width="40" height="40" draggable="false" alt="Hospital logo">
+        </div>
+        <div class="header-actions flex-center-content">
+            <a class="logButton" href="../user/logIn.html">Log In</a>
+            <a class="logButton" style="background-color: palegreen;" href="registration.html">Register</a>
+            
+            <div class="dropdown">
+                <button title="lang" class="dropbtn" type="button">EN</button>
+                <ul id="lang" class="dropdown-content">
+                    <li><a href="#">TR</a></li>
+                    <li><a href="#">EN</a></li>
+                    <li><a href="#">AR</a></li>
+                </ul>
+            </div>
+        </div> 
+    </header>
 
-        <div class="div-form">
+    <nav id="nav_container" class="flex-center-content" aria-label="Hospital navigation">
+        <button id="close_button"> &times;</button>
+        <a href="index.html">Home</a>
+        <a href="departments.html">Departments</a>
+        <a href="doctors.html">Doctors</a>
+        <a href="about.html">About Us</a>
+        <a href="q&a.html">Q&A</a>
+        <a href="">Contact</a>
+    </nav>
+
+    <div class="div-form">
 
             <form id="registrationForm">
                 <div class="form-header">
@@ -89,6 +119,33 @@
             </div>
         </div>
 
+    <section class="social-section">
+        <h2>Connect With Nova Hospital</h2>
+        <div class="social-icons flex-center-content">
+            <a href="#"><img src="/imgs/Facebook.png"></a>
+            <a href="#"><img src="/imgs/instagram.jpg"></a>
+            <a href="#"><img src="/imgs/X-logo.jpg"></a>
+            <a href="#"><img src="/imgs/youtube.avif"></a>
+        </div>
+    </section>
+
+    <footer class="footer flex-wrap-space">
+        <div class="footer-div">
+            <h3><u>About Nova</u></h3>
+            <p>Modern healthcare with trusted medical services.</p>
+        </div>
+        <div class="footer-div">
+            <h3><u>Quick Links</u></h3>
+            <p><a>Doctors</a></p>
+            <p><a href="departments.html">Departments</a></p>
+        </div>
+        <div class="footer-div">
+            <h3><u>Contact</u></h3>
+            <p><a href="https://maps.app.goo.gl/A6iZ4uokeFy4qx2u9">Balikesir, Türkiye</a></p>
+            <p>+90 555 000 000</p>
+            <p><a href="mailto:info@novahospital.com">info@novahospital.com</a></p>
+        </div>
+    </footer>
     </body>
 
 </html>
