@@ -1,5 +1,4 @@
-/* Sidebar Layout for Profile Page */
-
+/* Defining global variables.  */
 :root {
     --sidebar-width: 260px;
     --primary-blue: #007185;
@@ -16,6 +15,18 @@ body.profile-layout {
     min-height: 100vh;
 }
 
+#settings.active .icon{
+    transform: rotate(360deg);
+    /*ease-out = slow down to end.
+    ease-in = slow at start.
+    ease-in-out = slow at start, fast at middle, slow at end. */
+    transition: transform 1s ease-out;
+}
+
+#payments.active .icon{
+    transform: translate();
+}
+
 /* Top Bar */
 .profile-top-bar {
     background-color: #fff;
@@ -29,14 +40,9 @@ body.profile-layout {
 .top-bar-content {
     max-width: 1400px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .top-bar-brand {
-    display: flex;
-    align-items: center;
     text-decoration: none;
     gap: 10px;
 }
@@ -52,9 +58,7 @@ body.profile-layout {
     font-size: 1.1rem;
 }
 
-.top-bar-user {
-    display: flex;
-    align-items: center;
+.top-bar-user-name {
     gap: 15px;
 }
 
@@ -93,6 +97,7 @@ body.profile-layout {
 .sidebar-menu {
     display: flex;
     flex-direction: column;
+    gap:12px;
 }
 
 .menu-item {
@@ -119,6 +124,7 @@ body.profile-layout {
     color: var(--primary-blue);
     border-right: 3px solid var(--primary-blue);
     font-weight: bold;
+    transform: scale(1.1);
 }
 
 /* Main Content */
@@ -159,9 +165,6 @@ body.profile-layout {
 }
 
 .box-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     border-bottom: 1px solid #f0f0f0;
     margin-bottom: 15px;
     padding-bottom: 10px;
@@ -226,24 +229,24 @@ body.profile-layout {
 }
 
 /* Table */
-.profile-table {
+.appointment-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.profile-table th, .profile-table td {
+.appointment-table th, .appointment-table td {
     text-align: left;
     padding: 12px;
     border-bottom: 1px solid #eee;
 }
 
-.profile-table th {
+.appointment-table th {
     background-color: #f8f9fa;
     font-size: 0.85rem;
     color: #888;
 }
 
-.profile-table td {
+.appointment-table td {
     font-size: 0.9rem;
     color: #444;
 }
@@ -276,6 +279,7 @@ body.profile-layout {
     .sidebar-menu {
         flex-direction: row;
         overflow-x: auto;
+        justify-content: center;
     }
     .menu-item {
         padding: 15px;

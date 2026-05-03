@@ -7,6 +7,7 @@
     <title>Hospital Departments</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/global.css">
+    <script src="/frontend/js/global/global.js" defer></script>
     <script src="/frontend/js/dept.js" defer></script>
     <script src="../../js/qa.js" defer></script>
 </head>
@@ -30,9 +31,10 @@
                 </ul>
             </div>
         </div> 
+                <button id="close_button"> &times;</button>
     </header>
 
-    <nav class="flex-center-content" aria-label="Hospital navigation">
+    <nav id="nav_container" class="flex-center-content" aria-label="Hospital navigation">
         <a href="index.html" style="background-color: rgba(255, 255, 255, 1);">Home</a>
         <a href="departments.html">Departments</a>
         <a href="#">Doctors</a>

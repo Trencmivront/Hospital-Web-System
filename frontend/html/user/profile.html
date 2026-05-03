@@ -6,15 +6,16 @@
     <title>Patient Profile - Nova Hospital</title>
     <link rel="stylesheet" href="../../css/global.css">
     <link rel="stylesheet" href="../../css/user/profile.css">
+    <script src="../../js/user/profile.js" defer></script>
 </head>
 <body class="profile-layout">
     <header class="profile-top-bar">
-        <div class="top-bar-content">
-            <a href="../global/index.html" class="top-bar-brand">
+        <div class="top-bar-content flex-wrap-space">
+            <a href="../global/index.html" class="top-bar-brand flex-center-content">
                 <img src="/imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif" alt="Logo">
                 <span>Nova Hospital</span>
             </a>
-            <div class="top-bar-user">
+            <div class="top-bar-user-name flex-center-content">
                 <span>Welcome, <strong>John Doe</strong></span>
                 <a href="logout.php" class="logout-link">Logout</a>
             </div>
@@ -36,7 +37,7 @@
                 <button class="menu-item" data-section="messages">
                     <span class="icon">✉</span> Messages
                 </button>
-                <button class="menu-item" data-section="settings">
+                <button class="menu-item" id="settings" data-section="settings">
                     <span class="icon">⚙</span> Settings
                 </button>
             </nav>
@@ -50,69 +51,50 @@
                 <div class="details-grid">
                     <!-- Patient Information Box -->
                     <div class="info-box">
-                        <div class="box-header">
+                    <div class="box-header flex-wrap-space">
                             <h3>Personal Information</h3>
                             <button class="edit-icon-btn">Edit</button>
                         </div>
                         <div class="info-content">
                             <div class="info-row">
                                 <span class="label">Full Name:</span>
-                                <span class="value">John Doe</span>
+                                <span class="value" id="full_name"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">TC Number:</span>
-                                <span class="value">12345678901</span>
+                                <span class="value" id="tc_no"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Email:</span>
-                                <span class="value">john.doe@example.com</span>
+                                <span class="value" id="email"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Phone:</span>
-                                <span class="value">+90 555 123 45 67</span>
+                                <span class="value" id="tel_no"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Blood Type:</span>
-                                <span class="value">A+</span>
+                                <span class="value" id="blood_group"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Date of Birth:</span>
-                                <span class="value">01/01/1990</span>
+                                <span class="value" id="birth_date"></span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Appointments Box -->
                     <div class="appointments-box">
-                        <div class="box-header">
+                        <div class="box-header flex-wrap-space">
                             <h3>Your Appointments</h3>
                             <a href="../global/index.html" class="book-new-btn">+ Book New</a>
                         </div>
+                        <!-- IF there is no appointment, disable the  place "book appointment"-->
                         <div class="appointments-content">
                             <div class="appointment-sub-section">
-                                <h4>Upcoming</h4>
-                                <table class="profile-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Department</th>
-                                            <th>Doctor</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>15/05/2026 10:30</td>
-                                            <td>Cardiology</td>
-                                            <td>Dr. Smith</td>
-                                            <td><button class="cancel-btn">Cancel</button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="appointment-sub-section">
-                                <h4>Past</h4>
-                                <table class="profile-table">
+                                <!--The h4 "upcoming" or "past" based on date.-->
+                                <h4 id="appointment_header"></h4>
+                                <table class="appointment-table">
                                     <thead>
                                         <tr>
                                             <th>Date</th>
@@ -123,10 +105,10 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>10/01/2026 09:15</td>
-                                            <td>Dermatology</td>
-                                            <td>Dr. Taylor</td>
-                                            <td>Completed</td>
+                                            <!--Fetch date, department, doctor, status from database-->
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -159,6 +141,5 @@
         </main>
     </div>
 
-    <script src="../../js/user/profile.js"></script>
 </body>
 </html>

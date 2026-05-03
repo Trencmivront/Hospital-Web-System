@@ -121,6 +121,17 @@ CREATE TABLE patient_allergy(
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE punishment(
+	punishment_id INT PRIMARY KEY AUTO_INCREMENT,
+	reason varchar(300) NOT NULL,
+	for_days INT NOT NULL
+)
+
+CREATE TABLE patient_punishment(
+	punishment_date DATE NOT NULL,
+	PRIMARY KEY 
+)
+
 CREATE TABLE appointment(
 	appointment_id INT PRIMARY KEY AUTO_INCREMENT,
 	patient_id INT NOT NULL,
