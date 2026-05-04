@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Profile - Nova Hospital</title>
     <link rel="stylesheet" href="../../css/global.css">
+    <!--First apply global then profile-->
     <link rel="stylesheet" href="../../css/user/profile.css">
     <script src="../../js/user/profile.js" defer></script>
+    <script src="../../js/global/global.js"></script>
 </head>
 <body class="profile-layout">
     <header class="profile-top-bar">
@@ -23,25 +25,24 @@
     </header>
 
     <div class="profile-wrapper">
-        <aside class="profile-sidebar">
-            <nav class="sidebar-menu">
-                <button class="menu-item active" data-section="account-details">
-                    <span class="icon">👤</span> Account Details
-                </button>
-                <button class="menu-item" data-section="medical-records">
-                    <span class="icon">📄</span> Medical Records
-                </button>
-                <button class="menu-item" data-section="payments">
-                    <span class="icon">💳</span> Payments
-                </button>
-                <button class="menu-item" data-section="messages">
-                    <span class="icon">✉</span> Messages
-                </button>
-                <button class="menu-item" id="settings" data-section="settings">
-                    <span class="icon">⚙</span> Settings
-                </button>
-            </nav>
-        </aside>
+        <nav id="nav_container" class="flex-center-content">
+            <button id="close_button">&#9776;</button>
+            <a class="active" data-section="account-details">
+                <span class="icon">👤</span> Account Details
+            </a>
+            <a data-section="medical-records">
+                <span class="icon">📄</span> Medical Records
+            </a>
+            <a data-section="payments">
+                <span class="icon">💳</span> Payments
+            </a>
+            <a data-section="messages">
+                <span class="icon">✉</span> Messages
+            </a>
+            <a id="settings" data-section="settings">
+                <span class="icon">⚙</span> Settings
+            </a>
+        </nav>
 
         <main class="profile-main-content">
             <!-- Account Details Section -->
@@ -53,7 +54,7 @@
                     <div class="info-box">
                     <div class="box-header flex-wrap-space">
                             <h3>Personal Information</h3>
-                            <button class="edit-icon-btn">Edit</button>
+                        <button class="action-btn">Edit</button>
                         </div>
                         <div class="info-content">
                             <div class="info-row">
@@ -87,7 +88,7 @@
                     <div class="appointments-box">
                         <div class="box-header flex-wrap-space">
                             <h3>Your Appointments</h3>
-                            <a href="../global/index.html" class="book-new-btn">+ Book New</a>
+                            <a href="" class="action-btn">+ Book New</a>
                         </div>
                         <!-- IF there is no appointment, disable the  place "book appointment"-->
                         <div class="appointments-content">

@@ -15,6 +15,11 @@ body.profile-layout {
     min-height: 100vh;
 }
 
+nav{
+   flex-direction: column;
+    width: 300px;
+}
+
 #settings.active .icon{
     transform: rotate(360deg);
     /*ease-out = slow down to end.
@@ -86,47 +91,6 @@ body.profile-layout {
     margin: 0 auto;
 }
 
-/* Sidebar */
-.profile-sidebar {
-    width: var(--sidebar-width);
-    background-color: #fff;
-    border-right: 1px solid var(--border-light);
-    padding-top: 20px;
-}
-
-.sidebar-menu {
-    display: flex;
-    flex-direction: column;
-    gap:12px;
-}
-
-.menu-item {
-    background: none;
-    border: none;
-    text-align: left;
-    padding: 15px 25px;
-    font-size: 1rem;
-    color: #555;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: background 0.2s, color 0.2s;
-}
-
-.menu-item:hover {
-    background-color: var(--hover-bg);
-    color: var(--primary-blue);
-}
-
-.menu-item.active {
-    background-color: #eef7ff;
-    color: var(--primary-blue);
-    border-right: 3px solid var(--primary-blue);
-    font-weight: bold;
-    transform: scale(1.1);
-}
-
 /* Main Content */
 .profile-main-content {
     flex: 1;
@@ -176,7 +140,7 @@ body.profile-layout {
     color: #444;
 }
 
-.edit-icon-btn, .book-new-btn {
+.action-btn{
     background: none;
     border: 1px solid var(--primary-blue);
     color: var(--primary-blue);
@@ -187,7 +151,7 @@ body.profile-layout {
     text-decoration: none;
 }
 
-.edit-icon-btn:hover, .book-new-btn:hover {
+.action-btn:hover{
     background-color: var(--primary-blue);
     color: #fff;
 }
@@ -250,15 +214,10 @@ body.profile-layout {
     font-size: 0.9rem;
     color: #444;
 }
-
+/*Appointment window part*/
 .cancel-btn {
-    background-color: #fdeaea;
     color: #d9534f;
     border: 1px solid #d9534f;
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.8rem;
 }
 
 .cancel-btn:hover {
@@ -269,24 +228,5 @@ body.profile-layout {
 @media (max-width: 992px) {
     .profile-wrapper {
         flex-direction: column;
-    }
-    .profile-sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--border-light);
-        padding-top: 0;
-    }
-    .sidebar-menu {
-        flex-direction: row;
-        overflow-x: auto;
-        justify-content: center;
-    }
-    .menu-item {
-        padding: 15px;
-        white-space: nowrap;
-    }
-    .menu-item.active {
-        border-right: none;
-        border-bottom: 3px solid var(--primary-blue);
     }
 }
