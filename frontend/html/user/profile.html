@@ -4,45 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Profile - Nova Hospital</title>
-    <link rel="stylesheet" href="../../css/global.css">
     <!--First apply global then profile-->
-    <link rel="stylesheet" href="../../css/user/profile.css">
-    <script src="../../js/user/profile.js" defer></script>
-    <script src="../../js/global/global.js"></script>
+    <link rel="stylesheet" href="/frontend/css/user/profile.css">
+    <link rel="stylesheet" href="/frontend/css/global.css">
+    <script src="/frontend/js/user/profile.js" defer></script>
 </head>
 <body class="profile-layout">
     <header class="profile-top-bar">
         <div class="top-bar-content flex-wrap-space">
-            <a href="../global/index.html" class="top-bar-brand flex-center-content">
+            <a href="/index.html" class="top-bar-brand flex-center-content">
                 <img src="/imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif" alt="Logo">
                 <span>Nova Hospital</span>
             </a>
             <div class="top-bar-user-name flex-center-content">
                 <span>Welcome, <strong>John Doe</strong></span>
-                <a href="logout.php" class="logout-link">Logout</a>
+                <a class="logout-link">Logout</a>
             </div>
         </div>
     </header>
 
     <div class="profile-wrapper">
-        <nav id="nav_container" class="flex-center-content">
-            <button id="close_button">&#9776;</button>
-            <a class="active" data-section="account-details">
-                <span class="icon">👤</span> Account Details
-            </a>
-            <a data-section="medical-records">
-                <span class="icon">📄</span> Medical Records
-            </a>
-            <a data-section="payments">
-                <span class="icon">💳</span> Payments
-            </a>
-            <a data-section="messages">
-                <span class="icon">✉</span> Messages
-            </a>
-            <a id="settings" data-section="settings">
-                <span class="icon">⚙</span> Settings
-            </a>
-        </nav>
 
         <main class="profile-main-content">
             <!-- Account Details Section -->
