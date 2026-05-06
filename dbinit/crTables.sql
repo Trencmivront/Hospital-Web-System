@@ -2,7 +2,8 @@
 CREATE TABLE department(
 	dept_id INT PRIMARY KEY AUTO_INCREMENT,
 	dept_name varchar(100) NOT NULL UNIQUE,
-	descrpt varchar(300) UNIQUE
+	descrpt varchar(1000) UNIQUE,
+	img_path varchar(255)
 );
 
 -- This is new table
@@ -125,29 +126,28 @@ CREATE TABLE punishment(
 	punishment_id INT PRIMARY KEY AUTO_INCREMENT,
 	reason varchar(300) NOT NULL,
 	for_days INT NOT NULL
-)
+);
 
 CREATE TABLE patient_punishment(
+	-- by using the date, we will check if punishment is old or new.
 	punishment_date DATE NOT NULL,
-	PRIMARY KEY 
-)
+	patient_id INT NOT NULL,
+	punishment_id INT NOT NULL,
+	PRIMARY KEY (patient_id, punishment_id),
+	CONSTRAINT fk_pat_pun_to_pat FOREIGN KEY (patient_id)
+	REFERENCES patient(patient_id)
+	ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_pat_pun_to_pun FOREIGN KEY (punishment_id)
+	REFERENCES punishment(punishment_id)
+	ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 CREATE TABLE appointment(
 	appointment_id INT PRIMARY KEY AUTO_INCREMENT,
 	patient_id INT NOT NULL,
 	doctor_schedule_id INT NOT NULL,
 	-- Instead of writing multiple types of reasons,
-	-- we can check reason on backend, reducing data need.
-	ap_status BOOLEAN NOT NULL,
-	CONSTRAINT fk_appTpat FOREIGN KEY (patient_id)
-	REFERENCES patient(patient_id)
-	ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT fk_appTsch FOREIGN KEY (doctor_schedule_id)
-	REFERENCES doctor_schedule(doctor_schedule_id)
-	ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE treatment(
+	-- we can check reason on backend, reducing data need.CREATE TABLE treatment(
 	treatment_id INT PRIMARY KEY AUTO_INCREMENT,
 	appointment_id INT NOT NULL,
 	icd10_code varchar(10) NOT NULL,

@@ -1,7 +1,26 @@
 /*global font and color styling*/
 :root {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #000;
+    --font-main: Arial, Helvetica, sans-serif;
+    --text-color: #1a1a1a;
+    --bg-color: #f9fcff;
+    --header-bg: #f0f0fa; /* rgb(240, 240, 250) */
+    --nav-bg: #85e2f5; /* rgb(133, 226, 245) */
+    --nav-cls-btn : ;
+    --footer-bg: #c4e8ff; /* rgb(196, 232, 255) */
+    --social-bg: #eef7ff;
+    --primary-color: #00bacd; /* rgb(0, 186, 205) */
+    --accent-color: antiquewhite; /* #ffebcd */
+    --accent-hover: #ffffcd;
+    --border-grey: #707070;
+    --border-light: #dddddd;
+    --grey-light: #f0f0f0;
+    --dropdown-hover: #ddffdd;
+    --white: #ffffff;
+    --qa-border: #bdeeee;
+    --dark-cyan: darkcyan;
+
+    font-family: var(--font-main);
+    color: var(--text-color);
 }
 /* width and height as same as written for al*/
 * {
@@ -15,11 +34,11 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    background-color: #f9fcff;
+    background-color: var(--bg-color);
 }
 
 nav {
-    background-color: rgb(133, 226, 245);
+    background-color: var(--nav-bg);
     width: 100%;
     gap: 12px;
     padding: 8px 16px;
@@ -27,7 +46,7 @@ nav {
 
 nav a {
     box-sizing: border-box;
-    color: #040404;
+    color: var(--text-color);
     text-decoration: none;
     padding: 10px 14px;
     border-radius: 10px;
@@ -45,6 +64,23 @@ nav.open{
 
 #close_button{
     display: none;
+    position: absolute;
+    top: 10px;
+    right: -60px; /* Positioned outside so it's visible when nav width is 0 */
+    font-size: 40px;
+    padding: 10px;
+    border: none;
+    background-color: var(--nav-cls-btn);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: 0.5s; /* Match nav transition */
+    animation: show-fade-show 0.5s;
+}
+
+.flex-center-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .flex-center-content{
@@ -60,7 +96,7 @@ nav.open{
 }
 
 .vertical_line{        
-  border: 1px solid #707070;
+  border: 1px solid var(--border-grey);
   height: auto;
   left: 50%;
   top: 0;
@@ -71,20 +107,20 @@ nav.open{
     border: solid 1px;
     border-radius: 10px;
     font-size: 20px;
-    background-color: #ffebcd;
+    background-color: var(--accent-color);
     padding: 6px 12px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .logButton:hover {
-    background-color: #ffffcd;
+    background-color: var(--accent-hover);
 }
 
 .page-header {
     align-items: center;
     gap: 20px;
-    background-color: rgb(240, 240, 250);
+    background-color: var(--header-bg);
     padding: 12px 24px;
 }
 
@@ -95,7 +131,7 @@ nav.open{
 }
 
 .brand h1 {
-    color: rgb(0, 186, 205);
+    color: var(--primary-color);
     margin: 0;
     font-size: 1.6rem;
     letter-spacing: 0.15em;
@@ -114,7 +150,7 @@ nav.open{
 }
 
 .social-section {
-    background-color: #eef7ff;
+    background-color: var(--social-bg);
     padding: 28px 24px;
     text-align: center;
 }
@@ -135,7 +171,7 @@ nav.open{
     height: 52px;
     border-radius: 14px;
     overflow: hidden;
-    background: #fff;
+    background: var(--white);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
@@ -143,12 +179,15 @@ nav.open{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: 0.3s;
 }
+
+.social-icons img:hover { transform: scale(1.2); }
 
 .footer {
     gap: 24px;
     padding: 28px 24px;
-    background-color: rgb(196, 232, 255);
+    background-color: var(--footer-bg);
 }
 
 .footer-div {
@@ -163,7 +202,7 @@ nav.open{
 
 .footer-div p {
     margin: 6px 0;
-    color: #1a1a1a;
+    color: var(--text-color);
 }
 
 .extendbtn{
@@ -175,7 +214,7 @@ nav.open{
     height: max-content;
     font-size: 16px;
     cursor: pointer;
-    color: rgb(0, 0, 20);
+    color: var(--text-color);
     transition: color 0.2s, transform 0.2s;
 }
 .extendbtn:hover{
@@ -190,9 +229,9 @@ nav.open{
     transform: scale(1.1);
 }
 .extend-container .extendbtn.active{
-    background-color: antiquewhite;
+    background-color: var(--accent-color);
     border-radius: 20px;
-    border-bottom: solid 1px darkcyan;
+    border-bottom: solid 1px var(--dark-cyan);
     transition: background-color 0.2s ease-out, border-radius 0.2s ease-in,
     border 0.2s ease-in;
 }
@@ -210,7 +249,7 @@ nav.open{
     transition: max-height 0.3s ease-out, margin 0.3s ease-out, border 0.2s ease-out,
     justify-content 0.3s ease-out;
     font-size: 14px;
-    background-color: #f0f0f0;
+    background-color: var(--grey-light);
 }
 
 .extendbtn-arrow{
@@ -224,14 +263,14 @@ nav.open{
     transition: transform 0.3s ease-out;
 }
 .extendbtn.active + .extend-item{
-    border-top: solid 1px darkcyan;
+    border-top: solid 1px var(--dark-cyan);
     max-height: 40px;
     margin: 10px 0px 10px 0px;
     justify-content: center;
 }
 .dropbtn {
-    background-color: #ffffff;
-    color: black;
+    background-color: var(--white);
+    color: var(--text-color);
     padding: 10px;
     font-size: 15px;
     border: solid 1px;
@@ -249,25 +288,25 @@ nav.open{
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: var(--grey-light);
     min-width: 60px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
 .dropdown-content a {
-    color: black;
+    color: var(--text-color);
     padding: 10px 16px;
     text-decoration: none;
     display: block;
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: var(--border-light);
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #ddffdd;
+    background-color: var(--dropdown-hover);
 }
 .dropdown:hover .dropdown-content{
     display: block;
@@ -301,12 +340,12 @@ margin:0 auto 50px;
 .qa-section h2{
 margin-top:40px;
 padding-bottom:10px;
-border-bottom:2px solid #bdeeee;
+border-bottom:2px solid var(--qa-border);
 }
 
 .qa-item{
 margin-top:20px;
-border:1px solid #ddd;
+border:1px solid var(--border-light);
 border-radius:8px;
 overflow:hidden;
 }
@@ -323,13 +362,13 @@ cursor:pointer;
 }
 
 .qa-question:hover{
-background:#f0f0f0;
+background:var(--grey-light);
 }
 
 .qa-answer{
 display:none;
 padding:18px;
-background:white;
+background:var(--white);
 }
 
 .qa-item.active .qa-answer{
@@ -344,19 +383,21 @@ display:block;
 @media screen and (max-width: 751px) {
     nav{
         flex-direction: column;
+        /*Make container stick to top left*/
         top: 0px;
         left: 0px;
         height: 100%;
         width: 0px;
+        /*Position is free from main container*/
         position: fixed;
+        /*Make it in front of other elements*/
         z-index: 1;
         overflow: visible;
-        padding: 30px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
         /*Apply transition to all elements*/
         transition: 0.5s ;
     }
     nav a{
-        padding: 8px 8px 8px 32px;
         font-size: 25px;
         display: block;
         transition: 0.3s;
@@ -367,21 +408,28 @@ display:block;
         opacity: 1;
         pointer-events: auto;
     }
-    /* Display close button when page is thight*/
+    
     #close_button {
         display: block;
-        position: absolute;
-        top: 10px;
-        right: -60px; /* Positioned outside so it's visible when nav width is 0 */
-        font-size: 36px;
-        padding: 10px;
-        border: none;
-        background: none;
-        color: black;
-        cursor: pointer;
-        transition: 0.5s; /* Match nav transition */
     }
-    .page-header {
+    nav.open #close_button{
+        /*The distance from parent element's right border
+        and child element.*/
+        /*We increase it because I want to add close button into */
+        right: 30px;
+        animation: show-fade-show 0.5s;
+        transform: rotate(1080deg);
+    }
+    /*@keyframes are used to make compicated animations.
+    Here we can specify in which part of transition, what style
+    will be applied to selected selector.*/
+    @keyframes show-fade-show {
+        0% {opacity: 1;}
+        50%{opacity: 0;}
+        100%{opacity: 1;}
+    }
+    /* Display close button when page is thight*/
+   .page-header {
         padding: 16px;
     }
     .brand {
