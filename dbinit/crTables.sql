@@ -2,15 +2,8 @@
 CREATE TABLE department(
 	dept_id INT PRIMARY KEY AUTO_INCREMENT,
 	dept_name varchar(100) NOT NULL UNIQUE,
-	descrpt varchar(1000) UNIQUE,
+	descrpt varchar(500) UNIQUE,
 	img_path varchar(255)
-);
-
--- This is new table
--- Only contains male or female
-CREATE TABLE gender(
-	gender_name varchar(7) PRIMARY KEY,
-	CONSTRAINT chk_gender_name CHECK (gender_name='female' OR gender_name='male')
 );
 
 CREATE TABLE doctor(
@@ -19,14 +12,11 @@ CREATE TABLE doctor(
 	last_name varchar(50) NOT NULL,
 	phone_num varchar(11) NOT NULL UNIQUE,
 	email varchar(50) UNIQUE,
-	gender_name varchar(6) NULL,
+	gender_name char(1) NULL,
 	dept_id INT NULL,
 	CONSTRAINT fk_docTdept FOREIGN KEY (dept_id)
 	REFERENCES department(dept_id)
-	ON UPDATE CASCADE ON DELETE SET NULL,
-	CONSTRAINT fk_docTgen FOREIGN KEY (gender_name)
-	REFERENCES gender(gender_name)
-	ON UPDATE CASCADE ON DELETE CASCADE
+	ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 -- This is new table
@@ -81,7 +71,7 @@ CREATE TABLE patient(
 	last_name varchar(50) NOT NULL,
 	tc_no varchar(11) NOT NULL UNIQUE ,
 	birth_date DATE NOT NULL,
-	gender_name varchar(6) NOT NULL,
+	gender_name char(1) NOT NULL,
 	-- create a selection for this
 	blood_id INT NOT NULL,
 	-- allergies INT, removed allergies and created connection below
@@ -93,9 +83,6 @@ CREATE TABLE patient(
 	CONSTRAINT chk_pat_password_length CHECK(LENGTH(pat_password) >= 8),
 	CONSTRAINT chk_tc_no_length CHECK(LENGTH(tc_no) = 11),
 	CONSTRAINT chk_pat_role CHECK(usr_role='PATIENT'),
-	CONSTRAINT fk_patTgen FOREIGN KEY (gender_name)
-	REFERENCES gender(gender_name)
-	ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT fk_patTbld FOREIGN KEY (blood_id)
 	REFERENCES blood_type(blood_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
