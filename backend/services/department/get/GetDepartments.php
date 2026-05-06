@@ -3,7 +3,7 @@
 // because json_encode returns either of them
 function getDepartments(PDO $pdo) : array{
 
-    $query = 'SELECT dept_name, descrpt FROM department';
+    $query = 'SELECT dept_name, descrpt FROM Department';
 
     try{
         $result = $pdo->query($query);

@@ -2,9 +2,9 @@
     
 function getDepartments(PDO $pdo) : array{
 
-    $query =   'SELECT D.doctor_id, D.first_name, D.last_name , s.name  FROM doctor D
-                join doctor_specialization ds on D.doctor_id = ds.doctor_id 
-                join specialization s on ds.spec_id = s.spec_id ';
+    $query =   'SELECT D.doctor_id, D.first_name, D.last_name , s.name  FROM Doctor D
+                join Doctor_Specialization ds on D.doctor_id = ds.doctor_id 
+                join Specialization s on ds.spec_id = s.spec_id ';
 
     try{
         $result = $pdo->query($query);

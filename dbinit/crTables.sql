@@ -1,12 +1,12 @@
 -- renamed some attributes to escape keywords
-CREATE TABLE department(
+CREATE TABLE Department(
 	dept_id INT PRIMARY KEY AUTO_INCREMENT,
 	dept_name varchar(100) NOT NULL UNIQUE,
 	descrpt varchar(500) UNIQUE,
 	img_path varchar(255)
 );
 
-CREATE TABLE doctor(
+CREATE TABLE Doctor(
 	doctor_id INT PRIMARY KEY AUTO_INCREMENT,
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
@@ -15,57 +15,57 @@ CREATE TABLE doctor(
 	gender_name char(1) NULL,
 	dept_id INT NULL,
 	CONSTRAINT fk_docTdept FOREIGN KEY (dept_id)
-	REFERENCES department(dept_id)
+	REFERENCES Department(dept_id)
 	ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 -- This is new table
-CREATE TABLE schedule(
+CREATE TABLE Schedule(
 	schedule_id INT PRIMARY KEY AUTO_INCREMENT,
 	s_date DATE NOT NULL,
 	s_time TIME NOT NULL
 );
 
 -- Changed this table and made it connection table
-CREATE TABLE doctor_schedule(
+CREATE TABLE Doctor_Schedule(
 	doctor_schedule_id INT PRIMARY KEY AUTO_INCREMENT,
 	schedule_id INT NOT NULL,
 	doctor_id INT NOT NULL,
 	-- if it is false, then user can't select it
 	is_active BOOLEAN NOT NULL,
 	CONSTRAINT fk_dsTsch FOREIGN KEY (schedule_id)
-	REFERENCES schedule(schedule_id)
+	REFERENCES Schedule(schedule_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_dsTdoc FOREIGN KEY (doctor_id)
-	REFERENCES doctor(doctor_id)
+	REFERENCES Doctor(doctor_id)
 	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- This is new table
-CREATE TABLE specialization(
+CREATE TABLE Specialization(
 	spec_id INT PRIMARY KEY AUTO_INCREMENT,
 	name varchar(100) NOT NULL
 );
 
-CREATE TABLE doctor_specialization(
+CREATE TABLE Doctor_Specialization(
 	doctor_spec_id INT PRIMARY KEY AUTO_INCREMENT,
 	spec_id INT NOT NULL,
 	doctor_id INT NOT NULL,
 	CONSTRAINT fk_dspTdoc FOREIGN KEY (doctor_id)
-	REFERENCES doctor(doctor_id)
+	REFERENCES Doctor(doctor_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_dspTspc FOREIGN KEY (spec_id)
-	REFERENCES specialization(spec_id)
+	REFERENCES Specialization(spec_id)
 	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- This is new table
-CREATE TABLE blood_type(
+CREATE TABLE Blood_Type(
 	blood_id INT PRIMARY KEY AUTO_INCREMENT,
 	type_name varchar(3) NOT NULL UNIQUE
 );
 
-CREATE TABLE patient(
+CREATE TABLE Patient(
 	patient_id INT PRIMARY KEY AUTO_INCREMENT,
 	first_name varchar(50) NOT NULL,
 	last_name varchar(50) NOT NULL,
@@ -84,12 +84,12 @@ CREATE TABLE patient(
 	CONSTRAINT chk_tc_no_length CHECK(LENGTH(tc_no) = 11),
 	CONSTRAINT chk_pat_role CHECK(usr_role='PATIENT'),
 	CONSTRAINT fk_patTbld FOREIGN KEY (blood_id)
-	REFERENCES blood_type(blood_id)
+	REFERENCES Blood_Type(blood_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- This is new table
-CREATE TABLE allergy(
+CREATE TABLE Allergy(
 	allergy_id INT PRIMARY KEY AUTO_INCREMENT,
 	allergy_descrpt varchar(100) NOT NULL,
 	icd10_code varchar(10) NOT NULL
@@ -97,39 +97,39 @@ CREATE TABLE allergy(
 
 -- This is new table
 -- Here we have connection between patients and allergies
-CREATE TABLE patient_allergy(
+CREATE TABLE Patient_Allergy(
 	patient_allergy_id INT PRIMARY KEY AUTO_INCREMENT,
 	allergy_id INT NOT NULL,
 	patient_id INT NOT NULL,
 	CONSTRAINT fk_paTalr FOREIGN KEY (allergy_id)
-	REFERENCES allergy(allergy_id)
+	REFERENCES Allergy(allergy_id)
 	ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT fk_paTpat FOREIGN KEY (patient_id)
-	REFERENCES patient(patient_id)
+	REFERENCES Patient(patient_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE punishment(
+CREATE TABLE Punishment(
 	punishment_id INT PRIMARY KEY AUTO_INCREMENT,
 	reason varchar(300) NOT NULL,
 	for_days INT NOT NULL
 );
 
-CREATE TABLE patient_punishment(
+CREATE TABLE Patient_Punishment(
 	-- by using the date, we will check if punishment is old or new.
 	punishment_date DATE NOT NULL,
 	patient_id INT NOT NULL,
 	punishment_id INT NOT NULL,
 	PRIMARY KEY (patient_id, punishment_id),
 	CONSTRAINT fk_pat_pun_to_pat FOREIGN KEY (patient_id)
-	REFERENCES patient(patient_id)
+	REFERENCES Patient(patient_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_pat_pun_to_pun FOREIGN KEY (punishment_id)
-	REFERENCES punishment(punishment_id)
+	REFERENCES Punishment(punishment_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE appointment(
+CREATE TABLE Appointment(
 	appointment_id INT PRIMARY KEY AUTO_INCREMENT,
 	patient_id INT NOT NULL,
 	doctor_schedule_id INT NOT NULL,
@@ -139,20 +139,20 @@ CREATE TABLE appointment(
 	appointment_id INT NOT NULL,
 	icd10_code varchar(10) NOT NULL,
 	CONSTRAINT fk_treTapp FOREIGN KEY (appointment_id)
-	REFERENCES appointment(appointment_id)
+	REFERENCES Appointment(appointment_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE bill(
+CREATE TABLE Bill(
 	bill_id INT PRIMARY KEY AUTO_INCREMENT,
 	treatment_id INT NOT NULL,
 	cost DECIMAL(10, 2),
 	CONSTRAINT fk_bilTtre FOREIGN KEY (treatment_id)
-	REFERENCES treatment(treatment_id)
+	REFERENCES Treatment(treatment_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE admin(
+CREATE TABLE Admin(
 	admin_id INT PRIMARY KEY AUTO_INCREMENT,
 	username varchar(50) NOT NULL,
 	ad_password varchar(256) NOT NULL,

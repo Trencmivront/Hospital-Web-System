@@ -17,7 +17,6 @@ $data = [];
 // catching all exceptions
 try{
     switch($action){
-
         case 'getDepartments':{
             $data = getDepartments($pdo);
             
@@ -33,6 +32,11 @@ try{
             // turn dataset into json form;
             echo responseEntity($data);
         };
+        break;
+        default: {
+            http_response_code(500);
+            echo responseEntity(new Exception("Unknown Request"));
+        }
         break;
 }
 

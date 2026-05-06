@@ -24,7 +24,7 @@ switch($action){
     break;
 }
 
-}catch(FetchGenderException $e){
+}catch(Exception $e){
     http_response_code($e->getCode());
     echo responseEntity($e->getMessage());
 }

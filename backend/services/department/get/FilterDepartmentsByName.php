@@ -2,7 +2,7 @@
     function filterDepartmentsByName(PDO $pdo) : array {
         $name = $_GET["name"] ?? '';
 
-        $query = "SELECT dept_name, descrpt FROM department
+        $query = "SELECT dept_name, descrpt FROM Department
         WHERE dept_name LIKE :name";
 
         try {
