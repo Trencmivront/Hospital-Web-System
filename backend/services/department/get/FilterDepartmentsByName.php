@@ -2,6 +2,8 @@
     function filterDepartmentsByName(PDO $pdo) : array {
         $name = $_GET["name"] ?? '';
 
+        $name = htmlspecialchars($name);
+
         $query = "SELECT dept_name, descrpt FROM Department
         WHERE dept_name LIKE :name";
 

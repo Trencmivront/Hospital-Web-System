@@ -24,7 +24,6 @@ const createDepartmentContainerHtmls = (dataSet) => {
         dataSet.forEach(data => {
 
             if(counter < itemCount){
-                line.style.display = 'none';
                 leftDeptContainer.innerHTML += "<div class='dept-container-div extend-container'>" +
                 "<button class='extendbtn'><h3><span class='extendbtn-arrow'> > </span>" + data.dept_name + "</h3></button>" +
                 "<div class='extend-item'><p>" + data.descrpt + "</p></div>" +
@@ -58,10 +57,7 @@ const listDepartments = async () => {
     leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
 
     try{
-        const url = "/backend/controllers/departmentController.php?action=getDepartments";
-        console.log(url);
-        const response = await fetch(url);
-        console.log(response);
+        const response = await fetch("/backend/controllers/departmentController.php?action=getDepartments");
 
         // show error upon error?...
         if(!response.ok){
