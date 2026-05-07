@@ -133,8 +133,15 @@ CREATE TABLE Appointment(
 	appointment_id INT PRIMARY KEY AUTO_INCREMENT,
 	patient_id INT NOT NULL,
 	doctor_schedule_id INT NOT NULL,
-	-- Instead of writing multiple types of reasons,
-	-- we can check reason on backend, reducing data need.CREATE TABLE treatment(
+	CONSTRAINT fk_appTpat FOREIGN KEY (patient_id)
+	REFERENCES Patient(patient_id)
+	ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_appTdos FOREIGN KEY (doctor_schedule_id)
+	REFERENCES Doctor_Schedule(doctor_schedule_id)
+	ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Treatment(
 	treatment_id INT PRIMARY KEY AUTO_INCREMENT,
 	appointment_id INT NOT NULL,
 	icd10_code varchar(10) NOT NULL,

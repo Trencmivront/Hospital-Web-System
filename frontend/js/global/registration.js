@@ -1,8 +1,8 @@
 const errorTextContainer = document.getElementById("errorMessage");
 
 window.addEventListener("load", () => {
+    setMaxDateValue();
     loadBloodTypes();
-    loadGenders();
 });
 
 document.getElementById("registrationForm").addEventListener("submit", (e) => {
@@ -38,26 +38,6 @@ const loadBloodTypes = async () => {
     }catch(error){
         console.log(error);
     } 
-}
-
-const loadGenders = async () => {
-    try{
-        const response = await fetch("/backend/controllers/genderController.php?action=getGenders");
-        
-        const dataSet = await response.json();
-        if(!response.ok){
-            showError(dataSet);
-            console.log(dataSet);
-            return;
-        }
-
-        const genderContainer = document.getElementById("gender");
-        dataSet.forEach(data => {
-            genderContainer.innerHTML += `<option value="${data.gender_name}">${data.gender_name}</option>`;
-        });
-    }catch(error){
-        console.log(error);
-    }
 }
 
 const verifyAndSendFormContents = async () => {
@@ -107,6 +87,15 @@ const verifyAndSendFormContents = async () => {
         showError("An unexpected error occurred.");
     }
 }
+
+const setMaxDateValue = () => {
+    const dateField = document.getElementById("birth_date");
+    const today = new Date().toLocaleDateString("en-CA");
+    // setting max and current value as same
+    dateField.setAttribute("value", today);
+    dateField.setAttribute("max", today);
+}
+
 // display error on page
 const showError = (message) => {
     errorTextContainer.innerHTML = `<p style="color: red;"> ${message} </p>`;    

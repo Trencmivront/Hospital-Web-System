@@ -2,11 +2,11 @@
 require '../dbConnect.php';
 // load all php files inside services/department
 foreach (glob("../services/department/*/*.php") as $filename) {
-    require_once $filename;
+    require $filename;
 }
 // load all exceptions regarding to this table
 foreach(glob("../exceptions/department/*.php") as $filename){
-    require_once $filename;
+    require $filename;
 }
 header("Content-Type: application/json; charset=utf-8");
 
@@ -39,10 +39,6 @@ try{
         }
         break;
 }
-
-}catch(FetchDepartmentsException $e){  
-    http_response_code($e->getCode());
-    echo responseEntity($e->getMessage());
+}catch(Exception $e){  
+    echo responseEntity($e);
 } 
-
-?>

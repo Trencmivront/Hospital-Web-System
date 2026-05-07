@@ -6,13 +6,12 @@ function getDepartments(PDO $pdo) : array{
     $query = 'SELECT dept_name, descrpt FROM Department';
 
     try{
-        $result = $pdo->query($query);
-        // Normally it contains values with index and name at their
-        // left side but FETCH_ASSOC removes lines with index, reducing size.
-        $data = $result->fetchAll(PDO::FETCH_ASSOC); // Gets array of elements.
-        return $data;
-    }catch(PDOException $e){
+        $result = $pdo->prepare($query);
+        $result->execute();
+
+        return $result->fetchAll();
+    }catch(\PDOException $e){
         throw new FetchDepartmentsException();
     } 
-} 
+}
 ?>

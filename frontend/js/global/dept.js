@@ -58,7 +58,10 @@ const listDepartments = async () => {
     leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
 
     try{
-        const response = await fetch("/backend/controllers/departmentController.php?action=getDepartments");
+        const url = "/backend/controllers/departmentController.php?action=getDepartments";
+        console.log(url);
+        const response = await fetch(url);
+        console.log(response);
 
         // show error upon error?...
         if(!response.ok){
@@ -77,7 +80,7 @@ const listDepartments = async () => {
 
 const filterDepartmentsByName = async () => {
 
-    rightDeptContainer = "";
+    rightDeptContainer.innerHTML = "";
     leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
 
     try{
