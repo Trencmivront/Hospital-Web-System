@@ -8,6 +8,7 @@ composer.lock
 
 # Veritabanı ve Çevresel ayarlar (ÖNEMLİ)
 .env
+backend/jwtCreate.php
 backend/dbConnect.php
 *.sqlite
 
