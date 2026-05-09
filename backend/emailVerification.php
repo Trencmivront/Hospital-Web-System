@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+require dirname(__FILE__) . '/../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -24,11 +24,11 @@ function sendVerificationEmail(string $email, string $verificationCode) {
         // Server settings
         $mail->SMTPDebug = SMTP::DEBUG_OFF; // Set to DEBUG_SERVER for debugging
         $mail->isSMTP();
-        $mail->Host = '127.0.0.1'; // Mailtrap SMTP server host 
+        $mail->Host = '127.0.0.1';
         $mail->SMTPAuth = false;
         $mail->SMTPAutoTLS = false;
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
-        $mail->Port = 8025; // TCP port to connect to
+        $mail->SMTPSecure = ''; // Enable TLS encryption
+        $mail->Port = 1025; // TCP port to connect to
 
         //Recipients
         $mail->setFrom(address:'novahospital@gmail.com', name:"Nova Hospital"); //Sender's email and name

@@ -1,6 +1,6 @@
 <?php
-    require_once '../../../emailVerification.php';
-    require_once '../../../Jwt.php';
+    require_once dirname(__FILE__) . "/../../../emailVerification.php";
+    require_once dirname(__FILE__) . "/../../../Jwt.php";
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
@@ -8,11 +8,15 @@
 
     function logIn(PDO $pdo){
 
-        $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+
+
+        $email = $data['email'] ?? '';
+        $password = $data['password'] ?? '';
 
         try{
-            $query = 'SELECT pat_password FROM Patient WHERE email = ?';
+            $query = 'SELECT pat_password FROM Patient WHERE email = (?)';
             $statement = $pdo->prepare($query);
             $statement->execute([$email]);
 
@@ -29,8 +33,10 @@
             }
 
             $verificationCode = generateVerificationCode();
+
             // if email is wrong
-            if(!sendVerificationEmail($email, $verificationCode)){
+            $isEmailSent = sendVerificationEmail($email, $verificationCode);
+            if(!$isEmailSent){
                 throw new CouldNotSendEmailException();
             };
 
@@ -45,6 +51,6 @@
 
             return true;
         }catch(PDOException $e){
-            throw new UserNotFoundException();
+            throw new CouldNotRetrievePatientDataException();
         }
     }

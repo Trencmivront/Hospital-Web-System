@@ -6,6 +6,6 @@
         protected $code = 400;
         protected $message = 'User Not Found';
         function __construct(){
-            return parent::__construct(self::$message, self::$code, null);
+            return parent::__construct($this->message, $this->code, null);
         }
     }
