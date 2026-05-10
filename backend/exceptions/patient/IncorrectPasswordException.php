@@ -1,11 +1,6 @@
 <?php
-
-use FFI\Exception;
-
     class IncorrectPasswordException extends Exception{
-        protected const code = 400;
-        protected const message = 'Password is Incorrect';
-        function __constructor(){
-            parent::__construct($this->message, $this->code, null);
+        function __construct(){
+            parent::__construct('Password is Incorrect', 400, null);
         }
     }

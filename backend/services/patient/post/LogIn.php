@@ -12,8 +12,8 @@
         $data = json_decode($json, true);
 
 
-        $email = $data['email'] ?? '';
-        $password = $data['password'] ?? '';
+        $email = $data['email'];
+        $password = $data['password'];
 
         if(empty($email)){
             throw new NullEmailException();

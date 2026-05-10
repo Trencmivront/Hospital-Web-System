@@ -42,7 +42,7 @@ window.addEventListener('load', () => {
         }, 1000);
     };
 
-    document.getElementById("submitButton").addEventListener('click', async (e) => {
+    document.getElementById("login-form").addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const body = {
@@ -77,7 +77,7 @@ window.addEventListener('load', () => {
         }
     });
 
-    document.getElementById("verifyButton").addEventListener("click", async () => {
+    document.getElementById("verification-form").addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const code = document.getElementById("verificationCode").value;
