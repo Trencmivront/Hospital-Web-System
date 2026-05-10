@@ -30,8 +30,11 @@ class JWToken {
         }
     }
 
-    function openToken(string $token) : stdClass {
-
-        return JWT::decode($token, new Key(self::$secretKey, 'HS256'));
+    function openToken(string $token) : stdClass{
+        try{
+            return JWT::decode($token, new Key(self::$secretKey, 'HS256'));
+        }catch(Exception $e){
+            throw new Exception($e->getMessage());
+        }
     }
 }

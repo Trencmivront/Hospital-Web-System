@@ -21,7 +21,7 @@
             throw new Exception("Help, Thief!");
         }
 
-        if ($submittedCode === $jwt->openToken($_SESSION['verification_code_jwt'])->verificationCode){
+        if ($submittedCode === $jwt->openToken($_SESSION['verification_code_jwt'])->user_id){
             // Clear verification data from session
             unset($_SESSION['verification_code_jwt']);
 

@@ -18,7 +18,7 @@ function createPatientJwt(PDO $pdo) : bool{
     
     $jwt = new JWToken();
     // take email from jwt
-    $email = $jwt->openToken($_SESSION['email_jwt'])->email;
+    $email = $jwt->openToken($_SESSION['email_jwt'])->user_id;
     // erase email from session
     unset($_SESSION['email_jwt']);
 
@@ -37,7 +37,7 @@ function createPatientJwt(PDO $pdo) : bool{
         /* If present but could not be decoded, patient should be
         sent to the log in page */
         // If user choosed remember me option, we will create timeless jwt, until patient logs out
-        if($_GET['remember_me'] == true){
+        if(isset($_GET['remember_me']) && $_GET['remember_me'] === true){
             $_SESSION['patient_jwt'] = $jwt->generateJwt($patient_id, $usr_role);
         }
         else{
@@ -49,5 +49,3 @@ function createPatientJwt(PDO $pdo) : bool{
         throw new UserNotFoundException();
     }
 }
-
-    

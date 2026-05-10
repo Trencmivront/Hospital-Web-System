@@ -1,7 +1,11 @@
 <?php
     require_once '../dbConnect.php';
 
-    foreach(glob("/backend/services/appointment/*/*.php") as $fileName){
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    foreach(glob("../services/appointment/*/*.php") as $fileName){
         require_once $fileName;
     }
 
@@ -9,14 +13,37 @@
         require_once $fileName;
     }
 
-    header("Content-Type: application/json; charset=utf-8");
+    // Ensure patient exceptions are loaded
+    foreach(glob("../exceptions/patient/*.php") as $fileName){
+        require_once $fileName;
+    }
 
-    $action = $_GET['action'];
+    use Firebase\JWT\ExpiredException;
+
+    $action = $_GET['action'] ?? '';
     $data = [];
 
-    switch($action){
-        case 'getAppointmentsOfPatient':;
+    try{
+        switch($action){
+            case 'getAppointmentsOfPatient':{
+                $data = getAppointmentsOfPatient($pdo);
+                echo responseEntity($data);
+            };
             break;
+            default:
+                echo responseEntity(["error" => "Invalid action"], 400);
+            break;
+        }
+
+    }catch(UserIsNotAuthenticatedException $e){
+        echo responseEntity($e->getMessage(), 403);
+    }catch(ExpiredException $e){
+        echo responseEntity($e->getMessage(), 403);
+    }catch(CouldNotRetrieveAppointmentDataException $e){
+        echo responseEntity($e->getMessage(), $e->getCode() ?: 500);
+    }catch(Throwable $e){
+        echo responseEntity($e->getMessage(), $e->getCode() ?: 500);
     }
+
 
 ?>

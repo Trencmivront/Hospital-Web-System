@@ -1,97 +1,151 @@
 -- Test records for Hospital Web System
+-- This file erases existing data and populates tables with comprehensive test cases.
 
--- 1. Department
-INSERT INTO Department (dept_name, descrpt, img_path) VALUES
-('Cardiology', 'Heart and vascular system department.', 'imgs/deptImgs/cardiology.jpg'),
-('Neurology', 'Brain and nervous system department.', 'imgs/deptImgs/neurology.jpg'),
-('Orthopedics', 'Musculoskeletal system department.', 'imgs/deptImgs/orthopedics.jpg'),
-('Pediatrics', 'Medical care for infants, children, and adolescents.', 'imgs/deptImgs/pediatrics.jpg');
+-- All hashed passwords are "password" as value
 
--- 2. Specialization
-INSERT INTO Specialization (name) VALUES
-('Invasive Cardiology'),
-('Pediatric Neurology'),
-('Spine Surgery'),
-('General Pediatrics');
-
--- 3. Blood_Type
+-- 1. Blood_Type (All common types)
 INSERT INTO Blood_Type (type_name) VALUES
 ('A+'), ('A-'), ('B+'), ('B-'), ('AB+'), ('AB-'), ('0+'), ('0-');
 
+-- 2. Department
+INSERT INTO Department (dept_name, descrpt, img_path) VALUES
+('Cardiology', 'Specializing in heart and cardiovascular health.', 'imgs/deptImgs/cardiology.jpg'),
+('Neurology', 'Diagnosis and treatment of nervous system disorders.', 'imgs/deptImgs/neurology.jpg'),
+('Orthopedics', 'Focusing on the musculoskeletal system.', 'imgs/deptImgs/orthopedics.jpg'),
+('Pediatrics', 'Comprehensive medical care for children and adolescents.', 'imgs/deptImgs/pediatrics.jpg'),
+('Dermatology', 'Skin, hair, and nail health.', 'imgs/deptImgs/dermatology.jpg'),
+('Ophthalmology', 'Specialized eye care and surgery.', 'imgs/deptImgs/ophthalmology.jpg'),
+('General Surgery', 'Focusing on abdominal contents and general surgical procedures.', 'imgs/deptImgs/surgery.jpg'),
+('Psychiatry', 'Mental health diagnosis and treatment.', 'imgs/deptImgs/psychiatry.jpg');
+
+-- 3. Specialization
+INSERT INTO Specialization (name) VALUES
+('Interventional Cardiology'),
+('Electrophysiology'),
+('Epileptology'),
+('Pediatric Neurology'),
+('Spine Surgery'),
+('Sports Medicine'),
+('Neonatology'),
+('Pediatric Surgery'),
+('Cosmetic Dermatology'),
+('Retinal Surgery'),
+('Vascular Surgery'),
+('Child Psychiatry');
+
 -- 4. Allergy
 INSERT INTO Allergy (allergy_descrpt, icd10_code) VALUES
-('Penicillin Allergy', 'Z88.0'),
-('Peanut Allergy', 'Z91.010'),
-('Latex Allergy', 'Z91.040');
+('Penicillin', 'Z88.0'),
+('Sulfa drugs', 'Z88.2'),
+('Aspirin', 'Z88.1'),
+('Peanuts', 'Z91.010'),
+('Latex', 'Z91.040'),
+('Shellfish', 'Z91.013'),
+('Bee Stings', 'Z91.06'),
+('Pollen', 'Z91.05'),
+('Dairy', 'Z91.011'),
+('Eggs', 'Z91.012');
 
 -- 5. Punishment
 INSERT INTO Punishment (reason, for_days) VALUES
-('Late cancellation', 7),
-('Repeated no-show', 15),
-('Inappropriate behavior', 30);
+('Repeated appointment no-show', 15),
+('Late cancellation (less than 2 hours)', 7),
+('Disruptive behavior in facility', 30),
+('False patient information', 60);
 
--- 6. Schedule
+-- 6. Schedule (Dates in the future relative to 2026-05-10)
 INSERT INTO Schedule (s_date, s_time) VALUES
-('2026-05-10', '09:00:00'),
-('2026-05-10', '10:00:00'),
-('2026-05-10', '11:00:00'),
-('2026-05-11', '09:30:00'),
-('2026-05-11', '10:30:00');
+('2026-05-11', '09:00:00'), ('2026-05-11', '09:30:00'), ('2026-05-11', '10:00:00'), ('2026-05-11', '10:30:00'),
+('2026-05-11', '14:00:00'), ('2026-05-11', '14:30:00'), ('2026-05-11', '15:00:00'),
+('2026-05-12', '09:00:00'), ('2026-05-12', '10:00:00'), ('2026-05-12', '11:00:00'),
+('2026-05-12', '14:00:00'), ('2026-05-12', '15:00:00'),
+('2026-05-13', '09:00:00'), ('2026-05-13', '09:30:00'), ('2026-05-13', '10:00:00');
 
 -- 7. Admin
+-- Password requirement: length >= 8
 INSERT INTO Admin (username, ad_password, usr_role) VALUES
-('admin1', 'hashed_password_123', 'ADMIN'),
-('superadmin', 'secure_admin_pass', 'ADMIN');
+('admin_root', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ADMIN'), -- password
+('hospital_mgr', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ADMIN');
 
 -- 8. Doctor
 INSERT INTO Doctor (first_name, last_name, phone_num, email, gender_name, dept_id) VALUES
-('John', 'Doe', '05551112233', 'john.doe@hospital.com', 'M', 1),
-('Jane', 'Smith', '05552223344', 'jane.smith@hospital.com', 'F', 2),
-('Michael', 'Brown', '05553334455', 'michael.brown@hospital.com', 'M', 3),
-('Emily', 'Davis', '05554445566', 'emily.davis@hospital.com', 'F', 4);
+('Ahmet', 'Yilmaz', '05550000001', 'ahmet.yilmaz@nova.com', 'M', 1),
+('Ayse', 'Kaya', '05550000002', 'ayse.kaya@nova.com', 'F', 2),
+('Mehmet', 'Demir', '05550000003', 'mehmet.demir@nova.com', 'M', 3),
+('Zeynep', 'Celik', '05550000004', 'zeynep.celik@nova.com', 'F', 4),
+('Mustafa', 'Sahin', '05550000005', 'mustafa.sahin@nova.com', 'M', 5),
+('Elif', 'Ozturk', '05550000006', 'elif.ozturk@nova.com', 'F', 6),
+('Murat', 'Aydin', '05550000007', 'murat.aydin@nova.com', 'M', 7),
+('Fatma', 'Arslan', '05550000008', 'fatma.arslan@nova.com', 'F', 8),
+('Can', 'Yildiz', '05550000009', 'can.yildiz@nova.com', 'M', 1),
+('Selin', 'Koc', '05550000010', 'selin.koc@nova.com', 'F', 2);
 
 -- 9. Patient
--- Password length must be >= 8, tc_no must be 11 chars
-INSERT INTO Patient (first_name, last_name, tc_no, birth_date, gender_name, blood_id, phone_num, email, pat_password, usr_role) VALUES
-('Alice', 'Johnson', '12345678901', '1990-05-15', 'F', 1, '05441112233', 'alice@email.com', 'password123', 'PATIENT'),
-('Bob', 'Wilson', '23456789012', '1985-11-20', 'M', 7, '05442223344', 'bob@email.com', 'password456', 'PATIENT'),
-('Charlie', 'Miller', '34567890123', '2000-01-01', 'M', 3, '05443334455', 'charlie@email.com', 'password789', 'PATIENT');
+-- Password requirement: length >= 8, tc_no: 11 chars
+INSERT INTO Patient (first_name, last_name, tc_no, birth_date, gender_name, blood_id, phone_num, email, is_email_verified, pat_password, usr_role) VALUES
+('Ali', 'Can', '11111111111', '1980-01-01', 'M', 1, '05440000001', 'ali.can@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Veli', 'Han', '22222222222', '1985-05-12', 'M', 7, '05440000002', 'veli.han@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Merve', 'Tan', '33333333333', '1992-09-20', 'F', 3, '05440000003', 'merve.tan@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Deniz', 'Ak', '44444444444', '1975-03-15', 'M', 5, '05440000004', 'deniz.ak@email.com', FALSE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Seda', 'Nur', '55555555555', '1998-11-30', 'F', 2, '05440000005', 'seda.nur@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Burak', 'Oz', '66666666666', '1988-07-04', 'M', 8, '05440000006', 'burak.oz@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Asli', 'Gul', '77777777777', '1995-12-25', 'F', 1, '05440000007', 'asli.gul@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Emre', 'Tas', '88888888888', '1982-06-18', 'M', 4, '05440000008', 'emre.tas@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Gizem', 'Bal', '99999999999', '2001-02-14', 'F', 6, '05440000009', 'gizem.bal@email.com', FALSE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Kerem', 'Sol', '10101010101', '1970-10-10', 'M', 7, '05440000010', 'kerem.sol@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT');
 
--- 10. Doctor_Schedule
+-- 10. Doctor_Schedule (Assigning slots to doctors)
 INSERT INTO Doctor_Schedule (schedule_id, doctor_id, is_active) VALUES
-(1, 1, TRUE),
-(2, 1, TRUE),
-(3, 2, TRUE),
-(4, 3, TRUE),
-(5, 4, FALSE);
+(1, 1, TRUE), (2, 1, TRUE), (3, 1, TRUE),
+(4, 2, TRUE), (5, 2, TRUE),
+(6, 3, TRUE), (7, 3, TRUE),
+(8, 4, TRUE), (9, 4, TRUE),
+(10, 5, TRUE), (11, 5, FALSE),
+(12, 6, TRUE), (13, 7, TRUE), (14, 8, TRUE), (15, 9, TRUE);
 
 -- 11. Doctor_Specialization
 INSERT INTO Doctor_Specialization (spec_id, doctor_id) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4);
+(1, 1), (2, 1),
+(3, 2), (4, 2),
+(5, 3), (6, 3),
+(7, 4), (8, 4),
+(9, 5),
+(10, 6),
+(11, 7),
+(12, 8),
+(1, 9);
 
 -- 12. Patient_Allergy
 INSERT INTO Patient_Allergy (allergy_id, patient_id) VALUES
-(1, 1),
-(2, 2);
+(1, 1), (4, 1),
+(2, 2),
+(5, 3), (6, 3),
+(9, 5),
+(10, 8);
 
 -- 13. Patient_Punishment
 INSERT INTO Patient_Punishment (punishment_date, patient_id, punishment_id) VALUES
-('2026-05-01', 3, 1);
+('2026-05-01', 4, 1),
+('2026-04-20', 9, 2);
 
 -- 14. Appointment
-INSERT INTO Appointment (patient_id, doctor_schedule_id) VALUES
-(1, 1),
-(2, 3);
+-- is_active: TRUE for upcoming, FALSE for past/cancelled
+INSERT INTO Appointment (patient_id, doctor_schedule_id, is_active) VALUES
+(1, 1, TRUE),
+(2, 4, TRUE),
+(3, 6, TRUE),
+(5, 8, TRUE),
+(7, 10, TRUE),
+(1, 2, FALSE), -- Past appointment
+(2, 5, FALSE); -- Past appointment
 
 -- 15. Treatment
+-- ICD-10 codes for testing
 INSERT INTO Treatment (appointment_id, icd10_code) VALUES
-(1, 'I10'), -- Essential hypertension
-(2, 'G44.1'); -- Vascular headache
+(6, 'I10'), -- Essential (primary) hypertension
+(7, 'E11.9'); -- Type 2 diabetes mellitus without complications
 
 -- 16. Bill
 INSERT INTO Bill (treatment_id, cost) VALUES
-(1, 150.00),
-(2, 200.50);
+(1, 250.00),
+(2, 450.75);

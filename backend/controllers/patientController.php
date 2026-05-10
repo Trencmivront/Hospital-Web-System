@@ -2,6 +2,10 @@
 
 require '../dbConnect.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 foreach (glob("../services/patient/*/*.php") as $filename) {
     require_once $filename;
 }
@@ -45,24 +49,38 @@ switch($action){
     break;
 
     case 'logOut': {
+        // Erase all session content
+        $_SESSION = array();
+        
+        // Erase session cookie
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        // destroy session on the backend
         session_destroy();
-        session_abort();
+        echo json_encode(["success" => true]);
     }   
     break;
 }
+// IN SPRING BOOT THERE WOULD BE A FILE TO HANDEL EXCEPTIONS
+// INSTEAD, I HAVE TO WRITE THEM LIKE THIS IN PHP (idk if there is a solution)
+}catch(CouldNotRetrievePatientDataException $e){
+    echo responseEntity($e->getMessage(), $e->getCode());
+}catch(UserNotFoundException $e){
+    echo responseEntity($e->getMessage(), $e->getCode());
+}catch(IncorrectPasswordException $e){
+    echo responseEntity($e->getMessage(), $e->getCode());
+}catch(NullEmailException $e){
+    echo responseEntity($e->getMessage(), $e->getCode());
+}catch(NullPasswordException $e){
+    echo responseEntity($e->getMessage(), $e->getCode());
+}catch(CouldNotSendEmailException $e){
+    echo responseEntity($e->getMessage(), $e->getCode());
+}
 
-}catch(Exception $e){
-    http_response_code($e->getCode() ?: 500);
-    // Assuming responseEntity is a function that returns a JSON string or array
-    echo json_encode(["error" => $e->getMessage()]);
-}
-catch(CouldNotRetrievePatientDataException $e){
-    echo responseEntity($e->getMessage(), $e->getCode());
-}
-catch(UserNotFoundException $e){
-    echo responseEntity($_POST['email'], $e->getCode());
-}
-catch(IncorrectPasswordException $e){
-    echo responseEntity($e->getMessage(), $e->getCode());
-}
 ?>

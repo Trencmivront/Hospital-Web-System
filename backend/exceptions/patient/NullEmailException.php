@@ -2,9 +2,9 @@
 
 use FFI\Exception;
 
-    class IncorrectPasswordException extends Exception{
+    class NullEmailException extends Exception{
         protected const code = 400;
-        protected const message = 'Password is Incorrect';
+        protected const message = 'Email Can\'t be Empty';
         function __constructor(){
             parent::__construct($this->message, $this->code, null);
         }

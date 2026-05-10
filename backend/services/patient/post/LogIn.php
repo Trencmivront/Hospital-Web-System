@@ -15,6 +15,13 @@
         $email = $data['email'] ?? '';
         $password = $data['password'] ?? '';
 
+        if(empty($email)){
+            throw new NullEmailException();
+        }
+        if(empty($password)){
+            throw new NullPasswordException();
+        }
+
         try{
             $query = 'SELECT pat_password FROM Patient WHERE email = (?)';
             $statement = $pdo->prepare($query);
@@ -43,7 +50,7 @@
             $jwt = new JwToken();
 
             // only for a shor time store email to find user again
-            $_SESSION['emial_jwt'] = $jwt->generateJwt($email, '', 181);
+            $_SESSION['email_jwt'] = $jwt->generateJwt($email, '', 181);
 
             // Store verification code in session as JWT for later use.
             // I set timer for 3 minutes and 1 second, extra time for page reload.

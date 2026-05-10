@@ -92,7 +92,6 @@ window.addEventListener('load', () => {
         }
 
         try{
-
             const response = await fetch("/backend/controllers/patientController.php?action=verifyCode", config);
 
             if(!response.ok){

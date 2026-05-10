@@ -23,7 +23,8 @@ CREATE TABLE Doctor(
 CREATE TABLE Schedule(
 	schedule_id INT PRIMARY KEY AUTO_INCREMENT,
 	s_date DATE NOT NULL,
-	s_time TIME NOT NULL
+	s_time TIME NOT NULL,
+	UNIQUE(s_date, s_time)
 );
 
 -- Changed this table and made it connection table
@@ -33,6 +34,7 @@ CREATE TABLE Doctor_Schedule(
 	doctor_id INT NOT NULL,
 	-- if it is false, then user can't select it
 	is_active BOOLEAN NOT NULL,
+	UNIQUE(doctor_id, schedule_id),
 	CONSTRAINT fk_dsTsch FOREIGN KEY (schedule_id)
 	REFERENCES Schedule(schedule_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
@@ -44,7 +46,7 @@ CREATE TABLE Doctor_Schedule(
 -- This is new table
 CREATE TABLE Specialization(
 	spec_id INT PRIMARY KEY AUTO_INCREMENT,
-	name varchar(100) NOT NULL
+	name varchar(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE Doctor_Specialization(
@@ -77,10 +79,10 @@ CREATE TABLE Patient(
 	-- allergies INT, removed allergies and created connection below
 	phone_num varchar(11) NOT NULL UNIQUE,
 	email varchar(50) NOT NULL UNIQUE,
+	is_email_verified BOOLEAN,
 	pat_password varchar(256) NOT NULL,
 	-- usr_role will be given by database
 	usr_role varchar(7) NOT NULL,
-	CONSTRAINT chk_pat_password_length CHECK(LENGTH(pat_password) >= 8),
 	CONSTRAINT chk_tc_no_length CHECK(LENGTH(tc_no) = 11),
 	CONSTRAINT chk_pat_role CHECK(usr_role='PATIENT'),
 	CONSTRAINT fk_patTbld FOREIGN KEY (blood_id)
@@ -92,7 +94,7 @@ CREATE TABLE Patient(
 CREATE TABLE Allergy(
 	allergy_id INT PRIMARY KEY AUTO_INCREMENT,
 	allergy_descrpt varchar(100) NOT NULL,
-	icd10_code varchar(10) NOT NULL
+	icd10_code varchar(10) NOT NULL UNIQUE
 );
 
 -- This is new table
@@ -120,7 +122,7 @@ CREATE TABLE Patient_Punishment(
 	punishment_date DATE NOT NULL,
 	patient_id INT NOT NULL,
 	punishment_id INT NOT NULL,
-	PRIMARY KEY (patient_id, punishment_id),
+	PRIMARY KEY (patient_id, punishment_id, punishment_date),
 	CONSTRAINT fk_pat_pun_to_pat FOREIGN KEY (patient_id)
 	REFERENCES Patient(patient_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
@@ -132,7 +134,8 @@ CREATE TABLE Patient_Punishment(
 CREATE TABLE Appointment(
 	appointment_id INT PRIMARY KEY AUTO_INCREMENT,
 	patient_id INT NOT NULL,
-	doctor_schedule_id INT NOT NULL,
+	doctor_schedule_id INT NOT NULL UNIQUE,
+	is_active BOOLEAN NOT NULL,
 	CONSTRAINT fk_appTpat FOREIGN KEY (patient_id)
 	REFERENCES Patient(patient_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
@@ -164,6 +167,5 @@ CREATE TABLE Admin(
 	username varchar(50) NOT NULL,
 	ad_password varchar(256) NOT NULL,
 	usr_role varchar(7) NOT NULL,
-	CONSTRAINT chk_admin_password_length CHECK(LENGTH(ad_password) >= 8),
 	CONSTRAINT chk_ad_role CHECK(usr_role='ADMIN')
 );
