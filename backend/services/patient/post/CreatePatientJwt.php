@@ -13,7 +13,7 @@ function createPatientJwt(PDO $pdo) : bool{
         }
     }
     else {
-        throw new Exception('How did you even got here?');
+        throw new UserIsNotAuthenticatedException();
     }
     
     $jwt = new JWToken();

@@ -88,7 +88,8 @@ window.addEventListener('load', () => {
 
         const config = {
             method: "POST",
-            verification_code: code,
+            headers: {'Content-Type' : 'application/json; charset=utf-8'},
+            body: JSON.stringify({code: code})
         }
 
         try{
@@ -109,12 +110,10 @@ window.addEventListener('load', () => {
                 return;
             }
 
+            window.location = "/frontend/html/user/profile.html";
         }catch(error){
             console.log(error);
         }
-
-        window.location = "/frontend/html/user/profile.html";
-
     })
 
     resendCodeLink.addEventListener('click', (e) => {

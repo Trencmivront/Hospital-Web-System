@@ -1,5 +1,5 @@
 <?php
-
+require_once dirname(__FILE__) . '/../vendor/autoload.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 class JWToken {
@@ -20,21 +20,7 @@ class JWToken {
         return JWT::encode($payload, self::$secretKey, 'HS256');
     }
 
-    // check if key is expired
-    function isExpired(string $token) : bool {
-        try {
-            JWT::decode($token, new Key(self::$secretKey, 'HS256'));
-            return false;
-        } catch (Exception $e) {
-            return true;
-        }
-    }
-
     function openToken(string $token) : stdClass{
-        try{
-            return JWT::decode($token, new Key(self::$secretKey, 'HS256'));
-        }catch(Exception $e){
-            throw new Exception($e->getMessage());
-        }
+        return JWT::decode($token, new Key(self::$secretKey, 'HS256'));
     }
 }

@@ -7,10 +7,8 @@
     }
 
     function logIn(PDO $pdo){
-
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
-
 
         $email = $data['email'];
         $password = $data['password'];
@@ -23,9 +21,9 @@
         }
 
         try{
-            $query = 'SELECT pat_password FROM Patient WHERE email = (?)';
+            $query = 'SELECT pat_password FROM Patient WHERE email = :email';
             $statement = $pdo->prepare($query);
-            $statement->execute([$email]);
+            $statement->execute(['email' => $email]);
 
             $user = $statement->fetch();
             

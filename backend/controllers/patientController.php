@@ -1,5 +1,7 @@
 <?php
 
+use Firebase\JWT\ExpiredException;
+
 require '../dbConnect.php';
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -34,7 +36,7 @@ switch($action){
     break;
 
     case 'verifyCode': {
-        $data = verifyCode($pdo);
+        $data = verifyCode();
         echo responseEntity($data);
         // if code is verified, create patient jwt
     };
@@ -80,6 +82,7 @@ switch($action){
     echo responseEntity($e->getMessage(), $e->getCode());
 }catch(CouldNotSendEmailException $e){
     echo responseEntity($e->getMessage(), $e->getCode());
+}catch(IncorrectVerificationCodeException $e){
+    echo responseEntity($e->getMessage(), $e->getCode());
 }
-
 ?>
