@@ -25,3 +25,6 @@ Dockerfile
 composer.json
 compose.yaml
 .dockerignore
+
+#logs
+logs/
