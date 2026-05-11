@@ -1,7 +1,7 @@
 <?php
 // fetch blood types
 function getBloodTypes(PDO $pdo) : array {
-   $query = 'SELECT blood_id, type_name FROM blood_type';
+   $query = 'SELECT blood_id, type_name FROM Blood_Type';
    try{
       $result = $pdo->query($query);
       $data = $result->fetchAll(PDO::FETCH_ASSOC);

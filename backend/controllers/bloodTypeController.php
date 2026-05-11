@@ -1,6 +1,6 @@
 <?php
 // I think require is better
-require '../dbConnect.php';
+require_once '../dbConnect.php';
 
 // include required files
 foreach (glob("../services/blood/*/*.php") as $filename) {
@@ -9,7 +9,6 @@ foreach (glob("../services/blood/*/*.php") as $filename) {
 foreach (glob("../exceptions/blood/*.php") as $filename){
     require_once $filename;
 }
-header("Content-Type: application/json; charset=utf-8");
 
 $action = $_GET['action'];
 $data = [];
@@ -18,15 +17,14 @@ try{
     switch($action){
         case 'getBloodTypes' : {
             $data = getBloodTypes($pdo);
-
-            http_response_code(200);
             echo responseEntity($data);
         }
+        break;
+        default: echo responseEntity("Unknown Request", 400);
         break;
     }
 
 }catch(FetchBloodException $e){
-    http_response_code($e->getCode());
-    echo responseEntity($e->getMessage());
+    echo responseEntity($e->getMessage(), $e->getCode());
 }
 ?>

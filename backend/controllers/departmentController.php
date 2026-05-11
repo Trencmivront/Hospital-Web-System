@@ -1,5 +1,6 @@
 <?php
-require '../dbConnect.php';
+
+require_once '../dbConnect.php';
 // load all php files inside services/department
 foreach (glob("../services/department/*/*.php") as $filename) {
     require_once $filename;
@@ -8,7 +9,6 @@ foreach (glob("../services/department/*/*.php") as $filename) {
 foreach(glob("../exceptions/department/*.php") as $filename){
     require_once $filename;
 }
-header("Content-Type: application/json; charset=utf-8");
 
 $action = $_GET['action'];
 
@@ -17,28 +17,22 @@ $data = [];
 // catching all exceptions
 try{
     switch($action){
-
         case 'getDepartments':{
+            // if no exception, then
+            // turn dataset into json form;
             $data = getDepartments($pdo);
-            
-            http_response_code(200);
             echo responseEntity($data);
         };
         break;
 
         case 'filterDepartmentsByName':{
             $data = filterDepartmentsByName($pdo);
-            // if no exception, then
-            http_response_code(200);
-            // turn dataset into json form;
             echo responseEntity($data);
         };
         break;
+        default: echo responseEntity("Unknown Request", 400);
+        break;
 }
-
-}catch(FetchDepartmentsException $e){  
-    http_response_code($e->getCode());
-    echo responseEntity($e->getMessage());
+}catch(FetchDepartmentsException $e){ 
+    echo responseEntity($e->getMessage(), $e->getCode());
 } 
-
-?>

@@ -7,18 +7,18 @@
     <!--First apply global then profile-->
     <link rel="stylesheet" href="/frontend/css/user/profile.css">
     <link rel="stylesheet" href="/frontend/css/global.css">
-    <script src="/frontend/js/user/profile.js" defer></script>
+    <script src="/frontend/js/user/profile.js?v=1.0" defer></script>
 </head>
 <body class="profile-layout">
     <header class="profile-top-bar">
         <div class="top-bar-content flex-wrap-space">
             <a href="/index.html" class="top-bar-brand flex-center-content">
-                <img src="/imgs/hospital-logo-design-vector-medical-cross_53876-136743.avif" alt="Logo">
+                <img src="/imgs/novaLogo.avif" alt="Logo">
                 <span>Nova Hospital</span>
             </a>
             <div class="top-bar-user-name flex-center-content">
                 <span>Welcome, <strong>John Doe</strong></span>
-                <a class="logout-link">Logout</a>
+                <button id="logOutButton" class="logout-link">Logout</button>
             </div>
         </div>
     </header>
@@ -79,19 +79,15 @@
                                 <table class="appointment-table">
                                     <thead>
                                         <tr>
-                                            <th>Date</th>
+                                            <th>Date-Time</th>
                                             <th>Department</th>
                                             <th>Doctor</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <!--Fetch date, department, doctor, status from database-->
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+                                    <div id="appointmentFetchError"></div>
+                                    <tbody id="appointmentContainer">
+                                        <!--Fetch date, department, doctor, status from database-->
                                     </tbody>
                                 </table>
                             </div>
@@ -100,26 +96,6 @@
                 </div>
             </section>
 
-            <!-- Other sections (hidden by default) -->
-            <section id="medical-records" class="content-section">
-                <h1>Medical Records</h1>
-                <p>No medical records found.</p>
-            </section>
-            
-            <section id="payments" class="content-section">
-                <h1>Payments</h1>
-                <p>No pending payments.</p>
-            </section>
-
-            <section id="messages" class="content-section">
-                <h1>Messages</h1>
-                <p>No new messages.</p>
-            </section>
-
-            <section id="settings" class="content-section">
-                <h1>Settings</h1>
-                <p>Profile settings will be here.</p>
-            </section>
         </main>
     </div>
 

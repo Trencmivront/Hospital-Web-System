@@ -15,4 +15,4 @@ RewriteRule ^(.*)$ $1.html [L]
 
 # Kullanıcı /panel yazarsa arka planda /admin/dashboard.html açılır
 # RewriteRule ^panel$ admin/dashboard.html [L]
-RewriteRule ^main$ /frontend/html/global/index.html [L]
+RewriteRule ^main$ /index.html [L]

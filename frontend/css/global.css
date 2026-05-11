@@ -95,11 +95,12 @@ nav.open{
     justify-content: space-between;
 }
 
-.vertical_line{        
-  border: 1px solid var(--border-grey);
-  height: auto;
-  left: 50%;
-  top: 0;
+.vertical_line{
+    display: none;
+    border: 1px solid var(--border-grey);
+    height: auto;
+    left: 50%;
+    top: 0;
 }
 
 .logButton {
@@ -381,6 +382,9 @@ display:block;
 
 /* On smaller screens, nav changes to sidenav and center the header content */
 @media screen and (max-width: 751px) {
+    .vertical_line{
+        border: none;
+    }
     nav{
         flex-direction: column;
         /*Make container stick to top left*/

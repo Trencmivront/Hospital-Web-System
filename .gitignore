@@ -8,6 +8,7 @@ composer.lock
 
 # Veritabanı ve Çevresel ayarlar (ÖNEMLİ)
 .env
+backend/jwtCreate.php
 backend/dbConnect.php
 *.sqlite
 
@@ -18,3 +19,9 @@ npm-debug.log*
 # IDE (Kod editörü) ayarları
 .vscode/
 .idea/
+
+#Docker Files
+Dockerfile
+composer.json
+compose.yaml
+.dockerignore

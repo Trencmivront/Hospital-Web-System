@@ -1,108 +1,151 @@
--- Gender (Cinsiyetler)
-INSERT INTO gender (gender_name) VALUES ('male'), ('female');
+-- Test records for Hospital Web System
+-- This file erases existing data and populates tables with comprehensive test cases.
 
--- Blood_type
-INSERT INTO blood_type(type_name) VALUES ('A+'), ('A-'), ('B+'), ('B-'), ('AB+'), ('AB-'), ('0+'), ('0-');
+-- All hashed passwords are "password" as value
 
--- Departments (Departmanlar)
-INSERT INTO department (dept_name, descrpt) VALUES 
-('Kardiyoloji', 'Kalp ve damar hastalıkları birimi'),
-('Nöroloji', 'Beyin ve sinir sistemi hastalıkları birimi'),
-('Dahiliye', 'İç hastalıkları genel birimi');
+-- 1. Blood_Type (All common types)
+INSERT INTO Blood_Type (type_name) VALUES
+('A+'), ('A-'), ('B+'), ('B-'), ('AB+'), ('AB-'), ('0+'), ('0-');
 
--- Specializations (Uzmanlık Alanları)
-INSERT INTO specialization (name) VALUES 
-('Ekokardiyografi'), ('Klinik Nörofizyoloji'), ('Endokrinoloji');
+-- 2. Department
+INSERT INTO Department (dept_name, descrpt, img_path) VALUES
+('Cardiology', 'Specializing in heart and cardiovascular health.', 'imgs/deptImgs/cardiology.jpg'),
+('Neurology', 'Diagnosis and treatment of nervous system disorders.', 'imgs/deptImgs/neurology.jpg'),
+('Orthopedics', 'Focusing on the musculoskeletal system.', 'imgs/deptImgs/orthopedics.jpg'),
+('Pediatrics', 'Comprehensive medical care for children and adolescents.', 'imgs/deptImgs/pediatrics.jpg'),
+('Dermatology', 'Skin, hair, and nail health.', 'imgs/deptImgs/dermatology.jpg'),
+('Ophthalmology', 'Specialized eye care and surgery.', 'imgs/deptImgs/ophthalmology.jpg'),
+('General Surgery', 'Focusing on abdominal contents and general surgical procedures.', 'imgs/deptImgs/surgery.jpg'),
+('Psychiatry', 'Mental health diagnosis and treatment.', 'imgs/deptImgs/psychiatry.jpg');
 
--- Doctors (Doktorlar)
-INSERT INTO doctor (first_name, last_name, phone_num, email, gender_name, dept_id) VALUES 
-('Ahmet', 'Yılmaz', '05551112233', 'ahmet.y@hastane.com', 'male', 1),
-('Ayşe', 'Kaya', '05552223344', 'ayse.k@hastane.com', 'female', 2);
+-- 3. Specialization
+INSERT INTO Specialization (name) VALUES
+('Interventional Cardiology'),
+('Electrophysiology'),
+('Epileptology'),
+('Pediatric Neurology'),
+('Spine Surgery'),
+('Sports Medicine'),
+('Neonatology'),
+('Pediatric Surgery'),
+('Cosmetic Dermatology'),
+('Retinal Surgery'),
+('Vascular Surgery'),
+('Child Psychiatry');
 
--- Doctor Specializations (Doktor Uzmanlık Eşleşmesi)
-INSERT INTO doctor_specialization (spec_id, doctor_id) VALUES (1, 1), (2, 2);
+-- 4. Allergy
+INSERT INTO Allergy (allergy_descrpt, icd10_code) VALUES
+('Penicillin', 'Z88.0'),
+('Sulfa drugs', 'Z88.2'),
+('Aspirin', 'Z88.1'),
+('Peanuts', 'Z91.010'),
+('Latex', 'Z91.040'),
+('Shellfish', 'Z91.013'),
+('Bee Stings', 'Z91.06'),
+('Pollen', 'Z91.05'),
+('Dairy', 'Z91.011'),
+('Eggs', 'Z91.012');
 
--- Schedule (Zaman Dilimleri)
-INSERT INTO schedule (s_date, s_time) VALUES 
-('2026-05-10', '09:00:00'),
-('2026-05-10', '10:00:00'),
-('2026-05-11', '14:00:00');
+-- 5. Punishment
+INSERT INTO Punishment (reason, for_days) VALUES
+('Repeated appointment no-show', 15),
+('Late cancellation (less than 2 hours)', 7),
+('Disruptive behavior in facility', 30),
+('False patient information', 60);
 
--- Doctor Schedule (Doktorun Müsaitlik Durumu)
-INSERT INTO doctor_schedule (schedule_id, doctor_id, is_active) VALUES 
-(1, 1, 1), -- Ahmet Yılmaz 09:00 (Müsait)
-(2, 1, 1), -- Ahmet Yılmaz 10:00 (Müsait)
-(3, 2, 0); -- Ayşe Kaya 14:00 (İzinli/Kapalı)
+-- 6. Schedule (Dates in the future relative to 2026-05-10)
+INSERT INTO Schedule (s_date, s_time) VALUES
+('2026-05-11', '09:00:00'), ('2026-05-11', '09:30:00'), ('2026-05-11', '10:00:00'), ('2026-05-11', '10:30:00'),
+('2026-05-11', '14:00:00'), ('2026-05-11', '14:30:00'), ('2026-05-11', '15:00:00'),
+('2026-05-12', '09:00:00'), ('2026-05-12', '10:00:00'), ('2026-05-12', '11:00:00'),
+('2026-05-12', '14:00:00'), ('2026-05-12', '15:00:00'),
+('2026-05-13', '09:00:00'), ('2026-05-13', '09:30:00'), ('2026-05-13', '10:00:00');
 
--- Allergies (Alerjiler)
-INSERT INTO allergy (allergy_descrpt, icd10_code) VALUES 
-('Penisilin Alerjisi', 'Z88.0'),
-('Polen Alerjisi', 'J30.1');
+-- 7. Admin
+-- Password requirement: length >= 8
+INSERT INTO Admin (username, ad_password, usr_role) VALUES
+('admin_root', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ADMIN'), -- password
+('hospital_mgr', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ADMIN');
 
--- Admin (Yönetici)
-INSERT INTO admin (username, ad_password, usr_role) VALUES 
-('admin_yilmaz', 'admin_sifre_88', 'ADMIN');
+-- 8. Doctor
+INSERT INTO Doctor (first_name, last_name, phone_num, email, gender_name, dept_id) VALUES
+('Ahmet', 'Yilmaz', '05550000001', 'ahmet.yilmaz@nova.com', 'M', 1),
+('Ayse', 'Kaya', '05550000002', 'ayse.kaya@nova.com', 'F', 2),
+('Mehmet', 'Demir', '05550000003', 'mehmet.demir@nova.com', 'M', 3),
+('Zeynep', 'Celik', '05550000004', 'zeynep.celik@nova.com', 'F', 4),
+('Mustafa', 'Sahin', '05550000005', 'mustafa.sahin@nova.com', 'M', 5),
+('Elif', 'Ozturk', '05550000006', 'elif.ozturk@nova.com', 'F', 6),
+('Murat', 'Aydin', '05550000007', 'murat.aydin@nova.com', 'M', 7),
+('Fatma', 'Arslan', '05550000008', 'fatma.arslan@nova.com', 'F', 8),
+('Can', 'Yildiz', '05550000009', 'can.yildiz@nova.com', 'M', 1),
+('Selin', 'Koc', '05550000010', 'selin.koc@nova.com', 'F', 2);
 
--- Additional Departments (Ek Departmanlar)
-INSERT INTO department (dept_name, descrpt, img_path) VALUES 
-('Göz Hastalıkları', 'Göz sağlığı ve cerrahisi birimi', 'deptImgs/eye.jpg'),
-('Ortopedi', 'Kemik ve eklem hastalıkları birimi', 'deptImgs/ortho.jpg');
+-- 9. Patient
+-- Password requirement: length >= 8, tc_no: 11 chars
+INSERT INTO Patient (first_name, last_name, tc_no, birth_date, gender_name, blood_id, phone_num, email, is_email_verified, pat_password, usr_role) VALUES
+('Ali', 'Can', '11111111111', '1980-01-01', 'M', 1, '05440000001', 'ali.can@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Veli', 'Han', '22222222222', '1985-05-12', 'M', 7, '05440000002', 'veli.han@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Merve', 'Tan', '33333333333', '1992-09-20', 'F', 3, '05440000003', 'merve.tan@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Deniz', 'Ak', '44444444444', '1975-03-15', 'M', 5, '05440000004', 'deniz.ak@email.com', FALSE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Seda', 'Nur', '55555555555', '1998-11-30', 'F', 2, '05440000005', 'seda.nur@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Burak', 'Oz', '66666666666', '1988-07-04', 'M', 8, '05440000006', 'burak.oz@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Asli', 'Gul', '77777777777', '1995-12-25', 'F', 1, '05440000007', 'asli.gul@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Emre', 'Tas', '88888888888', '1982-06-18', 'M', 4, '05440000008', 'emre.tas@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Gizem', 'Bal', '99999999999', '2001-02-14', 'F', 6, '05440000009', 'gizem.bal@email.com', FALSE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT'),
+('Kerem', 'Sol', '10101010101', '1970-10-10', 'M', 7, '05440000010', 'kerem.sol@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT');
 
--- Additional Specializations (Ek Uzmanlık Alanları)
-INSERT INTO specialization (name) VALUES 
-('Glokom'), ('El Cerrahisi'), ('Spor Hekimliği');
+-- 10. Doctor_Schedule (Assigning slots to doctors)
+INSERT INTO Doctor_Schedule (schedule_id, doctor_id, is_active) VALUES
+(1, 1, TRUE), (2, 1, TRUE), (3, 1, TRUE),
+(4, 2, TRUE), (5, 2, TRUE),
+(6, 3, TRUE), (7, 3, TRUE),
+(8, 4, TRUE), (9, 4, TRUE),
+(10, 5, TRUE), (11, 5, FALSE),
+(12, 6, TRUE), (13, 7, TRUE), (14, 8, TRUE), (15, 9, TRUE);
 
--- Additional Doctors (Ek Doktorlar)
-INSERT INTO doctor (first_name, last_name, phone_num, email, gender_name, dept_id) VALUES 
-('Mehmet', 'Can', '05553334455', 'mehmet.c@hastane.com', 'male', 4),
-('Fatma', 'Demir', '05554445566', 'fatma.d@hastane.com', 'female', 5);
+-- 11. Doctor_Specialization
+INSERT INTO Doctor_Specialization (spec_id, doctor_id) VALUES
+(1, 1), (2, 1),
+(3, 2), (4, 2),
+(5, 3), (6, 3),
+(7, 4), (8, 4),
+(9, 5),
+(10, 6),
+(11, 7),
+(12, 8),
+(1, 9);
 
--- Doctor Specializations (Doktor Uzmanlık Eşleşmesi)
-INSERT INTO doctor_specialization (spec_id, doctor_id) VALUES (4, 3), (5, 4);
+-- 12. Patient_Allergy
+INSERT INTO Patient_Allergy (allergy_id, patient_id) VALUES
+(1, 1), (4, 1),
+(2, 2),
+(5, 3), (6, 3),
+(9, 5),
+(10, 8);
 
--- Patients (Hastalar)
--- Passwords should be >= 8 chars, TC No should be 11 chars
-INSERT INTO patient (first_name, last_name, tc_no, birth_date, gender_name, blood_id, phone_num, email, pat_password, usr_role) VALUES 
-('Ali', 'Veli', '11122233344', '1990-05-15', 'male', 1, '05321112233', 'ali.veli@email.com', 'ali123456', 'PATIENT'),
-('Fatma', 'Nur', '22233344455', '1985-10-20', 'female', 3, '05322223344', 'fatma.nur@email.com', 'fatma123456', 'PATIENT'),
-('Can', 'Öz', '33344455566', '2000-01-01', 'male', 7, '05323334455', 'can.oz@email.com', 'can1234567', 'PATIENT');
+-- 13. Patient_Punishment
+INSERT INTO Patient_Punishment (punishment_date, patient_id, punishment_id) VALUES
+('2026-05-01', 4, 1),
+('2026-04-20', 9, 2);
 
--- Patient Allergies (Hasta Alerji Eşleşmesi)
-INSERT INTO patient_allergy (allergy_id, patient_id) VALUES 
-(1, 1), -- Ali Veli: Penisilin Alerjisi
-(2, 2); -- Fatma Nur: Polen Alerjisi
+-- 14. Appointment
+-- is_active: TRUE for upcoming, FALSE for past/cancelled
+INSERT INTO Appointment (patient_id, doctor_schedule_id, is_active) VALUES
+(1, 1, TRUE),
+(2, 4, TRUE),
+(3, 6, TRUE),
+(5, 8, TRUE),
+(7, 10, TRUE),
+(1, 2, FALSE), -- Past appointment
+(2, 5, FALSE); -- Past appointment
 
--- Additional Schedule (Zaman Dilimleri)
-INSERT INTO schedule (s_date, s_time) VALUES 
-('2026-05-12', '11:00:00'),
-('2026-05-12', '14:00:00'),
-('2026-05-13', '09:30:00');
+-- 15. Treatment
+-- ICD-10 codes for testing
+INSERT INTO Treatment (appointment_id, icd10_code) VALUES
+(6, 'I10'), -- Essential (primary) hypertension
+(7, 'E11.9'); -- Type 2 diabetes mellitus without complications
 
--- Additional Doctor Schedule
-INSERT INTO doctor_schedule (schedule_id, doctor_id, is_active) VALUES 
-(4, 3, 1), -- Mehmet Can 11:00 (Müsait)
-(5, 4, 1), -- Fatma Demir 14:00 (Müsait)
-(6, 1, 1); -- Ahmet Yılmaz 09:30 (Müsait)
-
--- Appointments (Randevular)
-INSERT INTO appointment (patient_id, doctor_schedule_id, ap_status) VALUES 
-(1, 1, 1), -- Ali Veli, Ahmet Yılmaz (Tamamlandı/Aktif)
-(2, 4, 1); -- Fatma Nur, Mehmet Can (Tamamlandı/Aktif)
-
--- Treatments (Tedaviler)
-INSERT INTO treatment (appointment_id, icd10_code) VALUES 
-(1, 'I10'), -- Hipertansiyon
-(2, 'H40.9'); -- Glokom, tanımlanmamış
-
--- Bills (Faturalar)
-INSERT INTO bill (treatment_id, cost) VALUES 
-(1, 150.00),
-(2, 250.00);
-
--- Punishment (Cezalar)
-INSERT INTO punishment (reason, for_days) VALUES 
-('Randevuya 3 kez üst üste gelmeme', 30);
-
--- Patient Punishment (Hasta Cezaları)
-INSERT INTO patient_punishment (punishment_date, patient_id, punishment_id) VALUES 
-('2026-05-01', 3, 1); -- Can Öz 30 gün ceza aldı
+-- 16. Bill
+INSERT INTO Bill (treatment_id, cost) VALUES
+(1, 250.00),
+(2, 450.75);

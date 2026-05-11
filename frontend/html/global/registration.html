@@ -8,12 +8,11 @@
         <link rel="stylesheet" href="/frontend/css/global.css">
         <link rel="stylesheet" href="/frontend/css/global/register.css">
         <script src="/frontend/js/global/global.js" defer></script>
-        <script src="/frontend/js/global/registration.js" defer></script>
+        <script src="/frontend/js/global/registration.js?v=3" defer></script>
     </head>
 
 <!--Background image for registration page-->
 <body class="page-shell" style="background-image: url('/imgs/registration_background.png'); background-size: cover; background-attachment: fixed;">
-
     <div class="div-form">
 
             <form id="registrationForm">
@@ -48,12 +47,15 @@
                     <div class="form-group">
                         <label for="gender">Gender:</label>
                         <select id="gender" required>
-                            <!--fetch from database-->
+                            <option value="">-choose-</option>
+                            <option>Male</option>
+                            <option>Female</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="blood_group">Blood Group:</label>
                         <select id="blood_group" required>
+                            <option value="">-choose-</option>
                             <!--fetch from database-->
                         </select>
                     </div>
@@ -81,17 +83,21 @@
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row flex-center-content">
                     <input id="form_submit" type="submit" value="Send">
                 </div>
             </form>
             <div id="errorMessage">
 
             </div>
+            <div>
+                Have an account? <a href="/frontend/html/user/login.html">Log In</a>
+            </div>
         </div>
-        <div>
-            <img src="/imgs/novaLogo.avif" width="20px">NOVA Hospital  All Rights Reserved
+        <div class="flex-center-content">
+            <a style="text-decoration: none;" class="flex-wrap-space" href="/index.html">NOVA Hospital<img src="/imgs/novaLogo.avif" width="20px"></a>  All Rights Reserved
         </div>
+            
     </body>
 
 </html>

@@ -80,6 +80,7 @@ nav{
 .logout-link:hover {
     background-color: #d9534f;
     color: #fff;
+    cursor: pointer;
 }
 
 /* Wrapper */
