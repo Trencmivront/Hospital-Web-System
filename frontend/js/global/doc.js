@@ -1,11 +1,10 @@
 
-
 const names =["Ahmet Eyibilen", "Şafak Özdemirci", "Engin Başer",
     "Hakan Kurt","Ayşe Yılmaz", "Mehmet Demir", "Elif Kaya", "Ali Veli", "Zeynep Çelik", "Murat Şahin" ,
     "Fatma Öz", "Emre Yıldız", "Deniz Arslan", "Seda Kılıç", "Caner Aydın", "Gülşah Demir", "Serkan Özz",
     "Ece Yılmaz", "Oğuzhan Kaya", "Büşra Çelik","Ahmet Yıldız", "Ayşe Demir", "Mehmet Arslan", "Elif Kılıç", "Ali Aydın", "Zeynep Özz", "Murat Yılmaz"];
 
-const doctors =[];
+    const doctors =[];
 
 for (let i = 0; i < 190; i++) {
     doctors.push({
