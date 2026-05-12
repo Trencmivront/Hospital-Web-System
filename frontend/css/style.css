@@ -25,7 +25,7 @@
     display: flex;
     width: 300%;
     height: 100%;
-    animation: slideAnimation 12s infinite ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 
 .slide {
@@ -283,3 +283,25 @@
     font-size: 14px;
     opacity: 0.9; 
 }
+/* Slider Buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(7, 183, 242, 0.467);
+    border: none;
+    color: white;
+    font-size: 30px;
+    padding: 10px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.slider-btn:hover {
+    background: rgba(11, 11, 11, 0.438);
+}
+
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }

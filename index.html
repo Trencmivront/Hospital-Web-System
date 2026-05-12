@@ -46,15 +46,18 @@
         <div class="hero-wrapper">
 
             <div class="hero-main">
+                <button class="slider-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
                 <div class="slider">
                     <div class="slide">
+
                         <img src="/imgs/novaho.jpeg">
                         <div class="hero-text">
                             <h1>Trusted Medical Care</h1>
                             <p>Providing the best healthcare services</p>
                         </div>
                     </div>
-                    <div class="slide">
+                    <div class="slide"> 
+
                         <img src="/imgs/nova-surgery.jpeg">
                         <div class="hero-text">
                             <h1>Expert Specialists</h1>
@@ -69,6 +72,7 @@
                         </div>
                     </div>
                 </div>
+                <button class="slider-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
             </div>
 
         </div>
@@ -184,6 +188,7 @@
             <p><a href="mailto:info@novahospital.com">info@novahospital.com</a></p>
         </div>
     </footer>
+    <script src="/frontend/js/global/slider.js"></script>
 </body>
 
 </html>
