@@ -33,7 +33,7 @@
                 };
                 break;
                 default:
-                    echo responseEntity(["error" => "Invalid action"], 400);
+                    echo responseEntity("Unknown Request", 404);
                 break;
             }
         }

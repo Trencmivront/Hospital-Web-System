@@ -81,7 +81,7 @@ const filterDepartmentsByName = async () => {
 
     try{
         // TODO: Fetch departments by name
-        const response = await fetch(`/api/department/byName&name=${document.getElementById("searchField").value}`);
+        const response = await fetch(`/api/department/byName?name=${document.getElementById("searchField").value}`);
         
         // show error upon error?...
         if(!response.ok){

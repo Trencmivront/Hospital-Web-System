@@ -1,7 +1,7 @@
 <?php
     use Firebase\JWT\ExpiredException;
 
-    require_once dirname(__FILE__) . "/../../../JWToken.php";
+    require_once dirname(__FILE__) . "/../../patient/get/JWToken.php";
 
     if(session_status() === PHP_SESSION_NONE){
         session_start();

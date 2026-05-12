@@ -1,6 +1,4 @@
 <?php
-    require_once dirname(__FILE__) . "/../../../JWToken.php";
-
     if(session_status() == PHP_SESSION_NONE){
         session_start();
     }

@@ -1,8 +1,4 @@
 <?php
-    require_once dirname(__FILE__) . "/../../../emailVerification.php";
-    require_once dirname(__FILE__) . "/../../../JWToken.php";
-    require_once dirname(__FILE__) . "/../../../SendCode.php";
-
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }

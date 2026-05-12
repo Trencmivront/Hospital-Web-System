@@ -12,7 +12,6 @@ foreach (glob("../services/patient/*/*.php") as $filename) {
 foreach(glob("../exceptions/patient/*.php") as $filename){
     require_once $filename;
 }
-require_once dirname(__FILE__) . "/../SendCode.php";
 
 class PatientController {
     function execute($action = ''){

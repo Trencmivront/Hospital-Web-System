@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../vendor/autoload.php';
+require_once dirname(__FILE__) . '/../../../../vendor/autoload.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 class JWToken {

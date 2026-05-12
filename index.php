@@ -3,10 +3,13 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+require_once 'vendor/autoload.php';
+
 // Routing system
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$path = trim($url, '/'); // erase everything after the '/' and get the first word
+
+$parts = explode('/', $url);
 
 // Define Routes
 $routes = [
@@ -20,9 +23,9 @@ $routes = [
 ];
 
 // Check if we have given url path in html routes
-if (array_key_exists($path, $routes)) {
+if (array_key_exists($parts[1], $routes)) {
     // get the file path
-    $file = $routes[$path];
+    $file = $routes[$parts[1]];
 
     if (file_exists($file)) {
         // reads file and displays it without changing the url
@@ -33,12 +36,11 @@ if (array_key_exists($path, $routes)) {
 }
 
 // If URl is in form "api/..." then it is a api call
-if (strpos($url, 'api/') === 0) {
-    $parts = explode('/', $path);
+if ($parts[1] === 'api') {
     // what is second part?
-    $controllerName = $parts[1] ?? ''; // e.g., "patient", "doctor"
+    $controllerName = $parts[2] ?? ''; // e.g., "patient", "doctor"
     // second part is the action
-    $action = $parts[2] ?? '';
+    $action = $parts[3] ?? '';
 
     // Map URL names to Class names
     $controllerMap = [
@@ -65,6 +67,7 @@ if (strpos($url, 'api/') === 0) {
             // create instance of the class and execute it's method with action
             $controller = new $className();
             $controller->execute($action);
+
         } else {
             http_response_code(404);
             echo json_encode(["error" => "Request Not Found"]);
@@ -76,7 +79,7 @@ if (strpos($url, 'api/') === 0) {
 }
 
 // POV: G*y people when they couldn't pick a gender.
-if ($path === '' || $path === 'index.php') {
+if ($parts[1] === '' || $parts[1] === 'index.php') {
     if (file_exists('index.html')) {
         readfile('index.html');
     } else {
@@ -87,10 +90,10 @@ if ($path === '' || $path === 'index.php') {
 }
 
 // Fallback for physical files if .htaccess didn't catch them
-if (file_exists($path) && !is_dir($path)) {
-    $ext = pathinfo($path, PATHINFO_EXTENSION);
+if (file_exists($parts[1]) && !is_dir($parts[1])) {
+    $ext = pathinfo($parts[1], PATHINFO_EXTENSION);
     if ($ext !== 'php') { // Security: don't serve PHP files directly here
-        readfile($path);
+        readfile($parts[1]);
         exit();
     }
 }

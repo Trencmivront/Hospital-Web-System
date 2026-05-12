@@ -66,11 +66,12 @@ window.addEventListener('load', () => {
                 return;
             }
             
+            // show verification code input
             loginSection.style.display = "none";
             verificationSection.style.display = "block";
             startTimer(120); // 2 minute timer, then enable resend code button
             // clear previous errors if there are any
-            showError("");
+            errorTextContainer.innerHTML = "";
 
         } catch (error) {
             console.error(error);
@@ -83,7 +84,7 @@ window.addEventListener('load', () => {
         const code = document.getElementById("verificationCode").value;
 
         if(!code){
-            showError("Please write code!");
+            errorTextContainer.innerHTML = "<p style='color: red;'> Please write the code </p>";
             return;
         }
 
@@ -138,9 +139,10 @@ window.addEventListener('load', () => {
     });
 
     // display error on page
-    const showError = (response) => {
-        errorTextContainer.innerHTML = `<p style="color: red;"> ${response.message} </p>`;    
+    const showError = async (response) => {
         console.log(response);
+        const message = await response.json();
+        errorTextContainer.innerHTML = `<p style="color: red;"> ${message} </p>`;    
     }
 
 })
