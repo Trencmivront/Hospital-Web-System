@@ -1,14 +1,13 @@
 <?php
     use Firebase\JWT\ExpiredException;
 
-    require_once dirname(__FILE__) . "/../../../Jwt.php";
-
 // if session does not exists, create one
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
 
-    function verifyCode() : bool {
+class VerifyCode {
+    function execute() : bool {
         $jwt = new JwToken();
 
         // getting json data
@@ -42,3 +41,4 @@
             throw new IncorrectVerificationCodeException();
         }
     }
+}

@@ -1,17 +1,18 @@
 <?php
     
-// because json_encode returns either of them
-function getDepartments(PDO $pdo) : array{
+class GetDepartments {
+    // because json_encode returns either of them
+    function execute(PDO $pdo) : array{
 
-    $query = "SELECT dept_name, descrpt FROM Department";
+        $query = "SELECT dept_name, descrpt FROM Department";
 
-    try{
-        $result = $pdo->prepare($query);
-        $result->execute();
+        try{
+            $result = $pdo->prepare($query);
+            $result->execute();
 
-        return $result->fetchAll();
-    }catch(PDOException $e){
-        throw new FetchDepartmentsException();
+            return $result->fetchAll();
+        }catch(PDOException $e){
+            throw new FetchDepartmentsException();
+        }
     }
 }
-?>

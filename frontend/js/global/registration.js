@@ -20,7 +20,7 @@ document.getElementById("registrationForm").addEventListener("submit", (e) => {
 
 const loadBloodTypes = async () => {
     try{
-        const response = await fetch("/backend/controllers/bloodTypeController.php?action=getBloodTypes");
+        const response = await fetch("/api/blood/types");
 
         const dataSet = await response.json();
         if(!response.ok){
@@ -72,7 +72,7 @@ const verifyAndSendFormContents = async () => {
             body: JSON.stringify(formData)
         }
 
-        const response = await fetch("/backend/controllers/patientController.php?action=createPatient", config);
+        const response = await fetch("/api/patient/create", config);
 
         const result = await response.json();
 
@@ -80,7 +80,7 @@ const verifyAndSendFormContents = async () => {
             showError(result);
         } else {
             alert("Registration successful! You can now log in.");
-            window.location.href = "../user/login.html";
+            window.location.href = "/login";
         }
     } catch (error) {
         console.error("Error during registration:", error);

@@ -59,7 +59,7 @@ window.addEventListener('load', () => {
         }
 
         try {
-            const response = await fetch("/backend/controllers/patientController.php?action=logIn", config);
+            const response = await fetch("/api/patient/login", config);
 
             if (!response.ok) {
                 showError(response);
@@ -94,7 +94,7 @@ window.addEventListener('load', () => {
         }
 
         try{
-            const response = await fetch("/backend/controllers/patientController.php?action=verifyCode", config);
+            const response = await fetch("/api/patient/verifyCode", config);
 
             if(!response.ok){
                 showError(response);
@@ -102,14 +102,14 @@ window.addEventListener('load', () => {
             }
             
             // generate jwt of patient in the backend
-            const createJwt = await fetch("/backend/controllers/patientController.php?action=createPatientJwt");
+            const createJwt = await fetch("/api/patient/jwt");
             
             if(!createJwt.ok){
                 showError(createJwt);
                 return;
             }
 
-            window.location = "/frontend/html/user/profile.html";
+            window.location = "/profile";
         }catch(error){
             console.log(error);
         }
@@ -120,7 +120,7 @@ window.addEventListener('load', () => {
         //TODO: generate resend email logic, after some tf2 games
         showError(""); // clear errors
         try{
-            const response = await fetch("/backend/controllers/patientController.php?action=resendCode");
+            const response = await fetch("/api/patient/resendCode");
             
             if(!response.ok){
                 showError(response);

@@ -1,0 +1,100 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Routing system
+
+$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$path = trim($url, '/'); // erase everything after the '/' and get the first word
+
+// Define Routes
+$routes = [
+    'departments' => 'frontend/html/global/departments.html',
+    'doctors'     => 'frontend/html/global/doctors.html',
+    'about'       => 'frontend/html/global/about.html',
+    'login'       => 'frontend/html/user/login.html',
+    'register'    => 'frontend/html/global/registration.html',
+    'profile'     => 'frontend/html/user/profile.html',
+    'q&a'         => 'frontend/html/global/q&a.html',
+];
+
+// Check if we have given url path in html routes
+if (array_key_exists($path, $routes)) {
+    // get the file path
+    $file = $routes[$path];
+
+    if (file_exists($file)) {
+        // reads file and displays it without changing the url
+        readfile($file);
+        // exit before further execution
+        exit();
+    }
+}
+
+// If URl is in form "api/..." then it is a api call
+if (strpos($url, 'api/') === 0) {
+    $parts = explode('/', $path);
+    // what is second part?
+    $controllerName = $parts[1] ?? ''; // e.g., "patient", "doctor"
+    // second part is the action
+    $action = $parts[2] ?? '';
+
+    // Map URL names to Class names
+    $controllerMap = [
+        'patient'     => ['file' => 'PatientController.php',     'class' => 'PatientController'],
+        'doctor'      => ['file' => 'DoctorController.php',      'class' => 'DoctorController'],
+        'department'  => ['file' => 'DepartmentController.php',  'class' => 'DepartmentController'],
+        'appointment' => ['file' => 'AppointmentController.php', 'class' => 'AppointmentController'],
+        'blood'       => ['file' => 'BloodTypeController.php',   'class' => 'BloodTypeController'],
+    ];
+
+    if (array_key_exists($controllerName, $controllerMap)) {
+
+        $config = $controllerMap[$controllerName];
+
+        // just a quick peek to the controllers directory
+        $currentDir = getcwd();
+        chdir('backend/controllers');
+        
+        if (file_exists($config['file'])) {
+
+            require_once $config['file'];
+            $className = $config['class'];
+            // it is crazy you can use variables as class names
+            // create instance of the class and execute it's method with action
+            $controller = new $className();
+            $controller->execute($action);
+        } else {
+            http_response_code(404);
+            echo json_encode(["error" => "Request Not Found"]);
+        }
+        // Come back to the current directory
+        chdir($currentDir);
+        exit();
+    }
+}
+
+// POV: G*y people when they couldn't pick a gender.
+if ($path === '' || $path === 'index.php') {
+    if (file_exists('index.html')) {
+        readfile('index.html');
+    } else {
+        // default display is a text
+        echo "Welcome to Nova Hospital";
+    }
+    exit();
+}
+
+// Fallback for physical files if .htaccess didn't catch them
+if (file_exists($path) && !is_dir($path)) {
+    $ext = pathinfo($path, PATHINFO_EXTENSION);
+    if ($ext !== 'php') { // Security: don't serve PHP files directly here
+        readfile($path);
+        exit();
+    }
+}
+
+// POV: L3sb1an people when they are different.
+http_response_code(404);
+echo "404 - Page Not Found";

@@ -1,13 +1,14 @@
 <?php
     use Firebase\JWT\ExpiredException;
 
-    require_once dirname(__FILE__) . "/../../../Jwt.php";
+    require_once dirname(__FILE__) . "/../../../JWToken.php";
 
     if(session_status() === PHP_SESSION_NONE){
         session_start();
     }
 
-    function getAppointmentsOfPatient(PDO $pdo) : array{
+class GetAppointmentsOfPatient{
+    function execute(PDO $pdo) : array{
         // too many joins
         // put patient id in place of :patient_id
         $query = 'SELECT a.appointment_id, d.doctor_id, dept.dept_name, d.first_name,
@@ -47,3 +48,6 @@
             throw new UserIsNotAuthenticatedException();
         }
     }
+
+
+}

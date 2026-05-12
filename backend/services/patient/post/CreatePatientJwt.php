@@ -1,11 +1,12 @@
 <?php
-    require_once dirname(__FILE__) . "/../../../Jwt.php";
+    require_once dirname(__FILE__) . "/../../../JWToken.php";
 
     if(session_status() == PHP_SESSION_NONE){
         session_start();
     }
 
-function createPatientJwt(PDO $pdo) : bool{
+class CreatePatientJwt {
+    function execute(PDO $pdo) : bool{
 
     if(isset($_SESSION['is_email_verified'])){
         if($_SESSION['is_email_verified'] == false){
@@ -48,4 +49,5 @@ function createPatientJwt(PDO $pdo) : bool{
     }catch(PDOException $e){
         throw new UserNotFoundException();
     }
+}
 }

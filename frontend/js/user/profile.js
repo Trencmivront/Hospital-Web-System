@@ -2,18 +2,19 @@ window.addEventListener('load', () => {
     const menuItems = document.querySelectorAll('.menu-item');
     const contentSections = document.querySelectorAll('.content-section');
     const appointmentContainer = document.getElementById('appointmentContainer');
+    
     //  add log out button function
     document.getElementById("logOutButton").addEventListener("click", async () => {
 
         try{
-            const response = await fetch("/backend/controllers/patientController.php?action=logOut");
+            const response = await fetch("/api/patient/logout");
 
             if(!response.ok){
                 console.log();
                 return;
             }
 
-            window.location = "/index.html";        
+            window.location = "/";        
         }catch(error){
             console.log(error);
         }
@@ -23,13 +24,13 @@ window.addEventListener('load', () => {
     const getAppointments = async () => {
         // since we have stored user_id in session, only thing we need to do is to send request
         try{
-            const response = await fetch("/backend/controllers/appointmentController.php?action=getAppointmentsOfPatient");
+            const response = await fetch("/api/appointment/ofPatient");
 
             if(response.status === 403){
                 displayAppointmentError(response);
                 alert("You are not allowed to be here.");
                 // redirect person to main page
-                window.location = "/index.html"
+                window.location = "/"
                 return;
             }
             else if(!response.ok){
@@ -38,12 +39,10 @@ window.addEventListener('load', () => {
             }
 
             const data = await response.json();
-
             listAppointments(data);
         }catch(error){
             console.log(error);
         }
-
     }
 
     const listAppointments = (data) => {

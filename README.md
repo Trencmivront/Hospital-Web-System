@@ -7,16 +7,29 @@ A full-stack hospital web application template. Patients can log in to see their
 This file must be put under "backend" folder. Otherwise, you'll need to configure it's path on all controllers.
 
 ```php
-<?php
+    <?php
     $host = 'localhost';
-    $db   = 'hospital_database'; // use your own database name
+    $db   = ''; // use your own database name
     $user = 'root';
-    $pass = 'Y1lm6z_S0nm3z_31'; // use your own server password
+    $pass = ''; // use your own server password
     $charset = 'utf8mb4'; // Turkish characters safely used.
-
 
     // Specifying our server, host, database we are using and the charset it can contain.
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+    // we define a main exception handler
+    // writing "echo responseEntity()" everytime causes boilerplate code
+    set_exception_handler(function (Throwable $e){
+        // get the current date and time
+        $timestamp = date('Y-m-d H:i:s');
+
+        $logEntry = "[$timestamp] Exception: " . get_class($e) . " was thrown in " . $e->getFile() . " at the line " . $e->getLine() . PHP_EOL;
+        $logPath = dirname(__FILE__) . "/../logs/error.log";
+        // make file path relative to this file
+        error_log($logEntry, 3, $logPath);
+
+        echo responseEntity($e->getMessage(), $e->getCode() ?? 500);
+    });
 
     try {
         // Starting PDO connection.
