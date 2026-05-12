@@ -1,7 +1,4 @@
 <?php
-
-use Firebase\JWT\ExpiredException;
-
 require '../dbConnect.php';
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -19,8 +16,6 @@ foreach(glob("../exceptions/patient/*.php") as $filename){
 $action = $_GET['action'] ?? '';
 
 $data = [];
-
-try{
 
 switch($action){
     case 'createPatient' : {
@@ -49,6 +44,14 @@ switch($action){
     }
     break;
 
+    case 'resendCode': {
+        // you don't need to read rest
+        // This function is taken from LogIn.php
+        $data = sendCode($_SESSION['email_jwt']);
+        echo responseEntity($data);
+    }
+    break;
+
     case 'logOut': {
         // Erase all session content
         $_SESSION = array();
@@ -67,22 +70,7 @@ switch($action){
         echo json_encode(["success" => true]);
     }   
     break;
+
+    default: echo responseEntity("Nuh UH", 500);
+    break;
 }
-// IN SPRING BOOT THERE WOULD BE A FILE TO HANDEL EXCEPTIONS
-// INSTEAD, I HAVE TO WRITE THEM LIKE THIS IN PHP (idk if there is a solution)
-}catch(CouldNotRetrievePatientDataException $e){
-    echo responseEntity($e->getMessage(), $e->getCode());
-}catch(UserNotFoundException $e){
-    echo responseEntity($e->getMessage(), $e->getCode());
-}catch(IncorrectPasswordException $e){
-    echo responseEntity($e->getMessage(), $e->getCode());
-}catch(NullEmailException $e){
-    echo responseEntity($e->getMessage(), $e->getCode());
-}catch(NullPasswordException $e){
-    echo responseEntity($e->getMessage(), $e->getCode());
-}catch(CouldNotSendEmailException $e){
-    echo responseEntity($e->getMessage(), $e->getCode());
-}catch(IncorrectVerificationCodeException $e){
-    echo responseEntity($e->getMessage(), $e->getCode());
-}
-?>

@@ -59,9 +59,9 @@ window.addEventListener('load', () => {
         });                                      
     }
 
-    const displayAppointmentError = (message) =>{
-        document.getElementById('appointmentFetchError').innerHTML = `<p style="color: red;">${message}</p>`;
-        console.log(message);
+    const displayAppointmentError = (response) =>{
+        document.getElementById('appointmentFetchError').innerHTML = `<p style="color: red;">${response.message}</p>`;
+        console.log(response);
     }
 
     // list appointments of patient

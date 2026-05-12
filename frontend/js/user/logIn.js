@@ -62,18 +62,18 @@ window.addEventListener('load', () => {
             const response = await fetch("/backend/controllers/patientController.php?action=logIn", config);
 
             if (!response.ok) {
-                const data = await response.json();
-                showError(data);
+                showError(response);
                 return;
             }
             
             loginSection.style.display = "none";
             verificationSection.style.display = "block";
             startTimer(120); // 2 minute timer, then enable resend code button
+            // clear previous errors if there are any
+            showError("");
 
         } catch (error) {
             console.error(error);
-            showError("An unexpected error occurred.");
         }
     });
 
@@ -84,6 +84,7 @@ window.addEventListener('load', () => {
 
         if(!code){
             showError("Please write code!");
+            return;
         }
 
         const config = {
@@ -96,17 +97,15 @@ window.addEventListener('load', () => {
             const response = await fetch("/backend/controllers/patientController.php?action=verifyCode", config);
 
             if(!response.ok){
-                const data = await response.json();
-                showError(data);
+                showError(response);
                 return;
             }
-        
+            
             // generate jwt of patient in the backend
             const createJwt = await fetch("/backend/controllers/patientController.php?action=createPatientJwt");
-
+            
             if(!createJwt.ok){
-                const data = await createJwt.json();
-                showError(data);
+                showError(createJwt);
                 return;
             }
 
@@ -116,16 +115,32 @@ window.addEventListener('load', () => {
         }
     })
 
-    resendCodeLink.addEventListener('click', (e) => {
+    resendCodeLink.addEventListener('click', async (e) => {
         e.preventDefault();
         //TODO: generate resend email logic, after some tf2 games
-        // also don't forget to erase previous code when button clicked
+        showError(""); // clear errors
+        try{
+            const response = await fetch("/backend/controllers/patientController.php?action=resendCode");
+            
+            if(!response.ok){
+                showError(response);
+                return;
+            }
+
+            startTimer(120); // 2 minute timer, then enable resend code button
+            // clear previous errors if there are any
+            showError("");
+        }catch(error){
+            console.log(error);
+        }
+
         startTimer(120);
     });
 
     // display error on page
-    const showError = (message) => {
-        errorTextContainer.innerHTML = `<p style="color: red;"> ${message} </p>`;    
+    const showError = (response) => {
+        errorTextContainer.innerHTML = `<p style="color: red;"> ${response.message} </p>`;    
+        console.log(response);
     }
 
 })

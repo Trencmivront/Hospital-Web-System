@@ -7,11 +7,11 @@ A full-stack hospital web application template. Patients can log in to see their
 This file must be put under "backend" folder. Otherwise, you'll need to configure it's path on all controllers.
 
 ```php
-    <?php
+<?php
     $host = 'localhost';
-    $db   = ''; // use your own database name
+    $db   = 'hospital_database'; // use your own database name
     $user = 'root';
-    $pass = ''; // use your own server password
+    $pass = 'Y1lm6z_S0nm3z_31'; // use your own server password
     $charset = 'utf8mb4'; // Turkish characters safely used.
 
 
@@ -24,12 +24,20 @@ This file must be put under "backend" folder. Otherwise, you'll need to configur
         
         // Throw exception if error
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         // After that if the connection is success, our $pdo element will be sent to
         // next file that includes or requires this file. Remember that.
+
     // Throw PDOException 
     } catch (PDOException $e) {
         // Works as exit(). Prints value just before exit.
         die("Connection error: " . $e->getMessage());
     }
-?>
+    // creating this function here because of every controller will be using it.
+    function responseEntity($dataSet, $responseStatus=200){
+        header("Content-Type: application/json; charset=utf-8");
+        // default is 200
+        http_response_code($responseStatus);
+        return json_encode($dataSet, JSON_UNESCAPED_UNICODE);
+    }
 ```
