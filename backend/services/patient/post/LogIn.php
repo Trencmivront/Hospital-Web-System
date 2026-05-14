@@ -31,12 +31,12 @@ class LogIn {
             
             // if user not found
             if (!$user) {
-                throw new UserNotFoundException();
+                throw new IncorrectPasswordOrEmailException();
             }
 
             // if user entered wrong password
             if(!password_verify($password, $user['pat_password'])){
-                throw new IncorrectPasswordException();
+                throw new IncorrectPasswordOrEmailException();
             }
 
             $jwt = new JwToken();

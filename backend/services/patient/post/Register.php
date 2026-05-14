@@ -52,7 +52,7 @@ class Register {
             $statement->execute(['email' => $email]);
 
             if($statement->fetch()){
-                throw new UserNotFoundException();
+                throw new EmailAlreadyExistsException();
             }
 
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);

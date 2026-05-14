@@ -1,6 +1,6 @@
 <?php
-    class IncorrectPasswordException extends Exception{
+    class IncorrectPasswordOrEmailException extends Exception{
         function __construct(){
-            parent::__construct('Password is Incorrect', 400, null);
+            parent::__construct('Email or Password is Incorrect', 400, null);
         }
     }
