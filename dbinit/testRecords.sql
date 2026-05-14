@@ -129,15 +129,14 @@ INSERT INTO Patient_Punishment (punishment_date, patient_id, punishment_id) VALU
 ('2026-04-20', 9, 2);
 
 -- 14. Appointment
--- is_active: TRUE for upcoming, FALSE for past/cancelled
-INSERT INTO Appointment (patient_id, doctor_schedule_id, is_active) VALUES
-(1, 1, TRUE),
-(2, 4, TRUE),
-(3, 6, TRUE),
-(5, 8, TRUE),
-(7, 10, TRUE),
-(1, 2, FALSE), -- Past appointment
-(2, 5, FALSE); -- Past appointment
+INSERT INTO Appointment (patient_id, doctor_schedule_id, ap_status) VALUES
+(1, 1, 'ACTIVE'),
+(2, 4, 'ACTIVE'),
+(3, 6, 'ACTIVE'),
+(5, 8, 'ACTIVE'),
+(7, 10, 'ACTIVE'),
+(1, 2, 'COMPLETED'), -- Past appointment
+(2, 5, 'COMPLETED'); -- Past appointment
 
 -- 15. Treatment
 -- ICD-10 codes for testing

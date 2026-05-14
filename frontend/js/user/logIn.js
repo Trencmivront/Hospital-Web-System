@@ -48,6 +48,7 @@ window.addEventListener('load', () => {
         const body = {
             email: emailField.value,
             password: passwordField.value,
+            remember_me: rememberMeButton.value
         }
 
         const config = {
