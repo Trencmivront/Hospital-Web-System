@@ -3,13 +3,7 @@
     --primary-blue: #007185;
     --hover-bg: #f3f3f3;
     --border-light: #e6e6e6;
-}
-
-body {
-    background-color: #f0f2f5;
-    font-family: Arial, sans-serif;
-    justify-content: center;
-    align-items: center;
+    --border-blue: rgba(100, 180, 250, 0.8);
 }
 
 nav{
@@ -210,16 +204,51 @@ nav{
 }
 /*Appointment window part*/
 
-#bookAppointmentContainer{
-    display: none;
+#shadowBackground{
+    width: 100%;
+    height: 100%;
     position: fixed;
-    height: 100px;
-    width: 100px;
-    background-color: black;
+    /*Sticking it to top left corner*/
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5); /* darkened for better contrast */
+    display: none;
+    z-index: 2000; /* Above everything else */
+    transition: 0.3s;
 }
+
+#bookAppointmentContainer{
+    height: auto;
+    min-height: 100px;
+    width: 400px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+form{
+    flex-direction: column;
+    margin: 10px;
+}
+
+input, select{
+    border: 1px solid var(--border-blue);
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    width: 100%;
+    margin: 20px;
+    border-radius: 7px;
+    background-color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .cancel-btn {
     color: #d9534f;
     border: 1px solid #d9534f;
+    width: 100%;
+    cursor: pointer;
 }
 
 .cancel-btn:hover {
@@ -230,6 +259,8 @@ nav{
 .view-btn {
     color: var(--primary-blue);
     border: 1px solid var(--primary-blue);
+    width: 100%;
+    cursor: pointer;
 }
 
 .view-btn:hover {
@@ -241,6 +272,7 @@ nav{
     color: #ddd;
     border: 1px solid #888;
     cursor: default;
+    width: 100%;
 }
 
 

@@ -1,0 +1,86 @@
+/* doctor section */
+.doctors-section {
+    padding: 60px 20px;
+    text-align: center;
+    background: #f5f7fa;
+}
+
+.section-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+/* Container */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+/* Doctor Card */
+.doctor-card {
+    width: 270px;
+    background: linear-gradient(to bottom, #4aa3df 40%, #2f5d8a 40%);
+    border-radius: 15px;
+    overflow: hidden;
+    color: white;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.doctor-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Image */
+.doctor-img {
+    padding: 30px 0;
+}
+
+.doctor-img img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+}
+
+/* Info */
+.doctor-info {
+    padding: 25px 15px;
+}
+
+.doctor-info h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.doctor-info p {
+    font-size: 14px;
+    opacity: 0.9; 
+}
+/* Slider Buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(7, 183, 242, 0.467);
+    border: none;
+    color: white;
+    font-size: 30px;
+    padding: 10px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.slider-btn:hover {
+    background: rgba(11, 11, 11, 0.438);
+}
+
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }

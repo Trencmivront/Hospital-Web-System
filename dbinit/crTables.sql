@@ -14,9 +14,14 @@ CREATE TABLE Doctor(
 	email varchar(50) UNIQUE,
 	gender_name char(1) NULL,
 	dept_id INT NULL,
+	spec_id INT NOT NULL,
+	img_path varchar(200), 
 	CONSTRAINT fk_docTdept FOREIGN KEY (dept_id)
 	REFERENCES Department(dept_id)
-	ON UPDATE CASCADE ON DELETE SET NULL
+	ON UPDATE CASCADE ON DELETE SET NULL,
+	CONSTRAINT fk_docTspec FOREIGN KEY (spec_id)
+	REFERENCES Specialization(spec_id)
+	ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 -- This is new table
@@ -47,18 +52,6 @@ CREATE TABLE Doctor_Schedule(
 CREATE TABLE Specialization(
 	spec_id INT PRIMARY KEY AUTO_INCREMENT,
 	name varchar(100) NOT NULL UNIQUE
-);
-
-CREATE TABLE Doctor_Specialization(
-	doctor_spec_id INT PRIMARY KEY AUTO_INCREMENT,
-	spec_id INT NOT NULL,
-	doctor_id INT NOT NULL,
-	CONSTRAINT fk_dspTdoc FOREIGN KEY (doctor_id)
-	REFERENCES Doctor(doctor_id)
-	ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT fk_dspTspc FOREIGN KEY (spec_id)
-	REFERENCES Specialization(spec_id)
-	ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- This is new table

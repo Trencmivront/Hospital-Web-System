@@ -1,7 +1,24 @@
 -- Test records for Hospital Web System
 -- This file erases existing data and populates tables with comprehensive test cases.
 
--- All hashed passwords are "password" as value
+-- Disable foreign key checks to truncate/delete safely
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE Bill;
+TRUNCATE TABLE Treatment;
+TRUNCATE TABLE Appointment;
+TRUNCATE TABLE Doctor_Schedule;
+TRUNCATE TABLE Schedule;
+TRUNCATE TABLE Doctor;
+TRUNCATE TABLE Specialization;
+TRUNCATE TABLE Department;
+TRUNCATE TABLE Patient_Punishment;
+TRUNCATE TABLE Punishment;
+TRUNCATE TABLE Patient_Allergy;
+TRUNCATE TABLE Allergy;
+TRUNCATE TABLE Patient;
+TRUNCATE TABLE Blood_Type;
+TRUNCATE TABLE Admin;
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- 1. Blood_Type (All common types)
 INSERT INTO Blood_Type (type_name) VALUES
@@ -68,17 +85,17 @@ INSERT INTO Admin (username, ad_password, usr_role) VALUES
 ('hospital_mgr', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ADMIN');
 
 -- 8. Doctor
-INSERT INTO Doctor (first_name, last_name, phone_num, email, gender_name, dept_id) VALUES
-('Ahmet', 'Yilmaz', '05550000001', 'ahmet.yilmaz@nova.com', 'M', 1),
-('Ayse', 'Kaya', '05550000002', 'ayse.kaya@nova.com', 'F', 2),
-('Mehmet', 'Demir', '05550000003', 'mehmet.demir@nova.com', 'M', 3),
-('Zeynep', 'Celik', '05550000004', 'zeynep.celik@nova.com', 'F', 4),
-('Mustafa', 'Sahin', '05550000005', 'mustafa.sahin@nova.com', 'M', 5),
-('Elif', 'Ozturk', '05550000006', 'elif.ozturk@nova.com', 'F', 6),
-('Murat', 'Aydin', '05550000007', 'murat.aydin@nova.com', 'M', 7),
-('Fatma', 'Arslan', '05550000008', 'fatma.arslan@nova.com', 'F', 8),
-('Can', 'Yildiz', '05550000009', 'can.yildiz@nova.com', 'M', 1),
-('Selin', 'Koc', '05550000010', 'selin.koc@nova.com', 'F', 2);
+INSERT INTO Doctor (first_name, last_name, phone_num, email, gender_name, dept_id, spec_id, img_path) VALUES
+('Ahmet', 'Yilmaz', '05550000001', 'ahmet.yilmaz@nova.com', 'M', 1, 1, NULL),
+('Ayse', 'Kaya', '05550000002', 'ayse.kaya@nova.com', 'F', 2, 3, NULL),
+('Mehmet', 'Demir', '05550000003', 'mehmet.demir@nova.com', 'M', 3, 5, NULL),
+('Zeynep', 'Celik', '05550000004', 'zeynep.celik@nova.com', 'F', 4, 7, NULL),
+('Mustafa', 'Sahin', '05550000005', 'mustafa.sahin@nova.com', 'M', 5, 9, NULL),
+('Elif', 'Ozturk', '05550000006', 'elif.ozturk@nova.com', 'F', 6, 10, NULL),
+('Murat', 'Aydin', '05550000007', 'murat.aydin@nova.com', 'M', 7, 11, NULL),
+('Fatma', 'Arslan', '05550000008', 'fatma.arslan@nova.com', 'F', 8, 12, NULL),
+('Can', 'Yildiz', '05550000009', 'can.yildiz@nova.com', 'M', 1, 2, NULL),
+('Selin', 'Koc', '05550000010', 'selin.koc@nova.com', 'F', 2, 4, NULL);
 
 -- 9. Patient
 -- Password requirement: length >= 8, tc_no: 11 chars
@@ -102,18 +119,6 @@ INSERT INTO Doctor_Schedule (schedule_id, doctor_id, is_active) VALUES
 (8, 4, TRUE), (9, 4, TRUE),
 (10, 5, TRUE), (11, 5, FALSE),
 (12, 6, TRUE), (13, 7, TRUE), (14, 8, TRUE), (15, 9, TRUE);
-
--- 11. Doctor_Specialization
-INSERT INTO Doctor_Specialization (spec_id, doctor_id) VALUES
-(1, 1), (2, 1),
-(3, 2), (4, 2),
-(5, 3), (6, 3),
-(7, 4), (8, 4),
-(9, 5),
-(10, 6),
-(11, 7),
-(12, 8),
-(1, 9);
 
 -- 12. Patient_Allergy
 INSERT INTO Patient_Allergy (allergy_id, patient_id) VALUES
