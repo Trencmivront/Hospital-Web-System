@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin - Appointments</title>
+  <link rel="stylesheet" href="/frontend/css/global.css">
+  <link rel="stylesheet" href="/frontend/css/admin.css">
+  <script src="/frontend/js/global/global.js" defer></script>
+</head>
+<body>
+  <header class="page-header flex-wrap-space">
+    <div class="brand flex-center-content"><h1>Admin</h1></div>
+    <div class="header-actions"><a class="logButton" href="/">View Site</a></div>
+  </header>
+
+  <div class="admin-shell">
+    <aside class="admin-nav">
+      <div class="admin-brand">Nova<span>Admin</span></div>
+      <div class="admin-banner">
+        <div class="banner-top">
+          <span class="banner-badge">Appointments</span>
+          <h3>Today's Schedule</h3>
+        </div>
+        <p>Manage upcoming bookings and patient check-ins from one place.</p>
+        <div class="banner-row">
+          <div>
+            <strong>08</strong>
+            <span>Pending</span>
+          </div>
+          <div>
+            <strong>14</strong>
+            <span>Confirmed</span>
+          </div>
+        </div>
+      </div>
+      <ul>
+        <li><a href="/frontend/html/admin/dashboard.html">Dashboard</a></li>
+        <li><a href="/frontend/html/admin/patients.html">Patients</a></li>
+        <li><a href="/frontend/html/admin/appointments.html" class="active">Appointments</a></li>
+        <li><a href="/frontend/html/admin/doctors.html">Doctors</a></li>
+      </ul>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div class="search">
+          <input placeholder="Search appointments...">
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn">🔔</button>
+          <button class="icon-btn">⚙️</button>
+          <div class="avatar">A</div>
+        </div>
+      </header>
+
+      <section class="cards">
+        <div class="card">
+          <h4>Booked</h4>
+          <p class="big">22</p>
+          <small>Today</small>
+        </div>
+        <div class="card">
+          <h4>Completed</h4>
+          <p class="big">14</p>
+          <small>Already seen</small>
+        </div>
+        <div class="card">
+          <h4>Cancelled</h4>
+          <p class="big">02</p>
+          <small>Need follow-up</small>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="toolbar">
+          <h2>Appointments</h2>
+          <button class="btn">Add New</button>
+        </div>
+        <table class="list-table">
+          <thead><tr><th>Time</th><th>Patient</th><th>Doctor</th><th>Department</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>09:00</td><td>Ali Veli</td><td>Dr. Kaya</td><td>Cardio</td><td>Checked-in</td></tr>
+            <tr><td>09:30</td><td>Fatma Y.</td><td>Dr. Demir</td><td>Ortho</td><td>Waiting</td></tr>
+            <tr><td>10:00</td><td>John Doe</td><td>Dr. Smith</td><td>General</td><td>Cancelled</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -18,8 +18,9 @@
         </div>
         <div class="header-actions flex-center-content">
             <a class="logButton" href="/frontend/html/user/login.html">Log In</a>
-            <a class="logButton" style="background-color: palegreen;" href="/frontend/html/global/registration.html">Register</a>
-            
+            <a class="logButton" style="background-color: palegreen;"
+                href="/frontend/html/global/registration.html">Register</a>
+
             <div class="dropdown">
                 <button title="lang" class="dropbtn" type="button">EN</button>
                 <ul id="lang" class="dropdown-content">
@@ -28,85 +29,98 @@
                     <li><a href="#">AR</a></li>
                 </ul>
             </div>
-        </div> 
+        </div>
     </header>
 
     <nav id="nav_container" class="flex-center-content" aria-label="Hospital navigation">
         <button id="close_button">&#9776;</button>
         <a href="index.html" style="background-color: rgba(255, 255, 255, 1);">Home</a>
-        <a href="/frontend/html/global/departments.html">Departments</a>
+        <a href="/departments">Departments</a>
         <a href="/frontend/html/global/doctors.html">Doctors</a>
         <a href="/frontend/html/global/about.html">About Us</a>
         <a href="/frontend/html/global/q&a.html">Q&A</a>
         <a href="">Contact</a>
     </nav>
 
-    <h1>CSS-only Carousel</h1>
+    <section class="carousel" aria-label="Gallery">
+        <ol class="carousel__viewport">
+            <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img src="/imgs/novaho.jpeg" alt="Deep look medical imaging">
+                    <a href="#carousel__slide7" class="carousel__prev">Go to last slide</a>
+                    <a href="#carousel__slide2" class="carousel__next">Go to next slide</a>
+                </div>
+            </li>
+            <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img src="/imgs/deeplook.jpeg" alt="Hospital building">
+                    <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+                    <a href="#carousel__slide3" class="carousel__next">Go to next slide</a>
+                </div>
+            </li>
+            <li id="carousel__slide3" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img src="/imgs/inhospital.jpeg" alt="In hospital care">
+                    <a href="#carousel__slide2" class="carousel__prev">Go to previous slide</a>
+                    <a href="#carousel__slide4" class="carousel__next">Go to next slide</a>
+                </div>
+            </li>
+            <li id="carousel__slide4" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img src="/imgs/novamer.jpeg" alt="Nova hospital exterior">
+                    <a href="#carousel__slide3" class="carousel__prev">Go to previous slide</a>
+                    <a href="#carousel__slide5" class="carousel__next">Go to next slide</a>
+                </div>
+            </li>
+            <li id="carousel__slide5" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img src="/imgs/nova-surgery.jpeg" alt="Surgery room">
+                    <a href="#carousel__slide4" class="carousel__prev">Go to previous slide</a>
+                    <a href="#carousel__slide6" class="carousel__next">Go to next slide</a>
+                </div>
+            </li>
+            <li id="carousel__slide6" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img src="/imgs/testing.jpeg" alt="Nova hospital facility">
+                    <a href="#carousel__slide5" class="carousel__prev">Go to previous slide</a>
+                    <a href="#carousel__slide7" class="carousel__next">Go to next slide</a>
+                </div>
+            </li>
+            <li id="carousel__slide7" tabindex="0" class="carousel__slide">
+                <div class="carousel__snapper">
+                    <img src="/imgs/resp.jpeg" alt="Respiratory care">
+                    <a href="#carousel__slide6" class="carousel__prev">Go to previous slide</a>
+                    <a href="#carousel__slide1" class="carousel__next">Go to first slide</a>
+                </div>
+            </li>
+        </ol>
+        <aside class="carousel__navigation">
+            <ol class="carousel__navigation-list">
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide1" class="carousel__navigation-button">Go to slide 1</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide2" class="carousel__navigation-button">Go to slide 2</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide3" class="carousel__navigation-button">Go to slide 3</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide4" class="carousel__navigation-button">Go to slide 4</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide5" class="carousel__navigation-button">Go to slide 5</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide6" class="carousel__navigation-button">Go to slide 6</a>
+                </li>
+                <li class="carousel__navigation-item">
+                    <a href="#carousel__slide7" class="carousel__navigation-button">Go to slide 7</a>
+                </li>
+            </ol>
+        </aside>
+    </section>
 
-<p>This carousel is created with HTML and CSS only.</p>
-
-<section class="carousel" aria-label="Gallery">
-  <ol class="carousel__viewport">
-    <li id="carousel__slide1"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper">
-        <a href="#carousel__slide4"
-           class="carousel__prev">Go to last slide</a>
-        <a href="#carousel__slide2"
-           class="carousel__next">Go to next slide</a>
-      </div>
-    </li>
-    <li id="carousel__slide2"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide1"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide3"
-         class="carousel__next">Go to next slide</a>
-    </li>
-    <li id="carousel__slide3"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide2"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide4"
-         class="carousel__next">Go to next slide</a>
-    </li>
-    <li id="carousel__slide4"
-        tabindex="0"
-        class="carousel__slide">
-      <div class="carousel__snapper"></div>
-      <a href="#carousel__slide3"
-         class="carousel__prev">Go to previous slide</a>
-      <a href="#carousel__slide1"
-         class="carousel__next">Go to first slide</a>
-    </li>
-  </ol>
-  <aside class="carousel__navigation">
-    <ol class="carousel__navigation-list">
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide1"
-           class="carousel__navigation-button">Go to slide 1</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide2"
-           class="carousel__navigation-button">Go to slide 2</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide3"
-           class="carousel__navigation-button">Go to slide 3</a>
-      </li>
-      <li class="carousel__navigation-item">
-        <a href="#carousel__slide4"
-           class="carousel__navigation-button">Go to slide 4</a>
-      </li>
-    </ol>
-  </aside>
-</section>
-    
 
     <section class="why-us">
         <h2>Why Choose Nova Hospital</h2>
@@ -154,10 +168,10 @@
     <section class="social-section">
         <h2>Connect With Nova Hospital</h2>
         <div class="social-icons flex-center-content">
-            <a href="#"><img src="../../../imgs/Facebook.png"></a>
-            <a href="#"><img src="../../../imgs/instagram.jpg"></a>
-            <a href="#"><img src="../../../imgs/X-logo.jpg"></a>
-            <a href="#"><img src="../../../imgs/youtube.avif"></a>
+            <a href="#"><img src="/imgs/Facebook.png"></a>
+            <a href="#"><img src="/imgs/instagram.jpg"></a>
+            <a href="#"><img src="/imgs/X-logo.jpg"></a>
+            <a href="#"><img src="/imgs/youtube.avif"></a>
         </div>
     </section>
 
@@ -178,7 +192,6 @@
             <p><a href="mailto:info@novahospital.com">info@novahospital.com</a></p>
         </div>
     </footer>
-    <script src="/frontend/js/global/slider.js"></script>
 </body>
 
 </html>

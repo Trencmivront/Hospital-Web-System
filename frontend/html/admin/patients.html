@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin - Patients</title>
+  <link rel="stylesheet" href="/frontend/css/global.css">
+  <link rel="stylesheet" href="/frontend/css/admin.css">
+  <script src="/frontend/js/global/global.js" defer></script>
+</head>
+<body>
+  <header class="page-header flex-wrap-space">
+    <div class="brand flex-center-content"><h1>Admin</h1></div>
+    <div class="header-actions"><a class="logButton" href="/">View Site</a></div>
+  </header>
+
+  <div class="admin-shell">
+    <aside class="admin-nav">
+      <ul>
+        <li><a href="/frontend/html/admin/dashboard.html">Dashboard</a></li>
+        <li><a href="/frontend/html/admin/patients.html" class="active">Patients</a></li>
+        <li><a href="/frontend/html/admin/appointments.html">Appointments</a></li>
+        <li><a href="/frontend/html/admin/doctors.html">Doctors</a></li>
+      </ul>
+    </aside>
+
+    <main class="admin-main">
+      <h2>Patients</h2>
+      <div class="toolbar">
+        <input placeholder="Search patients..." class="search-input">
+        <button class="btn">New Patient</button>
+      </div>
+
+      <table class="list-table">
+        <thead><tr><th>ID</th><th>Name</th><th>DOB</th><th>Phone</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td>#1001</td><td>Ali Veli</td><td>1990-02-12</td><td>+90 555 000 000</td><td><button class="btn small">View</button></td></tr>
+          <tr><td>#1002</td><td>Fatma Y.</td><td>1984-11-02</td><td>+90 555 111 222</td><td><button class="btn small">View</button></td></tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+</body>
+</html>

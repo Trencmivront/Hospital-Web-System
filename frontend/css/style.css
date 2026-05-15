@@ -1,69 +1,3 @@
-/* to control the background color that show behind the moving images*/
-.hero-section-container {
-    width: 100%;
-    background-color: #f9fbfc;
-    padding: 20px 0;
-}
-
-.hero-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    gap: 12px;
-    height: 480px;
-}
-
-.hero-main {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-}
-
-/*to control the moving of images*/
-.slider {
-    display: flex;
-    width: 300%;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-
-.slide {
-    width: 33.33%;
-    height: 100%;
-    position: relative;
-}
-
-/* to control the size and positioning of moving images */
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* this the function that control the moving of images in the hero section */
-@keyframes slideAnimation {
-
-    0%,
-    30% {
-        transform: translateX(0);
-    }
-
-    33%,
-    63% {
-        transform: translateX(-33.33%);
-    }
-
-    66%,
-    96% {
-        transform: translateX(-66.66%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
 .why-us {
     padding: 80px 50px;
     background: #f5f8fc;
@@ -93,10 +27,6 @@
     background: #3529bd;
     color: white;
     text-align: center;
-}
-
-.slide {
-    position: relative;
 }
 
 /* to control the box the text that show on the moving images in the hero section*/
@@ -168,361 +98,189 @@
     text-decoration: none;
     font-size: 14px;
 }
-
-/* Styling for the image strip below the hero */
-.image-strip-container {
-
-    width: 100%;
-    height: 100px;
-    padding: 0 0;
-    /* pace before Why Choose Us section */
-    background-color: #8bddef55;
-    /* Light background to separate sections */
-}
-
-/* to control the size and spacing of images  that show under the moving images in the hero*/
-.image-strip {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Modified for smaller size */
-.strip-item {
-    flex: 1;
-    max-width: 200px;
-    /* Limits the width of each thumbnail */
-    height: 100px;
-    /* Reduced height from 200px to 130px */
+/* --- إعدادات الكاروسيل الرئيسية --- */
+.carousel {
+    position: relative;
+    height: 480px; /* الحجم المثالي المتوسط */
+    width: 94%;
+    margin: 20px auto;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(246, 248, 249, 0.853);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 25px; /* حواف منحنية احترافية */
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+    background: #f4f6f8;
 }
 
-/* to control the size and cropping of images  that show under the moving images */
-.strip-item img {
+/* المنطقة التي تحتوي الصور - تم منع السحب اليدوي هنا */
+.carousel__viewport {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    overflow: hidden; /* يمنع السحب بالماوس أو اللمس */
+    scroll-behavior: smooth;
+    counter-reset: item;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+}
+
+/* الشريحة الواحدة */
+.carousel__slide {
+    position: relative;
+    flex: 0 0 100%;
+    width: 100%;
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+}
+
+.carousel__slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Important to keep images looking good */
-    transition: transform 0.5s ease;
-}
-
-/* Interaction Effects */
-.strip-item:hover {
-    transform: translateY(-20px);
-    /* Lift up effect */
-    box-shadow: 0 12px 25px rgba(22, 5, 5, 0.709);
-}
-
-/* doctor section */
-.doctors-section {
-    padding: 60px 20px;
-    text-align: center;
-    background: #f5f7fa;
-}
-
-.section-title {
-    font-size: 32px;
-    margin-bottom: 40px;
-    color: #333;
-}
-
-/* Container */
-.card-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    padding: 0 20px;
-}
-
-/* Doctor Card */
-.doctor-card {
-    width: 270px;
-    background: linear-gradient(to bottom, #4aa3df 40%, #2f5d8a 40%);
-    border-radius: 15px;
-    overflow: hidden;
-    color: white;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    transition: 0.3s;
-}
-
-.doctor-card:hover {
-    transform: translateY(-10px);
-}
-
-/* Image */
-.doctor-img {
-    padding: 30px 0;
-}
-
-.doctor-img img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid white;
-}
-
-/* Info */
-.doctor-info {
-    padding: 25px 15px;
-}
-
-.doctor-info h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.doctor-info p {
-    font-size: 14px;
-    opacity: 0.9; 
-}
-/* Slider Buttons */
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(7, 183, 242, 0.467);
-    border: none;
-    color: white;
-    font-size: 30px;
-    padding: 10px 16px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    transition: background 0.3s;
-}
-
-.slider-btn:hover {
-    background: rgba(11, 11, 11, 0.438);
-}
-
-.prev-btn { left: 15px; }
-.next-btn { right: 15px; }
-@keyframes tonext {
-  75% {
-    left: 0;
-  }
-  95% {
-    left: 100%;
-  }
-  98% {
-    left: 100%;
-  }
-  99% {
-    left: 0;
-  }
-}
-
-@keyframes tostart {
-  75% {
-    left: 0;
-  }
-  95% {
-    left: -300%;
-  }
-  98% {
-    left: -300%;
-  }
-  99% {
-    left: 0;
-  }
-}
-
-@keyframes snap {
-  96% {
-    scroll-snap-align: center;
-  }
-  97% {
-    scroll-snap-align: none;
-  }
-  99% {
-    scroll-snap-align: none;
-  }
-  100% {
-    scroll-snap-align: center;
-  }
-}
-
-* {
-  box-sizing: border-box;
-  scrollbar-color: transparent transparent; /* thumb and track color */
-  scrollbar-width: 0px;
-}
-
-*::-webkit-scrollbar {
-  width: 0;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: transparent;
-  border: none;
-}
-
-* {
-  -ms-overflow-style: none;
-}
-
-ol, li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.carousel {
-  position: relative;
-  padding-top: 75%;
-  filter: drop-shadow(0 0 10px #0003);
-  perspective: 100px;
-}
-
-.carousel__viewport {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  overflow-x: scroll;
-  counter-reset: item;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-}
-
-.carousel__slide {
-  position: relative;
-  flex: 0 0 100%;
-  width: 100%;
-  background-color: #f99;
-  counter-increment: item;
-}
-
-.carousel__slide:nth-child(even) {
-  background-color: #99f;
-}
-
-.carousel__slide:before {
-  content: counter(item);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%,-40%,70px);
-  color: #fff;
-  font-size: 2em;
+    border-radius: 1rem;
 }
 
 .carousel__snapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  scroll-snap-align: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-@media (hover: hover) {
-  .carousel__snapper {
-    animation-name: tonext, snap;
-    animation-timing-function: ease;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-  }
-
-  .carousel__slide:last-child .carousel__snapper {
-    animation-name: tostart, snap;
-  }
+/* حذف الأرقام (1,2,3) المزعجة */
+.carousel__slide:before {
+    display: none !important;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .carousel__snapper {
-    animation-name: none;
-  }
+/* --- تنسيق أزرار التنقل (الأسهم) --- */
+/* حذف الدوائر السوداء القديمة تماماً */
+.carousel::before,
+.carousel::after {
+    content: none !important;
 }
 
-.carousel:hover .carousel__snapper,
-.carousel:focus-within .carousel__snapper {
-  animation-name: none;
+.carousel__prev,
+.carousel__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: rgba(255, 255, 255, 0.8); /* دوائر بيضاء واضحة */
+    border-radius: 50%;
+    z-index: 10;
+    font-size: 0; /* لإخفاء النص الموجود في HTML */
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
 }
 
+.carousel__prev:hover,
+.carousel__next:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* رسم الأسهم داخل الدوائر البيضاء */
+.carousel__prev::after,
+.carousel__next::after {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-left: 3px solid #333;
+    border-bottom: 3px solid #333;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+}
+
+.carousel__prev::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.carousel__next::after {
+    transform: translate(-80%, -50%) rotate(-135deg);
+}
+
+.carousel__prev { left: 20px; }
+.carousel__next { right: 20px; }
+
+/* --- النص فوق الصور --- */
+.hero-text {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 30px 50px;
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: 5;
+    width: auto;
+}
+
+.hero-text h1 {
+    font-size: 45px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.hero-text p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* --- نقاط التنقل السفلية --- */
+
+/* --- Navigation Dots (Horizontal and Centered) --- */
 .carousel__navigation {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+    display: flex;             /* Ensure flexbox is active */
+    flex-direction: row;       /* Force horizontal direction */
+    justify-content: center;   /* Center dots horizontally */
+    gap: 14px;                 /* More space between dots */
+    padding: 0 10px;
 }
 
-.carousel__navigation-list,
-.carousel__navigation-item {
-  display: inline-block;
+.carousel__navigation-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 14px;
 }
 
 .carousel__navigation-button {
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  background-color: #333;
-  background-clip: content-box;
-  border: 0.25rem solid transparent;
-  border-radius: 50%;
-  font-size: 0;
-  transition: transform 0.1s;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    font-size: 0;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+    border: none;
 }
 
-.carousel::before,
-.carousel::after,
-.carousel__prev,
-.carousel__next {
-  position: absolute;
-  top: 0;
-  margin-top: 37.5%;
-  width: 4rem;
-  height: 4rem;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  font-size: 0;
-  outline: 0;
-}
-
-.carousel::before,
-.carousel__prev {
-  left: -1rem;
-}
-
-.carousel::after,
-.carousel__next {
-  right: -1rem;
-}
-
-.carousel::before,
-.carousel::after {
-  content: '';
-  z-index: 1;
-  background-color: #333;
-  background-size: 1.5rem 1.5rem;
-  background-repeat: no-repeat;
-  background-position: center center;
-  color: #fff;
-  font-size: 2.5rem;
-  line-height: 4rem;
-  text-align: center;
-  pointer-events: none;
-}
-
-.carousel::before {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
-}
-
-.carousel::after {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+.carousel__navigation-button:hover {
+    background-color: white;
+    transform: scale(1.2);
 }
