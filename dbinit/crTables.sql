@@ -135,13 +135,14 @@ CREATE TABLE Appointment(
 	appointment_id INT PRIMARY KEY AUTO_INCREMENT,
 	patient_id INT NOT NULL,
 	doctor_schedule_id INT NOT NULL UNIQUE,
-	is_active BOOLEAN NOT NULL,
+	ap_status varchar(10) NOT NULL,
 	CONSTRAINT fk_appTpat FOREIGN KEY (patient_id)
 	REFERENCES Patient(patient_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_appTdos FOREIGN KEY (doctor_schedule_id)
 	REFERENCES Doctor_Schedule(doctor_schedule_id)
-	ON UPDATE CASCADE ON DELETE CASCADE
+	ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT chk_appointment_status CHECK(ap_status IN ('ACTIVE', 'CLOSED', 'COMPLETED', 'ABSENT'))
 );
 
 CREATE TABLE Treatment(

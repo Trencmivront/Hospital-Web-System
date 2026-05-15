@@ -12,7 +12,7 @@ class GetAppointmentsOfPatient{
         // too many joins
         // put patient id in place of :patient_id
         $query = 'SELECT a.appointment_id, d.doctor_id, dept.dept_name, d.first_name,
-            d.last_name, s.schedule_id, s.s_date, s.s_time FROM Appointment a
+            d.last_name, s.schedule_id, s.s_date, s.s_time, a.ap_status FROM Appointment a
             JOIN Patient p ON a.patient_id = p.patient_id
             JOIN Doctor_Schedule ds ON ds.doctor_schedule_id = a.doctor_schedule_id
             JOIN Doctor d ON d.doctor_id = ds.doctor_id

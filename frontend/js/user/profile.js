@@ -21,6 +21,12 @@ window.addEventListener('load', () => {
 
     });
 
+    document.getElementById("bookAppointmentButton").addEventListener("click", () => {
+
+        document.getElementById("bookAppointmentContainer").style.display = "block";
+
+    });
+
     const getAppointments = async () => {
         // since we have stored user_id in session, only thing we need to do is to send request
         try{
@@ -29,6 +35,17 @@ window.addEventListener('load', () => {
             if(response.status === 403){
                 displayAppointmentError(response);
                 alert("You are not allowed to be here.");
+                // erase existing token data if there is
+                try{
+                    const response = await fetch("/api/patient/logout");
+
+                    if(!response.ok){
+                        console.log();
+                        return;
+                    }     
+                    }catch(error){
+                        console.log(error);
+                    }
                 // redirect person to main page
                 window.location = "/"
                 return;
@@ -47,14 +64,26 @@ window.addEventListener('load', () => {
 
     const listAppointments = (data) => {
         data.forEach(a => {
-            isActive = a.is_active == 1 ? "Active" : "Inactive"
 
-            appointmentContainer.innerHTML += `<tr>
+            let actionBtn = '';
+
+            if(a.ap_status === 'COMPLETED'){
+                actionBtn = "<button class='view-btn'> </button>";                
+            }
+            else if(a.ap_status === 'ACTIVE'){
+                actionBtn = "<button class='cancel-btn'> </button>"
+            }
+            else if(a.ap_status === 'CLOSED'){
+                
+            }
+
+            appointmentContainer.innerHTML += `<tr style="cursor:pointer;" id="${a.appointment_id}" data-doctor_id="${a.doctor_id}" data-schedule_id="${a.schedule_id}">
                                             <td>${a.s_date} | ${a.s_time}</td>
                                             <td>${a.dept_name}</td>
                                             <td>${a.first_name} ${a.last_name}</td>
-                                            <td>${isActive}</td>
-                                        </tr>`
+                                            <td>${a.ap_status}</td>
+                                            <td>${actionBtn}</td>
+                                        </tr>`;
         });                                      
     }
 

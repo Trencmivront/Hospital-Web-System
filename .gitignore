@@ -24,7 +24,7 @@ npm-debug.log*
 Dockerfile
 composer.json
 compose.yaml
-.dockerignore
+.dockerignorevendor 
 
 #logs
 logs/

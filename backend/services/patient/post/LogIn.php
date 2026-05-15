@@ -9,6 +9,11 @@ class LogIn {
 
         $email = $data['email'];
         $password = $data['password'];
+        $remember_me = $data['remember_me'];
+
+        $email = htmlspecialchars($email);
+        $password = htmlspecialchars($password);
+        $remember_me = htmlspecialchars($remember_me);
 
         if(empty($email)){
             throw new NullEmailException();
@@ -26,12 +31,12 @@ class LogIn {
             
             // if user not found
             if (!$user) {
-                throw new UserNotFoundException();
+                throw new IncorrectPasswordOrEmailException();
             }
 
             // if user entered wrong password
             if(!password_verify($password, $user['pat_password'])){
-                throw new IncorrectPasswordException();
+                throw new IncorrectPasswordOrEmailException();
             }
 
             $jwt = new JwToken();
@@ -40,6 +45,8 @@ class LogIn {
             // we will give extra 3 minute for user to press "resend code" button
             // after time passed, kill user
             $_SESSION['email_jwt'] = $jwt->generateJwt($email, '', 300);
+            // also store remember_me if user wants to be Memorized By The System
+            $_SESSION['remember_me'] = $jwt->generateJwt($remember_me, '', 300);
             
             $sendCode = new SendCode();
             // this feels so stupid

@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/frontend/css/global.css">
     <script src="/frontend/js/user/profile.js?v=1.0" defer></script>
 </head>
-<body class="profile-layout">
+<body>
+
     <header class="profile-top-bar">
         <div class="top-bar-content flex-wrap-space">
             <a href="/" class="top-bar-brand flex-center-content">
@@ -27,12 +28,8 @@
 
         <main class="profile-main-content">
             <!-- Account Details Section -->
-            <section id="account-details" class="content-section active">
-                <h1>Account Details</h1>
-                
-                <div class="details-grid">
-                    <!-- Patient Information Box -->
-                    <div class="info-box">
+            <section id="account-details" class="content-section">
+                <div class="info-box">
                     <div class="box-header flex-wrap-space">
                             <h3>Personal Information</h3>
                         <button class="action-btn">Edit</button>
@@ -64,12 +61,13 @@
                             </div>
                         </div>
                     </div>
-
+            </section>
+            <section class="content-section">
                     <!-- Appointments Box -->
-                    <div class="appointments-box">
+                <div class="info-box">
                         <div class="box-header flex-wrap-space">
                             <h3>Your Appointments</h3>
-                            <a href="" class="action-btn">+ Book New</a>
+                            <button id="bookAppointmentButton" class="action-btn">+ Book New</button>
                         </div>
                         <!-- IF there is no appointment, disable the  place "book appointment"-->
                         <div class="appointments-content">
@@ -83,21 +81,29 @@
                                             <th>Department</th>
                                             <th>Doctor</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <div id="appointmentFetchError"></div>
-                                    <tbody id="appointmentContainer">
+                                    <tbody id="appointmentContainer" style="column-count: 3;overflow: scroll;">
                                         <!--Fetch date, department, doctor, status from database-->
                                     </tbody>
                                 </table>
+                                <div id="appointmentFetchError"></div>
                             </div>
                         </div>
                     </div>
-                </div>
+            </section>
+
+            </div>
+
+            <section class="content-section">
+
             </section>
 
         </main>
     </div>
+
+    <div id="bookAppointmentContainer"></div>
 
 </body>
 </html>
