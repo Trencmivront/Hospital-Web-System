@@ -14,21 +14,21 @@ class DoctorController {
         global $pdo;
         $data = [];
         switch($action){
-            case 'GetDoctors':{
+            case 'all':{
                 $getDoctors = new GetDoctors();
                 $data = $getDoctors->execute($pdo);
                 echo responseEntity($data);
             };
             break;
             
-            case 'GetAvailableDoctors':{
+            case 'available':{
                 $getAvailableDoctors = new GetAvailableDoctors();
                 $data = $getAvailableDoctors->execute($pdo);
                 echo responseEntity($data);
             };
             break;
 
-            case 'filterDoctorsByName':{
+            case 'byName':{
                 $filterDoctorsByName = new FilterDoctorsByName();
                 $data = $filterDoctorsByName->execute($pdo);
                 echo responseEntity($data);

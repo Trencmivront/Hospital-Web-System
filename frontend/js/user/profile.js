@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
             const response = await fetch("/api/patient/logout");
 
             if(!response.ok){
-                console.log();
+                console.log(response);
                 return;
             }
 
