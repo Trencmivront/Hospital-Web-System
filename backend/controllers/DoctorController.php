@@ -21,9 +21,9 @@ class DoctorController {
             };
             break;
             
-            case 'available':{
-                $getAvailableDoctors = new GetAvailableDoctors();
-                $data = $getAvailableDoctors->execute($pdo);
+            case 'byDepartment':{
+                $getDoctorsByDepartment = new GetDoctorsByDepartment();
+                $data = $getDoctorsByDepartment->execute($pdo);
                 echo responseEntity($data);
             };
             break;
@@ -31,6 +31,13 @@ class DoctorController {
             case 'byName':{
                 $filterDoctorsByName = new FilterDoctorsByName();
                 $data = $filterDoctorsByName->execute($pdo);
+                echo responseEntity($data);
+            };
+            break;
+
+            case 'availableDays':{
+                $getAvailableDaysOfDoctor = new GetAvailableDaysOfDoctor();
+                $data = $getAvailableDaysOfDoctor->execute($pdo);
                 echo responseEntity($data);
             };
             break;

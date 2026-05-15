@@ -2,6 +2,11 @@ window.addEventListener('load', () => {
     const menuItems = document.querySelectorAll('.menu-item');
     const contentSections = document.querySelectorAll('.content-section');
     const appointmentContainer = document.getElementById('appointmentContainer');
+    // book appointment input elements
+    const selectDepartment = document.getElementById("selectDepartment");
+    const selectDoctor = document.getElementById("selectDoctor");
+    const inputDate = document.getElementById("inputDate");
+    const inputTime = document.getElementById("inputTime");
     
     //  add log out button function
     document.getElementById("logOutButton").addEventListener("click", async () => {
@@ -31,6 +36,93 @@ window.addEventListener('load', () => {
             document.getElementById("shadowBackground").style.display = "none";
         }
 
+    });
+
+    const fetchDepartments = async () => {
+        try {
+            const response = await fetch("/api/department/all");
+            if (!response.ok) {
+                console.error(response);
+                return;
+            }
+            const departments = await response.json();
+                departments.forEach(dept => {
+                selectDepartment.innerHTML += `<option value="${dept.dept_id}">${dept.dept_name}</option>`;
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const fetchDoctors = async (dept_id) => {
+
+        try{
+            const response = await fetch(`/api/doctor/byDepartment?dept_id=${dept_id}`);
+
+            if(!response.ok){
+                console.error("Failed to fetch doctors");
+                return;
+            }
+
+            const doctors = await response.json();
+
+            if (doctors.length === 0) {
+                selectDoctor.innerHTML = '<option value="">No doctors available</option>';
+                selectDoctor.setAttribute("disabled", true);
+                // Reset subsequent fields
+                inputDate.setAttribute("disabled", true);
+                inputTime.setAttribute("disabled", true);
+                inputDate.value = "";
+                inputTime.value = "";
+            } else {
+                selectDoctor.innerHTML = '<option value="">--Select Doctor--</option>';
+                doctors.forEach(doc => {
+                    selectDoctor.innerHTML += `<option value="${doc.doctor_id}">${doc.first_name} ${doc.last_name}</option>`;
+                });
+                selectDoctor.removeAttribute("disabled");
+            }
+
+        }catch(error){
+            console.log(error);
+            return;
+        }
+    }
+
+    fetchAvailableDatesOfDoctor = async (doctor_id) => {
+        
+        try{
+
+            const response = await fetch("/api/");
+
+        }catch(error){
+            console.log(error);
+        }
+
+    }
+
+    selectDepartment.addEventListener("change", async () => {
+        // after selecting department, we want to list, if value is not "pluh"
+        if(selectDepartment.value === ""){
+            selectDoctor.setAttribute("disabled", true);
+            inputDate.setAttribute("disabled",true);
+            inputTime.setAttribute("disabled", true);
+            return;
+        }
+        // get id of the department, since id is value of option;
+        fetchDoctors(selectDepartment.value);
+
+    });
+
+    selectDoctor.addEventListener("change", async () => {
+
+        if(selectDoctor.value === ""){
+        inputDate.setAttribute("disabled",true);
+        inputTime.setAttribute("disabled", true);
+        return;
+        }
+        // allow user to select date
+        inputDate.removeAttribute("disabled");
+        fetchAvailableDatesOfDoctor(selectDoctor.values);
     });
 
     const getAppointments = async () => {
@@ -101,4 +193,6 @@ window.addEventListener('load', () => {
 
     // list appointments of patient
     getAppointments();
+    // fetch departments
+    fetchDepartments();
 });

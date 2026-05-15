@@ -6,6 +6,12 @@ CREATE TABLE Department(
 	img_path varchar(255)
 );
 
+-- This is new table
+CREATE TABLE Specialization(
+	spec_id INT PRIMARY KEY AUTO_INCREMENT,
+	name varchar(100) NOT NULL UNIQUE
+);
+
 CREATE TABLE Doctor(
 	doctor_id INT PRIMARY KEY AUTO_INCREMENT,
 	first_name varchar(50) NOT NULL,
@@ -46,12 +52,6 @@ CREATE TABLE Doctor_Schedule(
 	CONSTRAINT fk_dsTdoc FOREIGN KEY (doctor_id)
 	REFERENCES Doctor(doctor_id)
 	ON UPDATE CASCADE ON DELETE CASCADE
-);
-
--- This is new table
-CREATE TABLE Specialization(
-	spec_id INT PRIMARY KEY AUTO_INCREMENT,
-	name varchar(100) NOT NULL UNIQUE
 );
 
 -- This is new table

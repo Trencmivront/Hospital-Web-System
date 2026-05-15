@@ -46,7 +46,7 @@ class LogIn {
             // after time passed, kill user
             $_SESSION['email_jwt'] = $jwt->generateJwt($email, '', 300);
             // also store remember_me if user wants to be Memorized By The System
-            $_SESSION['remember_me'] = $jwt->generateJwt($remember_me, '', 300);
+            $_SESSION['remember_me'] = $remember_me;
             
             $sendCode = new SendCode();
             // this feels so stupid
