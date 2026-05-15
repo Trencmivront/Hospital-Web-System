@@ -1,6 +1,6 @@
 <?php
 
-class GetAvailableDoctors {
+class GetDoctorsByDepartment {
     function execute(PDO $pdo) : array{
         // get available doctors for selected department
         // requests must be made by patients, check for role during security update
@@ -9,14 +9,14 @@ class GetAvailableDoctors {
         try{
             // doctor_id is taken because once we get all doctors, we can get schedule of doctor
             // by using its id
-            $query = "SELECT dr.doctor_id, dr.first_name, dr.last_name FROM Doctor dr INNER JOIN Department dept
-            ON dr.dept_id=dept.dept_id AND dept.dept_id = $deptId
-            INNER JOIN Doctor_Schedule ds ON ds.doctor_id = dr.doctor_id
-            WHERE ds.is_active = true GROUP BY dr.doctor_id;";
+            $query = "SELECT dr.doctor_id, dr.first_name, dr.last_name FROM Doctor dr
+            JOIN Department dept ON dr.dept_id = dept.dept_id
+            WHERE dept.dept_id = :dept_id";
 
-            $result = $pdo->query($query);
+            $response = $pdo->prepare($query);
+            $response->execute(['dept_id' => $deptId]);
 
-            return $result->fetchAll(PDO::FETCH_ASSOC);
+            return $response->fetchAll(PDO::FETCH_ASSOC);
         }catch(PDOException $e){
             throw new FetchDoctorException();
         }

@@ -113,11 +113,11 @@ INSERT INTO Patient (first_name, last_name, tc_no, birth_date, gender_name, bloo
 
 -- 10. Doctor_Schedule (Assigning slots to doctors)
 INSERT INTO Doctor_Schedule (schedule_id, doctor_id, is_active) VALUES
-(1, 1, TRUE), (2, 1, TRUE), (3, 1, TRUE),
-(4, 2, TRUE), (5, 2, TRUE),
-(6, 3, TRUE), (7, 3, TRUE),
-(8, 4, TRUE), (9, 4, TRUE),
-(10, 5, TRUE), (11, 5, FALSE),
+(1, 1, FALSE), (2, 1, FALSE), (3, 1, TRUE),
+(4, 2, FALSE), (5, 2, FALSE),
+(6, 3, FALSE), (7, 3, TRUE),
+(8, 4, FALSE), (9, 4, TRUE),
+(10, 5, FALSE), (11, 5, TRUE),
 (12, 6, TRUE), (13, 7, TRUE), (14, 8, TRUE), (15, 9, TRUE);
 
 -- 12. Patient_Allergy

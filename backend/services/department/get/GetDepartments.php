@@ -4,7 +4,7 @@ class GetDepartments {
     // because json_encode returns either of them
     function execute(PDO $pdo) : array{
 
-        $query = "SELECT dept_name, descrpt FROM Department";
+        $query = "SELECT dept_id, dept_name, descrpt FROM Department";
 
         try{
             $result = $pdo->prepare($query);
