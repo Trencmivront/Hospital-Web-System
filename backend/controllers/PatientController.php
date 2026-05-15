@@ -41,36 +41,28 @@ class PatientController {
 
             case 'jwt': {
                 $createPatientJwt = new CreatePatientJwt();
-                $data = $createPatientJwt->execute($pdo);
-                echo responseEntity($data);
+                echo responseEntity($createPatientJwt->execute($pdo));
                 // if this one is true as well, we have our patient authenticated and logged in
             }
             break;
 
             case 'resendCode': {
                 $sendCode = new SendCode();
-                $data = $sendCode->execute($_SESSION['email_jwt']);
-                echo responseEntity($data);
+                echo responseEntity($sendCode->execute($_SESSION['email_jwt']));
             }
             break;
 
             case 'logout': {
-                // Erase all session content
-                $_SESSION = array();
-                
-                // Erase session cookie
-                if (ini_get("session.use_cookies")) {
-                    $params = session_get_cookie_params();
-                    setcookie(session_name(), '', time() - 42000,
-                        $params["path"], $params["domain"],
-                        $params["secure"], $params["httponly"]
-                    );
-                }
-
-                // destroy session on the backend
-                session_destroy();
-                echo json_encode(["success" => true]);
+                $logout = new LogOut();
+                echo responseEntity($logout->execute());
             }   
+            break;
+
+            case 'byId': {
+                $getPatientById = new GetPatientById();
+                $data = $getPatientById->execute($pdo);
+                echo responseEntity($data);
+            }
             break;
 
             default: echo responseEntity("Unknown Request", 404);

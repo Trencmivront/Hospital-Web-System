@@ -262,6 +262,39 @@ window.addEventListener('load', () => {
         }
     }
 
+    const fetchPatientData = async () => {
+        try {
+            const response = await fetch("/api/patient/byId");
+            if (response.status === 403) {
+                userIsNotAuthenticated();
+                return;
+            }
+            if (!response.ok) {
+                console.error(response);
+                return;
+            }
+            const patient = await response.json();
+            displayPatientData(patient);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const displayPatientData = (patient) => {
+        document.getElementById("full_name").textContent = `${patient.first_name} ${patient.last_name}`;
+        document.getElementById("tc_no").textContent = patient.tc_no;
+        document.getElementById("email").textContent = patient.email;
+        document.getElementById("tel_no").textContent = patient.phone_num;
+        document.getElementById("blood_group").textContent = patient.blood_type;
+        document.getElementById("birth_date").textContent = patient.birth_date;
+        document.getElementById("password").textContent = "********";
+        
+        const welcomeSpan = document.querySelector(".top-bar-user-name strong");
+        if (welcomeSpan) {
+            welcomeSpan.textContent = `${patient.first_name} ${patient.last_name}`;
+        }
+    };
+
     const listAppointments = (data) => {
         appointmentContainer.innerHTML = "";
         data.forEach(a => {
@@ -311,6 +344,8 @@ window.addEventListener('load', () => {
         window.location = "/"
     }
 
+    // fetch patient profile
+    fetchPatientData();
     // list appointments of patient
     getAppointments();
     // fetch departments
