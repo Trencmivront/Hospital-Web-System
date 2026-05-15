@@ -41,7 +41,6 @@ if ($parts[1] === 'api') {
     $controllerName = $parts[2] ?? ''; // e.g., "patient", "doctor"
     // second part is the action
     $action = $parts[3] ?? '';
-
     // Map URL names to Class names
     $controllerMap = [
         'patient'     => ['file' => 'PatientController.php',     'class' => 'PatientController'],

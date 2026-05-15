@@ -22,8 +22,14 @@ window.addEventListener('load', () => {
     });
 
     document.getElementById("bookAppointmentButton").addEventListener("click", () => {
+        document.getElementById("shadowBackground").style.display = "flex";
+    });
 
-        document.getElementById("bookAppointmentContainer").style.display = "block";
+    document.getElementById("shadowBackground").addEventListener("click", (event) => {
+
+        if (event.target === event.currentTarget) {
+            document.getElementById("shadowBackground").style.display = "none";
+        }
 
     });
 
@@ -68,16 +74,17 @@ window.addEventListener('load', () => {
             let actionBtn = '';
 
             if(a.ap_status === 'COMPLETED'){
-                actionBtn = "<button class='view-btn'> </button>";                
+                actionBtn = "<button class='view-btn'> View </button>";                
             }
             else if(a.ap_status === 'ACTIVE'){
-                actionBtn = "<button class='cancel-btn'> </button>"
+                actionBtn = "<button class='cancel-btn'> Cancel </button>"
             }
+            // cancelled by the user
             else if(a.ap_status === 'CLOSED'){
-                
+                actionBtn = "<button class='disabled-btn'> Closed </button>"
             }
 
-            appointmentContainer.innerHTML += `<tr style="cursor:pointer;" id="${a.appointment_id}" data-doctor_id="${a.doctor_id}" data-schedule_id="${a.schedule_id}">
+            appointmentContainer.innerHTML += `<tr id="${a.appointment_id}" data-doctor_id="${a.doctor_id}" data-schedule_id="${a.schedule_id}">
                                             <td>${a.s_date} | ${a.s_time}</td>
                                             <td>${a.dept_name}</td>
                                             <td>${a.first_name} ${a.last_name}</td>
