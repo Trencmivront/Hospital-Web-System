@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="/frontend/css/global.css">
   <link rel="stylesheet" href="/frontend/css/admin.css">
   <script src="/frontend/js/global/global.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+  <script src="/frontend/js/global/admin-dashboard.js" defer></script>
 </head>
 <body>
   <header class="page-header flex-wrap-space">
@@ -55,36 +57,39 @@
       </header>
 
       <section class="cards">
-        <div class="card">
-          <h4>Booked</h4>
-          <p class="big">22</p>
-          <small>Today</small>
-        </div>
-        <div class="card">
-          <h4>Completed</h4>
-          <p class="big">14</p>
-          <small>Already seen</small>
-        </div>
-        <div class="card">
-          <h4>Cancelled</h4>
-          <p class="big">02</p>
-          <small>Need follow-up</small>
-        </div>
+        <div class="card"><h4>Booked</h4><p class="big">22</p><small>Today</small></div>
+        <div class="card"><h4>Completed</h4><p class="big">14</p><small>Already seen</small></div>
+        <div class="card"><h4>Cancelled</h4><p class="big">02</p><small>Need follow-up</small></div>
+        <div class="card"><h4>Available Slots</h4><p class="big">38</p><small>Remaining</small></div>
       </section>
 
-      <section class="panel">
-        <div class="toolbar">
-          <h2>Appointments</h2>
-          <button class="btn">Add New</button>
+      <section class="grid">
+        <div class="panel panel-large">
+          <h3>Appointment Trends</h3>
+          <canvas id="appointmentsLineChart" height="180"></canvas>
         </div>
-        <table class="list-table">
-          <thead><tr><th>Time</th><th>Patient</th><th>Doctor</th><th>Department</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td>09:00</td><td>Ali Veli</td><td>Dr. Kaya</td><td>Cardio</td><td>Checked-in</td></tr>
-            <tr><td>09:30</td><td>Fatma Y.</td><td>Dr. Demir</td><td>Ortho</td><td>Waiting</td></tr>
-            <tr><td>10:00</td><td>John Doe</td><td>Dr. Smith</td><td>General</td><td>Cancelled</td></tr>
-          </tbody>
-        </table>
+        <div class="panel panel-half">
+          <h3>Doctor Utilization</h3>
+          <canvas id="appointmentsBarChart" height="180"></canvas>
+        </div>
+        <div class="panel panel-half">
+          <h3>Today's Highlights</h3>
+          <div class="card" style="padding:18px;margin:0;border:none;box-shadow:none;background:#f8fbff;">
+            <p><strong>8</strong> appointments pending</p>
+            <p><strong>3</strong> urgent reschedules</p>
+          </div>
+        </div>
+        <div class="panel panel-large">
+          <div class="toolbar"><h2>Upcoming Appointments</h2><button class="btn">Add New</button></div>
+          <table class="list-table">
+            <thead><tr><th>Time</th><th>Patient</th><th>Doctor</th><th>Department</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>09:00</td><td>Ali Veli</td><td>Dr. Kaya</td><td>Cardio</td><td>Checked-in</td></tr>
+              <tr><td>09:30</td><td>Fatma Y.</td><td>Dr. Demir</td><td>Ortho</td><td>Waiting</td></tr>
+              <tr><td>10:00</td><td>John Doe</td><td>Dr. Smith</td><td>General</td><td>Cancelled</td></tr>
+            </tbody>
+          </table>
+        </div>
       </section>
     </main>
   </div>

@@ -22,7 +22,7 @@ body{background:#f4f7ff}
 .card{flex:1;padding:14px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:0 2px 6px rgba(29,63,166,0.04)}
 .card .big{font-size:24px;font-weight:700;color:#1d3fa6;margin:6px 0}
 .list-table{width:100%;border-collapse:collapse}
-..list-table th,.list-table td{padding:10px 10px;border-bottom:1px solid #f0f0f0;text-align:left}
+.list-table th,.list-table td{padding:10px 10px;border-bottom:1px solid #f0f0f0;text-align:left}
 .list-table thead th{color:#333;font-weight:700}
 .list-table tbody tr:hover{background:#f8fbff}
 .toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:18px}

@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="/frontend/css/global.css">
   <link rel="stylesheet" href="/frontend/css/admin.css">
   <script src="/frontend/js/global/global.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+  <script src="/frontend/js/global/admin-dashboard.js" defer></script>
 </head>
 <body>
   <header class="page-header flex-wrap-space">
@@ -16,6 +18,18 @@
 
   <div class="admin-shell">
     <aside class="admin-nav">
+      <div class="admin-brand">Nova<span>Admin</span></div>
+      <div class="admin-banner">
+        <div class="banner-top">
+          <span class="banner-badge">Doctors</span>
+          <h3>Clinical performance</h3>
+        </div>
+        <p>Review doctor workload, patient count, and outcomes in one view.</p>
+        <div class="banner-row">
+          <div><strong>24</strong><span>Active Doctors</span></div>
+          <div><strong>78</strong><span>Ops this week</span></div>
+        </div>
+      </div>
       <ul>
         <li><a href="/frontend/html/admin/dashboard.html">Dashboard</a></li>
         <li><a href="/frontend/html/admin/patients.html">Patients</a></li>
@@ -25,17 +39,56 @@
     </aside>
 
     <main class="admin-main">
-      <h2>Doctors</h2>
-      <div class="cards small">
-        <div class="card">
-          <h4>Dr. Kaya</h4>
-          <p>Cardiology</p>
+      <header class="admin-topbar">
+        <div class="search">
+          <input placeholder="Search doctors...">
         </div>
-        <div class="card">
-          <h4>Dr. Demir</h4>
-          <p>Orthopedics</p>
+        <div class="top-actions">
+          <button class="icon-btn">🔔</button>
+          <button class="icon-btn">⚙️</button>
+          <div class="avatar">D</div>
         </div>
-      </div>
+      </header>
+
+      <section class="cards small">
+        <div class="card"><h4>Total Doctors</h4><p class="big">24</p></div>
+        <div class="card"><h4>On Duty</h4><p class="big">16</p></div>
+        <div class="card"><h4>Avg Appointments</h4><p class="big">38</p></div>
+        <div class="card"><h4>Success Rate</h4><p class="big">94%</p></div>
+      </section>
+
+      <section class="grid">
+        <div class="panel panel-large">
+          <h3>Patients per Doctor</h3>
+          <canvas id="doctorBarChart" height="180"></canvas>
+        </div>
+        <div class="panel panel-half">
+          <h3>Successful Operations</h3>
+          <canvas id="doctorLineChart" height="180"></canvas>
+        </div>
+        <div class="panel panel-half">
+          <h3>Top Performers</h3>
+          <table class="list-table">
+            <thead><tr><th>Doctor</th><th>Dept</th><th>Rating</th></tr></thead>
+            <tbody>
+              <tr><td>Dr. Kaya</td><td>Cardio</td><td>4.9</td></tr>
+              <tr><td>Dr. Demir</td><td>Ortho</td><td>4.8</td></tr>
+              <tr><td>Dr. Smith</td><td>General</td><td>4.7</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel panel-large">
+          <div class="toolbar"><h2>Doctor Roster</h2><button class="btn">Invite New</button></div>
+          <table class="list-table">
+            <thead><tr><th>Name</th><th>Department</th><th>Patients</th><th>Shift</th></tr></thead>
+            <tbody>
+              <tr><td>Dr. Kaya</td><td>Cardiology</td><td>82</td><td>Morning</td></tr>
+              <tr><td>Dr. Demir</td><td>Orthopedics</td><td>70</td><td>Afternoon</td></tr>
+              <tr><td>Dr. Smith</td><td>General</td><td>65</td><td>Evening</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
   </div>
 </body>
