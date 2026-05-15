@@ -14,12 +14,12 @@ class ScheduleController {
         global $pdo;
         $data = [];
         switch($action){
-
-            case 'byDoctor' :{
-
+            case 'byDate': {
+                $getActiveScheduleByDate = new GetActiveScheduleByDate();
+                $data = $getActiveScheduleByDate->execute($pdo);
+                echo responseEntity($data);
             }
             break;
-
             // Add cases here as services are implemented
             default: echo responseEntity("Unknown Request", 404);
             break;

@@ -17,7 +17,8 @@ class GetAppointmentsOfPatient{
             JOIN Doctor_Schedule ds ON ds.doctor_schedule_id = a.doctor_schedule_id
             JOIN Doctor d ON d.doctor_id = ds.doctor_id
             JOIN Schedule s ON s.schedule_id = ds.schedule_id
-            JOIN Department dept ON dept.dept_id = d.dept_id WHERE p.patient_id = :patient_id';
+            JOIN Department dept ON dept.dept_id = d.dept_id WHERE p.patient_id = :patient_id
+            ORDER BY s.s_date DESC';
 
         if(!isset($_SESSION['patient_jwt'])){
             throw new UserIsNotAuthenticatedException();

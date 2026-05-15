@@ -2,11 +2,13 @@ window.addEventListener('load', () => {
     const menuItems = document.querySelectorAll('.menu-item');
     const contentSections = document.querySelectorAll('.content-section');
     const appointmentContainer = document.getElementById('appointmentContainer');
+    const floatingFormContainer = document.getElementById('floatingFormContainer');
     // book appointment input elements
+    const bookAppointmentContainer = document.getElementById("bookAppointmentContainer");
     const selectDepartment = document.getElementById("selectDepartment");
     const selectDoctor = document.getElementById("selectDoctor");
-    const inputDate = document.getElementById("inputDate");
-    const inputTime = document.getElementById("inputTime");
+    const selectDate = document.getElementById("selectDate");
+    const selectTime = document.getElementById("selectTime");
     
     //  add log out button function
     document.getElementById("logOutButton").addEventListener("click", async () => {
@@ -27,15 +29,18 @@ window.addEventListener('load', () => {
     });
 
     document.getElementById("bookAppointmentButton").addEventListener("click", () => {
-        document.getElementById("shadowBackground").style.display = "flex";
+        floatingFormContainer.style.display = "flex";
+        bookAppointmentContainer.style.display = "block";
+
     });
 
-    document.getElementById("shadowBackground").addEventListener("click", (event) => {
-
-        if (event.target === event.currentTarget) {
-            document.getElementById("shadowBackground").style.display = "none";
+    document.getElementById("closeAppointmentBooking").addEventListener("click", () => {
+        if(confirm("Cancel Booking?")){
+            floatingFormContainer.style.display = "none";
+            bookAppointmentContainer.style.display = "none";
+        }else{
+            return;
         }
-
     });
 
     const fetchDepartments = async () => {
@@ -60,7 +65,7 @@ window.addEventListener('load', () => {
             const response = await fetch(`/api/doctor/byDepartment?dept_id=${dept_id}`);
 
             if(!response.ok){
-                console.error("Failed to fetch doctors");
+                console.error(response);
                 return;
             }
 
@@ -70,12 +75,12 @@ window.addEventListener('load', () => {
                 selectDoctor.innerHTML = '<option value="">No doctors available</option>';
                 selectDoctor.setAttribute("disabled", true);
                 // Reset subsequent fields
-                inputDate.setAttribute("disabled", true);
-                inputTime.setAttribute("disabled", true);
-                inputDate.value = "";
-                inputTime.value = "";
+                selectDate.setAttribute("disabled", true);
+                selectTime.setAttribute("disabled", true);
+                selectDate.value = "";
+                selectTime.value = "";
             } else {
-                selectDoctor.innerHTML = '<option value="">--Select Doctor--</option>';
+                selectDoctor.innerHTML = '<option value="">-- Doctor --</option>';
                 doctors.forEach(doc => {
                     selectDoctor.innerHTML += `<option value="${doc.doctor_id}">${doc.first_name} ${doc.last_name}</option>`;
                 });
@@ -88,41 +93,151 @@ window.addEventListener('load', () => {
         }
     }
 
-    fetchAvailableDatesOfDoctor = async (doctor_id) => {
-        
-        try{
+    const fetchAvailableDatesOfDoctor = async (doctor_id) => {
+        try {
+            const response = await fetch(`/api/doctor/availableDays?doctor_id=${doctor_id}`);
+            if (!response.ok) {
+                console.error(response);
+                return;
+            }
 
-            const response = await fetch("/api/");
+            const dates = await response.json();
+            
+            if(dates.length === 0){
+                selectDate.innerHTML = "<option value=''> No Available Dates </option>";
+                
+                selectDate.setAttribute("disabled", true);
+                selectTime.setAttribute("disabled", true);
+                selectDate.value = "";
+                selectTime.value = "";
+            }
+            else{
+                selectDate.innerHTML = '<option value="">-- Date --</option>';
+                dates.forEach(date => {
+                selectDate.innerHTML += `<option value='${date.s_date}'>${date.s_date}</option>`;
+                });
+                selectDate.removeAttribute("disabled");
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const fetchAvailableTimesOfDay = async (date) => {
+        try {
+            const doctor_id = selectDoctor.value;
+            const response = await fetch(`/api/schedule/byDate?doctor_id=${doctor_id}&date=${date}`);
+            
+            if (!response.ok) {
+                console.error(response);
+                return;
+            }
+
+            const times = await response.json();
+            
+            if (times.length === 0) {
+                selectTime.innerHTML = "<option value=''> No Available Times </option>";
+                selectTime.setAttribute("disabled", true);
+                selectTime.value = "";
+            } else {
+                selectTime.innerHTML = '<option value="">-- Time --</option>';
+                times.forEach(time => {
+                    // now we will get doctor_schedule_id and patient_id to create appointment
+                    selectTime.innerHTML += `<option value='${time.doctor_schedule_id}'>${time.s_time}</option>`;
+                });
+                selectTime.removeAttribute("disabled");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    document.getElementById("appointmentForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        // if any of the values are null, then exit
+        if(!selectDepartment.value || !selectDoctor.value || !selectDate.value || !selectTime.value){
+            alert("Please Fill The Form");
+            return;
+        }
+
+        try{
+            // we already having dept_id in doctor entity
+            // these are enough for creation of appointment
+            // patient_id is stored in session
+            const body = {
+                doctor_schedule_id: selectTime.value
+            }
+
+            const config = {
+                method: 'POST',
+                headers: {
+                    "Content-Type" : "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(body)
+            }
+
+            const response = await fetch("/api/appointment/create", config);
+            
+            if(response.status === 403){
+                displayError(response, "bookAppointmentErrorContainer");
+                userIsNotAuthenticated();
+                return;
+            }
+
+            else if(response.status !== 201){
+                displayError(response, "bookAppointmentErrorContainer");
+                return;
+            }
+
+            if(confirm('Book appointment?')){
+                alert("Appointment Booked");
+                // close form
+                floatingFormContainer.style.display = "none";
+                bookAppointmentContainer.style.display = "none";
+            }
+            else{
+                // exit before listing appointments again
+                return;
+            }
+
+            getAppointments();
 
         }catch(error){
+            alert("Network Error");
             console.log(error);
         }
 
-    }
+    })
 
     selectDepartment.addEventListener("change", async () => {
-        // after selecting department, we want to list, if value is not "pluh"
-        if(selectDepartment.value === ""){
-            selectDoctor.setAttribute("disabled", true);
-            inputDate.setAttribute("disabled",true);
-            inputTime.setAttribute("disabled", true);
-            return;
-        }
+        // after selecting department, we want to reset all
+        selectDoctor.setAttribute("disabled", true);
+        selectDate.setAttribute("disabled",true);
+        selectTime.setAttribute("disabled", true);
+        selectDoctor.value = "";
+        selectDate.value = "";
+        selectTime.value = "";
+
         // get id of the department, since id is value of option;
         fetchDoctors(selectDepartment.value);
 
     });
 
     selectDoctor.addEventListener("change", async () => {
+        selectDate.setAttribute("disabled",true);
+        selectTime.setAttribute("disabled", true);
+        selectDate.value = "";
+        selectTime.value = "";
 
-        if(selectDoctor.value === ""){
-        inputDate.setAttribute("disabled",true);
-        inputTime.setAttribute("disabled", true);
-        return;
-        }
-        // allow user to select date
-        inputDate.removeAttribute("disabled");
-        fetchAvailableDatesOfDoctor(selectDoctor.values);
+        fetchAvailableDatesOfDoctor(selectDoctor.value);
+    });
+
+    selectDate.addEventListener("change", () => {
+        selectTime.setAttribute("disabled", true);
+        selectTime.value = "";
+
+        fetchAvailableTimesOfDay(selectDate.value);
     });
 
     const getAppointments = async () => {
@@ -131,25 +246,12 @@ window.addEventListener('load', () => {
             const response = await fetch("/api/appointment/ofPatient");
 
             if(response.status === 403){
-                displayAppointmentError(response);
-                alert("You are not allowed to be here.");
-                // erase existing token data if there is
-                try{
-                    const response = await fetch("/api/patient/logout");
-
-                    if(!response.ok){
-                        console.log();
-                        return;
-                    }     
-                    }catch(error){
-                        console.log(error);
-                    }
-                // redirect person to main page
-                window.location = "/"
+                displayError(response, "appointmentFetchError");
+                userIsNotAuthenticated();
                 return;
             }
             else if(!response.ok){
-                displayAppointmentError(response);
+                displayError(response, "appointmentFetchError");
                 return;
             }
 
@@ -161,6 +263,7 @@ window.addEventListener('load', () => {
     }
 
     const listAppointments = (data) => {
+        appointmentContainer.innerHTML = "";
         data.forEach(a => {
 
             let actionBtn = '';
@@ -186,9 +289,26 @@ window.addEventListener('load', () => {
         });                                      
     }
 
-    const displayAppointmentError = (response) =>{
-        document.getElementById('appointmentFetchError').innerHTML = `<p style="color: red;">${response.message}</p>`;
+    const displayError = (response, containerId) =>{
+        document.getElementById(containerId).innerHTML = `<p style="color: red;">${response.message}</p>`;
         console.log(response);
+    }
+
+    const userIsNotAuthenticated = async () => {
+        alert("You are not allowed to be here.");
+        // erase existing token data if there is
+        try{
+            const response = await fetch("/api/patient/logout");
+
+            if(!response.ok){
+                console.log();
+                return;
+            }     
+            }catch(error){
+                console.log(error);
+            }
+        // redirect person to main page
+        window.location = "/"
     }
 
     // list appointments of patient

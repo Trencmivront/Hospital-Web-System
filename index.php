@@ -48,6 +48,7 @@ if ($parts[1] === 'api') {
         'department'  => ['file' => 'DepartmentController.php',  'class' => 'DepartmentController'],
         'appointment' => ['file' => 'AppointmentController.php', 'class' => 'AppointmentController'],
         'blood'       => ['file' => 'BloodTypeController.php',   'class' => 'BloodTypeController'],
+        'schedule'    => ['file' => 'ScheduleController.php',    'class' => 'ScheduleController'],
     ];
 
     if (array_key_exists($controllerName, $controllerMap)) {

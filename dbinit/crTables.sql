@@ -83,27 +83,6 @@ CREATE TABLE Patient(
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- This is new table
-CREATE TABLE Allergy(
-	allergy_id INT PRIMARY KEY AUTO_INCREMENT,
-	allergy_descrpt varchar(100) NOT NULL,
-	icd10_code varchar(10) NOT NULL UNIQUE
-);
-
--- This is new table
--- Here we have connection between patients and allergies
-CREATE TABLE Patient_Allergy(
-	patient_allergy_id INT PRIMARY KEY AUTO_INCREMENT,
-	allergy_id INT NOT NULL,
-	patient_id INT NOT NULL,
-	CONSTRAINT fk_paTalr FOREIGN KEY (allergy_id)
-	REFERENCES Allergy(allergy_id)
-	ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT fk_paTpat FOREIGN KEY (patient_id)
-	REFERENCES Patient(patient_id)
-	ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 CREATE TABLE Punishment(
 	punishment_id INT PRIMARY KEY AUTO_INCREMENT,
 	reason varchar(300) NOT NULL,

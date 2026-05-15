@@ -32,6 +32,12 @@
                     echo responseEntity($data);
                 };
                 break;
+                case 'create' :{
+                    $createAppointment = new CreateAppointment();
+                    $data = $createAppointment->execute($pdo);
+                    return responseEntity($data, 201);
+                }
+                break;
                 default:
                     echo responseEntity("Unknown Request", 404);
                 break;

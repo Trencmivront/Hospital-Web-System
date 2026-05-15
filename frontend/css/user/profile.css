@@ -204,7 +204,7 @@ nav{
 }
 /*Appointment window part*/
 
-#shadowBackground{
+.shadow-background{
     width: 100%;
     height: 100%;
     position: fixed;
@@ -213,11 +213,15 @@ nav{
     left: 0;
     background-color: rgba(0,0,0,0.5); /* darkened for better contrast */
     display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     z-index: 2000; /* Above everything else */
     transition: 0.3s;
 }
 
 #bookAppointmentContainer{
+    display: none;
     height: auto;
     min-height: 100px;
     width: 400px;
@@ -226,6 +230,29 @@ nav{
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     transition: 0.3s;
+    position: relative;
+}
+
+.corner-button{
+    padding: 5px;
+    font-size: 1.2rem;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    color: #d9534f;
+    border: 1px solid #d9534f;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+.corner-button:hover{
+    background-color: #d9534f;
+    color: #fff;
 }
 
 form{

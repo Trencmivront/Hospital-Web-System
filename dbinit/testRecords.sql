@@ -13,8 +13,6 @@ TRUNCATE TABLE Specialization;
 TRUNCATE TABLE Department;
 TRUNCATE TABLE Patient_Punishment;
 TRUNCATE TABLE Punishment;
-TRUNCATE TABLE Patient_Allergy;
-TRUNCATE TABLE Allergy;
 TRUNCATE TABLE Patient;
 TRUNCATE TABLE Blood_Type;
 TRUNCATE TABLE Admin;
@@ -50,19 +48,6 @@ INSERT INTO Specialization (name) VALUES
 ('Vascular Surgery'),
 ('Child Psychiatry');
 
--- 4. Allergy
-INSERT INTO Allergy (allergy_descrpt, icd10_code) VALUES
-('Penicillin', 'Z88.0'),
-('Sulfa drugs', 'Z88.2'),
-('Aspirin', 'Z88.1'),
-('Peanuts', 'Z91.010'),
-('Latex', 'Z91.040'),
-('Shellfish', 'Z91.013'),
-('Bee Stings', 'Z91.06'),
-('Pollen', 'Z91.05'),
-('Dairy', 'Z91.011'),
-('Eggs', 'Z91.012');
-
 -- 5. Punishment
 INSERT INTO Punishment (reason, for_days) VALUES
 ('Repeated appointment no-show', 15),
@@ -72,11 +57,11 @@ INSERT INTO Punishment (reason, for_days) VALUES
 
 -- 6. Schedule (Dates in the future relative to 2026-05-10)
 INSERT INTO Schedule (s_date, s_time) VALUES
-('2026-05-11', '09:00:00'), ('2026-05-11', '09:30:00'), ('2026-05-11', '10:00:00'), ('2026-05-11', '10:30:00'),
-('2026-05-11', '14:00:00'), ('2026-05-11', '14:30:00'), ('2026-05-11', '15:00:00'),
-('2026-05-12', '09:00:00'), ('2026-05-12', '10:00:00'), ('2026-05-12', '11:00:00'),
-('2026-05-12', '14:00:00'), ('2026-05-12', '15:00:00'),
-('2026-05-13', '09:00:00'), ('2026-05-13', '09:30:00'), ('2026-05-13', '10:00:00');
+('2026-05-11', '09:00:00'), ('2026-05-11', '09:30:00'), ('2026-05-20', '10:00:00'), ('2026-05-11', '10:30:00'),
+('2026-05-11', '14:00:00'), ('2026-05-11', '14:30:00'), ('2026-05-20', '15:00:00'),
+('2026-05-12', '09:00:00'), ('2026-05-30', '10:00:00'), ('2026-05-12', '11:00:00'),
+('2026-05-22', '14:00:00'), ('2026-05-25', '15:00:00'),
+('2026-05-21', '09:00:00'), ('2026-05-26', '09:30:00'), ('2026-05-28', '10:00:00');
 
 -- 7. Admin
 -- Password requirement: length >= 8
@@ -119,14 +104,6 @@ INSERT INTO Doctor_Schedule (schedule_id, doctor_id, is_active) VALUES
 (8, 4, FALSE), (9, 4, TRUE),
 (10, 5, FALSE), (11, 5, TRUE),
 (12, 6, TRUE), (13, 7, TRUE), (14, 8, TRUE), (15, 9, TRUE);
-
--- 12. Patient_Allergy
-INSERT INTO Patient_Allergy (allergy_id, patient_id) VALUES
-(1, 1), (4, 1),
-(2, 2),
-(5, 3), (6, 3),
-(9, 5),
-(10, 8);
 
 -- 13. Patient_Punishment
 INSERT INTO Patient_Punishment (punishment_date, patient_id, punishment_id) VALUES

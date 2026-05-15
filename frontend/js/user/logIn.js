@@ -48,7 +48,7 @@ window.addEventListener('load', () => {
         const body = {
             email: emailField.value,
             password: passwordField.value,
-            remember_me: rememberMeButton.checked
+            remember_me: rememberMeButton.checked.value
         }
 
         const config = {
