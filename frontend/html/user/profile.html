@@ -102,8 +102,27 @@
 
         </main>
     </div>
-
-    <div id="bookAppointmentContainer"></div>
+    <div id="shadowBackground" class="flex-center-content">
+        <div id="bookAppointmentContainer">
+            <h1 class="box-header" style="text-align: center;">Appointment Booking</h1>
+            <form class="flex-center-content" style="flex-direction: column;">
+                <!--First select department, then list available doctors and select doctor,
+                then list available days and select day. At the end, show available time and select time-->
+                <select required>
+                    <option value="pluh">--Select Department--</option>
+                    <!-- TODO: Fetch Departments Here-->
+                </select>
+                <select disabled required>
+                    <option value="pluh">--Select Doctor</option>
+                    <!-- TODO: Enable and Fetch Doctor Data After Selecting Department-->
+                     <!--If no doctor available, don't allow and write it-->
+                </select>
+                <input type="date" disabled required>
+                <input type="time" disabled required>
+                <button class="action-btn" style="width: 50%;font-size: 1.0rem;" type="submit" disabled> Book </button>
+            </form>
+        </div>
+    </div>
 
 </body>
 </html>

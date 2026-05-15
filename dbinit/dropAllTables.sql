@@ -8,7 +8,6 @@ DROP TABLE IF EXISTS Patient_Punishment;
 DROP TABLE IF EXISTS Punishment;
 DROP TABLE IF EXISTS Patient;
 DROP TABLE IF EXISTS Blood_Type;
-DROP TABLE IF EXISTS Doctor_Specialization;
 DROP TABLE IF EXISTS Specialization;
 DROP TABLE IF EXISTS Doctor_Schedule;
 DROP TABLE IF EXISTS Schedule;
