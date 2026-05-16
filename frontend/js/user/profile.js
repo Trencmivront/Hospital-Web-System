@@ -396,6 +396,44 @@ window.addEventListener('load', () => {
         }
     }
 
+    const getPunishments = async () => {
+        try{
+            const response = await fetch("/api/punishment/byPatient");
+
+            if(response.status === 403){
+                displayError(response, "punishmentFetchError");
+                userIsNotAuthenticated();
+                return;
+            }
+            else if(!response.ok){
+                displayError(response, "punishmentFetchError");
+                return;
+            }
+
+            const data = await response.json();
+            listPunishments(data);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    const listPunishments = (data) => {
+        const punishmentContainer = document.getElementById('punishmentContainer');
+        if (!punishmentContainer) return;
+        if(data.length === 0) {
+            punishmentContainer.innerHTML = "<p style='color: grey;'> No Punishment </p>";
+            return;
+        }
+        punishmentContainer.innerHTML = "";
+        data.forEach(p => {
+            punishmentContainer.innerHTML += `<tr>
+                                            <td>${p.punishment_date}</td>
+                                            <td>${p.reason}</td>
+                                            <td>${p.for_days}</td>
+                                        </tr>`;
+        });                                      
+    }
+
     const fetchPatientData = async () => {
         try {
             const response = await fetch("/api/patient/byId");
@@ -432,6 +470,11 @@ window.addEventListener('load', () => {
     };
 
     const listAppointments = (data) => {
+        // if array is empty
+        if(data.length === 0){
+            appointmentContainer.innerHTML = "<p style='color: grey;'> No Appointments </p>";
+            return;
+        }
         appointmentContainer.innerHTML = "";
         data.forEach(a => {
 
@@ -441,11 +484,11 @@ window.addEventListener('load', () => {
                 actionBtn = "<button class='view-btn'> View </button>";                
             }
             else if(a.ap_status === 'ACTIVE'){
-                actionBtn = "<button class='cancel-btn'> Cancel </button>"
+                actionBtn = "<button class='cancel-btn'> Cancel </button>";
             }
             // cancelled by the user
             else if(a.ap_status === 'CLOSED'){
-                actionBtn = "<button class='disabled-btn'> Closed </button>"
+                actionBtn = "<button class='disabled-btn'> Closed </button>";
             }
 
             appointmentContainer.innerHTML += `<tr id="${a.appointment_id}" data-doctor_id="${a.doctor_id}" data-schedule_id="${a.schedule_id}">
@@ -503,4 +546,6 @@ window.addEventListener('load', () => {
     fetchDepartments();
     // fetch blood types
     fetchBloodTypes();
+    // fetch punishments
+    getPunishments();
 });

@@ -33,17 +33,32 @@ class CreateAppointment {
                 throw new UserIsNotAuthenticatedException();
             }
 
+            // check if the patient has any punishments
+            // SQL IS A MIRACLE
+            $query0 = " SELECT COUNT(1) FROM Patient_Punishment pp JOIN Punishment p ON 
+            pp.punishment_id = p.punishment_id WHERE (pp.punishment_date + p.for_days) >= CURRENT_DATE()
+            AND pp.patient_id = :patient_id";
+
+            $response = $pdo->prepare($query0);
+            $response->execute(['patient_id' => $patient_id]);
+
+            $data = $response->fetchAll();
+            // if there is value returned
+            if($data){
+                throw new PunishmentExistsException();
+            }
+
             // better than "checkpoint exec" command
             $pdo->beginTransaction();
 
             // First status will always be ACTIVE
-            $query = "INSERT INTO Appointment (patient_id, doctor_schedule_id, ap_status)
+            $query1 = "INSERT INTO Appointment (patient_id, doctor_schedule_id, ap_status)
                       VALUES (:patient_id, :doctor_schedule_id, 'ACTIVE')";
 
             $query2 = "UPDATE Doctor_Schedule SET is_active=0
             WHERE doctor_schedule_id= :doctor_schedule_id";
 
-            $statement = $pdo->prepare($query);
+            $statement = $pdo->prepare($query1);
             $statement->execute([
                 'patient_id' => $patient_id,
                 'doctor_schedule_id' => $doctor_schedule_id
