@@ -65,6 +65,13 @@ class PatientController {
             }
             break;
 
+            case 'update': {
+                $updatePatientById = new UpdatePatientById();
+                $data = $updatePatientById->execute($pdo);
+                echo responseEntity($data);
+            }
+            break;  
+
             default: echo responseEntity("Unknown Request", 404);
             break;
         }

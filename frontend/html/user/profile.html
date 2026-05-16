@@ -32,7 +32,7 @@
                 <div class="info-box">
                     <div class="box-header flex-wrap-space">
                             <h3>Personal Information</h3>
-                        <button class="action-btn">Edit</button>
+                        <button id="editProfileButton" class="action-btn">Edit</button>
                         </div>
                         <div class="info-content">
                             <div class="info-row">
@@ -42,6 +42,10 @@
                             <div class="info-row">
                                 <span class="label">TC Number:</span>
                                 <span class="value" id="tc_no"></span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Gender:</span>
+                                <span class="value" id="gender"></span>
                             </div>
                             <div class="info-row">
                                 <span class="label">Email:</span>
@@ -182,8 +186,31 @@
             </form>
         </section>
 
-        <section>
-
+        <section id="updatePatientContainer" style="display: none;">
+            <div class="box-header">
+                <h1 class="form-header" style="text-align: center;">Update Information</h1>
+                <button id="closeUpdatePatient" class="corner-button"> &times; </button>
+            </div>
+            
+            <form id="updatePatientForm" class="flex-center-content" style="flex-direction: column;">
+                <input type="text" id="updateFirstName" placeholder="First Name" required>
+                <input type="text" id="updateLastName" placeholder="Last Name" required>
+                <select id="updateGender" required>
+                    <option value="">--Gender--</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+                <input type="text" id="updateEmail" placeholder="Email" required>
+                <input type="text" id="updatePhone" placeholder="Phone" required>
+                <select id="updateBloodType" required>
+                    <!-- Options will be loaded dynamically -->
+                </select>
+                <input type="date" id="updateBirthDate" required>
+                <input type="password" id="updatePassword" placeholder="New Password (optional)">
+                
+                <div id="updatePatientErrorContainer"></div>
+                <button class="action-btn" style="width: 50%;font-size: 1.0rem;" type="submit"> Update </button>
+            </form>
         </section>
     </div>
 

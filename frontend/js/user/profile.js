@@ -9,6 +9,20 @@ window.addEventListener('load', () => {
     const selectDoctor = document.getElementById("selectDoctor");
     const selectDate = document.getElementById("selectDate");
     const selectTime = document.getElementById("selectTime");
+
+    // update patient input elements
+    const updatePatientContainer = document.getElementById("updatePatientContainer");
+    const updatePatientForm = document.getElementById("updatePatientForm");
+    const updateFirstName = document.getElementById("updateFirstName");
+    const updateLastName = document.getElementById("updateLastName");
+    const updateGender = document.getElementById("updateGender");
+    const updateEmail = document.getElementById("updateEmail");
+    const updatePhone = document.getElementById("updatePhone");
+    const updateBloodType = document.getElementById("updateBloodType");
+    const updateBirthDate = document.getElementById("updateBirthDate");
+    const updatePassword = document.getElementById("updatePassword");
+    
+    let currentPatient = null;
     
     //  add log out button function
     document.getElementById("logOutButton").addEventListener("click", async () => {
@@ -31,7 +45,7 @@ window.addEventListener('load', () => {
     document.getElementById("bookAppointmentButton").addEventListener("click", () => {
         floatingFormContainer.style.display = "flex";
         bookAppointmentContainer.style.display = "block";
-
+        updatePatientContainer.style.display = "none";
     });
 
     document.getElementById("closeAppointmentBooking").addEventListener("click", () => {
@@ -40,6 +54,62 @@ window.addEventListener('load', () => {
             bookAppointmentContainer.style.display = "none";
         }else{
             return;
+        }
+    });
+
+    document.getElementById("editProfileButton").addEventListener("click", () => {
+        floatingFormContainer.style.display = "flex";
+        updatePatientContainer.style.display = "block";
+        bookAppointmentContainer.style.display = "none";
+        
+        if (currentPatient) {
+            updateFirstName.value = currentPatient.first_name;
+            updateLastName.value = currentPatient.last_name;
+            updateGender.value = currentPatient.gender_name;
+            updateEmail.value = currentPatient.email;
+            updatePhone.value = currentPatient.phone_num;
+            updateBloodType.value = currentPatient.blood_id;
+            updateBirthDate.value = currentPatient.birth_date;
+        }
+    });
+
+    document.getElementById("closeUpdatePatient").addEventListener("click", () => {
+        floatingFormContainer.style.display = "none";
+        updatePatientContainer.style.display = "none";
+    });
+
+    appointmentContainer.addEventListener('click', async (e) => {
+        if (e.target.classList.contains('cancel-btn')) {
+            const row = e.target.closest('tr');
+            const appointment_id = row.id;
+
+            if (confirm("Are you sure you want to cancel this appointment?")) {
+                try {
+                    const response = await fetch("/api/appointment/delete", {
+                        method: 'POST', // Using POST as the controller expects it for reading php://input in some cases, though DELETE could also work if configured.
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        body: JSON.stringify({ appointment_id: appointment_id })
+                    });
+
+                    if (response.status === 403) {
+                        userIsNotAuthenticated();
+                        return;
+                    }
+
+                    if (!response.ok) {
+                        alert("Could not cancel appointment");
+                        return;
+                    }
+
+                    alert("Appointment cancelled successfully");
+                    getAppointments(); // Refresh the list
+                } catch (error) {
+                    alert("Network Error");
+                    console.log(error);
+                }
+            }
         }
     });
 
@@ -53,6 +123,23 @@ window.addEventListener('load', () => {
             const departments = await response.json();
                 departments.forEach(dept => {
                 selectDepartment.innerHTML += `<option value="${dept.dept_id}">${dept.dept_name}</option>`;
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const fetchBloodTypes = async () => {
+        try {
+            const response = await fetch("/api/blood/types");
+            if (!response.ok) {
+                console.error(response);
+                return;
+            }
+            const bloodTypes = await response.json();
+            
+            bloodTypes.forEach(blood => {
+                updateBloodType.innerHTML += `<option value="${blood.blood_id}">${blood.type_name}</option>`;
             });
         } catch (error) {
             console.error(error);
@@ -210,6 +297,53 @@ window.addEventListener('load', () => {
 
     })
 
+    updatePatientForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if(!confirm("Are you sure?")){
+            return;
+        }
+        
+        const body = {
+            first_name: updateFirstName.value,
+            last_name: updateLastName.value,
+            gender_name: updateGender.value,
+            email: updateEmail.value,
+            phone_num: updatePhone.value,
+            blood_id: updateBloodType.value,
+            birth_date: updateBirthDate.value,
+            pat_password: updatePassword.value || null
+        };
+
+        try {
+            const response = await fetch("/api/patient/update", {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(body)
+            });
+
+            if (response.status === 403) {
+                userIsNotAuthenticated();
+                return;
+            }
+
+            if (!response.ok) {
+                displayError(response, "updatePatientErrorContainer");
+                return;
+            }
+
+            alert("Information Updated Successfully");
+            floatingFormContainer.style.display = "none";
+            updatePatientContainer.style.display = "none";
+            fetchPatientData(); // Refresh displayed data
+        } catch (error) {
+            alert("Network Error");
+            console.log(error);
+        }
+    });
+
     selectDepartment.addEventListener("change", async () => {
         // after selecting department, we want to reset all
         selectDoctor.setAttribute("disabled", true);
@@ -274,6 +408,7 @@ window.addEventListener('load', () => {
                 return;
             }
             const patient = await response.json();
+            currentPatient = patient; // Store current patient data
             displayPatientData(patient);
         } catch (error) {
             console.error(error);
@@ -283,6 +418,7 @@ window.addEventListener('load', () => {
     const displayPatientData = (patient) => {
         document.getElementById("full_name").textContent = `${patient.first_name} ${patient.last_name}`;
         document.getElementById("tc_no").textContent = patient.tc_no;
+        document.getElementById("gender").textContent = patient.gender_name === 'M' ? 'Male' : (patient.gender_name === 'F' ? 'Female' : 'Unknown');
         document.getElementById("email").textContent = patient.email;
         document.getElementById("tel_no").textContent = patient.phone_num;
         document.getElementById("blood_group").textContent = patient.blood_type;
@@ -322,9 +458,14 @@ window.addEventListener('load', () => {
         });                                      
     }
 
-    const displayError = (response, containerId) =>{
-        document.getElementById(containerId).innerHTML = `<p style="color: red;">${response.message}</p>`;
+    const displayError = async (response, containerId) =>{
         console.log(response);
+        message = await response.json();
+        const container = document.getElementById(containerId);
+        if (container) {
+            container.innerHTML = `<p style="color: red;text-align:center;">${message}</p>`;
+        }
+        
     }
 
     const userIsNotAuthenticated = async () => {
@@ -341,8 +482,18 @@ window.addEventListener('load', () => {
                 console.log(error);
             }
         // redirect person to main page
-        window.location = "/"
+        window.location = "/";
     }
+
+    // setting max date for date picker
+    const date = new Date();
+    let day = String(date.getDate()).padStart(2, '0');
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let year = date.getFullYear();
+
+    let currentDate = `${year}-${month}-${day}`;
+
+    updateBirthDate.setAttribute('max', currentDate);
 
     // fetch patient profile
     fetchPatientData();
@@ -350,4 +501,6 @@ window.addEventListener('load', () => {
     getAppointments();
     // fetch departments
     fetchDepartments();
+    // fetch blood types
+    fetchBloodTypes();
 });

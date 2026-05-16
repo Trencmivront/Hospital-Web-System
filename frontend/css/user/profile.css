@@ -220,7 +220,7 @@ nav{
     transition: 0.3s;
 }
 
-#bookAppointmentContainer{
+#bookAppointmentContainer, #updatePatientContainer{
     display: none;
     height: auto;
     min-height: 100px;

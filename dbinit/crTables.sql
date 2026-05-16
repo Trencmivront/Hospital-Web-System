@@ -22,6 +22,9 @@ CREATE TABLE Doctor(
 	dept_id INT NULL,
 	spec_id INT NOT NULL,
 	img_path varchar(200), 
+	update_date DATE NOT NULL,
+	update_time TIME NOT NULL,
+	CONSTRAINT chk_doctor_gender_name CHECK (gender_name IN ('F', 'M')),
 	CONSTRAINT fk_docTdept FOREIGN KEY (dept_id)
 	REFERENCES Department(dept_id)
 	ON UPDATE CASCADE ON DELETE SET NULL,
@@ -76,6 +79,9 @@ CREATE TABLE Patient(
 	pat_password varchar(256) NOT NULL,
 	-- usr_role will be given by database
 	usr_role varchar(7) NOT NULL,
+	update_date DATE NOT NULL,
+	update_time TIME NOT NULL,
+	CONSTRAINT chk_patient_gender_name CHECK (gender_name IN ('F', 'M')),
 	CONSTRAINT chk_tc_no_length CHECK(LENGTH(tc_no) = 11),
 	CONSTRAINT chk_pat_role CHECK(usr_role='PATIENT'),
 	CONSTRAINT fk_patTbld FOREIGN KEY (blood_id)
@@ -94,6 +100,8 @@ CREATE TABLE Patient_Punishment(
 	punishment_date DATE NOT NULL,
 	patient_id INT NOT NULL,
 	punishment_id INT NOT NULL,
+	update_date DATE NOT NULL,
+	update_time TIME NOT NULL,
 	PRIMARY KEY (patient_id, punishment_id, punishment_date),
 	CONSTRAINT fk_pat_pun_to_pat FOREIGN KEY (patient_id)
 	REFERENCES Patient(patient_id)
@@ -108,6 +116,8 @@ CREATE TABLE Appointment(
 	patient_id INT NOT NULL,
 	doctor_schedule_id INT NOT NULL UNIQUE,
 	ap_status varchar(10) NOT NULL,
+	update_date DATE NOT NULL,
+	update_time TIME NOT NULL,
 	CONSTRAINT fk_appTpat FOREIGN KEY (patient_id)
 	REFERENCES Patient(patient_id)
 	ON UPDATE CASCADE ON DELETE CASCADE,
@@ -121,6 +131,8 @@ CREATE TABLE Treatment(
 	treatment_id INT PRIMARY KEY AUTO_INCREMENT,
 	appointment_id INT NOT NULL,
 	icd10_code varchar(10) NOT NULL,
+	update_date DATE NOT NULL,
+	update_time TIME NOT NULL ,
 	CONSTRAINT fk_treTapp FOREIGN KEY (appointment_id)
 	REFERENCES Appointment(appointment_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
@@ -130,6 +142,9 @@ CREATE TABLE Bill(
 	bill_id INT PRIMARY KEY AUTO_INCREMENT,
 	treatment_id INT NOT NULL,
 	cost DECIMAL(10, 2),
+	is_paid BOOL NOT NULL,
+	update_date DATE NOT NULL,
+	update_time TIME NOT NULL,
 	CONSTRAINT fk_bilTtre FOREIGN KEY (treatment_id)
 	REFERENCES Treatment(treatment_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
@@ -140,5 +155,7 @@ CREATE TABLE Admin(
 	username varchar(50) NOT NULL,
 	ad_password varchar(256) NOT NULL,
 	usr_role varchar(7) NOT NULL,
+	update_date DATE NOT NULL,
+	update_time TIME NOT NULL,
 	CONSTRAINT chk_ad_role CHECK(usr_role='ADMIN')
 );

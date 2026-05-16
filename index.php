@@ -5,6 +5,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once 'vendor/autoload.php';
 
+// function to check if string contains special characters or numbers
+function is_string_text(string $str) : bool {
+    return preg_match('/[^a-zA-Z]/', $str) == 0;
+}
+// '^' symbol means "don't count" in regex format
+function is_string_number(string $str) : bool{
+    return preg_match('/[^0-9]/', $str) == 0;
+}
 // Routing system
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

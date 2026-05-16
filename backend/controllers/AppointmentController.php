@@ -35,7 +35,13 @@
                 case 'create' :{
                     $createAppointment = new CreateAppointment();
                     $data = $createAppointment->execute($pdo);
-                    return responseEntity($data, 201);
+                    echo responseEntity($data, 201);
+                }
+                break;
+                case 'delete' :{
+                    $deleteAppointment = new DeleteAppointmentById();
+                    $data = $deleteAppointment->execute($pdo);
+                    echo responseEntity($data, 200);
                 }
                 break;
                 default:
