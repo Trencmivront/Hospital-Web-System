@@ -28,6 +28,7 @@ $routes = [
     'register'    => 'frontend/html/global/registration.html',
     'profile'     => 'frontend/html/user/profile.html',
     'q&a'         => 'frontend/html/global/q&a.html',
+    'contact'     => 'frontend/html/global/contact.html'
 ];
 
 // Check if we have given url path in html routes
