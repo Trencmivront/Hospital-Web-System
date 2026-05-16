@@ -18,7 +18,8 @@ const createDepartmentContainerHtmls = (dataSet) => {
     dataSet.forEach(data => {
         departmentsContainer.innerHTML += `
             <div class='dept-card extend-container'>
-                <button class='extendbtn'>
+                <button class='extendbtn' style='width: 90%; display: flex;
+                flex-direction; row; flex-wrap:wrap; margin-left: 20px;'>
                     <div class="dept-icon-circle">
                         ${data.dept_name.charAt(0)}
                     </div>
