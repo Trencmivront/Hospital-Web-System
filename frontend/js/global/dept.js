@@ -1,9 +1,9 @@
-const leftDeptContainer = document.getElementById("left-dept-container-div");
-const rightDeptContainer = document.getElementById("right-dept-container-div");
+const departmentsContainer = document.getElementById("departments-container");
 
 window.addEventListener('load', () => {
 
-    document.getElementById("searchButton").addEventListener("click", () => {
+    document.getElementById("searchButton").addEventListener("click", (e) => {
+        e.preventDefault();
         filterDepartmentsByName();
     });
     listDepartments();
@@ -13,30 +13,21 @@ window.addEventListener('load', () => {
 // adding html elements to main
 const createDepartmentContainerHtmls = (dataSet) => {
     // clearing placeholder first
-        leftDeptContainer.innerHTML = "";
-        rightDeptContainer.innerHTML = "";
+    departmentsContainer.innerHTML = "";
 
-        const line = document.getElementById('vertical-line');
-
-        let itemCount = dataSet.length / 2;
-        let counter = 0;
-
-        dataSet.forEach(data => {
-
-            if(counter < itemCount){
-                leftDeptContainer.innerHTML += "<div class='dept-container-div extend-container'>" +
-                "<button class='extendbtn'><h3><span class='extendbtn-arrow'> > </span>" + data.dept_name + "</h3></button>" +
-                "<div class='extend-item'><p>" + data.descrpt + "</p></div>" +
-                "</div>";
-                counter++;
-            }
-            else{
-                line.style.display = 'block';
-                rightDeptContainer.innerHTML += "<div class='dept-container-div extend-container'>" +
-                "<button class='extendbtn'><h3><span class='extendbtn-arrow'> > </span>" + data.dept_name + "</h3></button>" +
-                "<div class='extend-item'><p>" + data.descrpt + "</p></div>" +
-                "</div>";
-            }
+    dataSet.forEach(data => {
+        departmentsContainer.innerHTML += `
+            <div class='dept-card extend-container'>
+                <button class='extendbtn'>
+                    <div class="dept-icon-circle">
+                        ${data.dept_name.charAt(0)}
+                    </div>
+                    <h3><span class='extendbtn-arrow'> > </span>${data.dept_name}</h3>
+                </button>
+                <div class='extend-item'>
+                    <p>${data.descrpt}</p>
+                </div>
+            </div>`;
     });
     addEventListenerToButtons();
 }
@@ -46,24 +37,24 @@ const addEventListenerToButtons = () => {
     const buttons = document.querySelectorAll(".extendbtn");
     buttons.forEach(button => {
         button.addEventListener("click", () => {
-            let a = button.classList.toggle('active');
+            button.classList.toggle('active');
+            // Toggle active class on parent for easier styling
+            button.closest('.dept-card').classList.toggle('active');
         })
     })
 }
 
 const listDepartments = async () => {
     // placeholder until all departments fetched
-    rightDeptContainer.innerHTML = '';
-    leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
+    departmentsContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
 
     try{
         const response = await fetch("/api/department/all");
 
-        // show error upon error?...
         if(!response.ok){
             const error = await response.json();
             console.log("error");
-            leftDeptContainer.innerHTML = `<p style="color:red;">${error}</p>`;
+            departmentsContainer.innerHTML = `<p style="color:red;">${error}</p>`;
             return;
         }
 
@@ -76,25 +67,21 @@ const listDepartments = async () => {
 
 const filterDepartmentsByName = async () => {
 
-    rightDeptContainer.innerHTML = "";
-    leftDeptContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
+    departmentsContainer.innerHTML = '<p class="placeholder">Loading departments…</p>';
 
     try{
-        // TODO: Fetch departments by name
         const response = await fetch(`/api/department/byName?name=${document.getElementById("searchField").value}`);
         
-        // show error upon error?...
         if(!response.ok){
             const error = await response.json();
             console.log(error);
-            leftDeptContainer.innerHTML = `<p style="color:red;">${error}</p>`;
+            departmentsContainer.innerHTML = `<p style="color:red;">${error}</p>`;
             return;
         }
         
         const dataSet = await response.json();
         createDepartmentContainerHtmls(dataSet);
     }catch(error){
-        // I would like to show all departments if filter won't work
         listDepartments();
         alert("Filter Error");
         console.log(error);

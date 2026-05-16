@@ -43,21 +43,18 @@
     </nav>
     
     <div id="filterContainer">
-        <table id="searchTableItem">
-            <tr><td><input id="searchField" type="search" placeholder="Search By Name" title="search"></td>
-            <td>
-              <button id="searchButton">
-                <img src="/imgs/search_icon.jpg" style="height: 34px; width: 34px;border-radius: 10px;">
-              </button>
-            </td>
-        </tr>
-        </table>
+        <form class="search-wrapper">
+            <input id="searchField" type="search" placeholder="Search departments by name..." title="search">
+            <button id="searchButton" type="submit">
+                <img src="/imgs/search_icon.jpg" alt="Search">
+            </button>
+        </form>
     </div>
 
-    <main class="main-dept-container flex-wrap-space" style="justify-content: space-evenly;">
-        <div id="left-dept-container-div"></div>
-        <div id="vertical-line" class="vertical_line"></div>
-        <div id="right-dept-container-div"></div>
+    <main class="departments-grid-wrapper">
+        <div id="departments-container" class="departments-grid">
+            <!-- Departments will be loaded here dynamically -->
+        </div>
     </main>
 
     <section class="social-section">
@@ -77,8 +74,8 @@
         </div>
         <div class="footer-div">
             <h3><u>Quick Links</u></h3>
-            <p><a>Doctors</a></p>
-            <p><a href="departments">Departments</a></p>
+            <p><a href="/doctors">Doctors</a></p>
+            <p><a href="/departments">Departments</a></p>
         </div>
         <div class="footer-div">
             <h3><u>Contact</u></h3>

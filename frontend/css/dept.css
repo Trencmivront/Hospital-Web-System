@@ -1,88 +1,169 @@
-.main-dept-container { 
-    border: 1px solid #707070;
-    flex-direction: row;
-    flex-wrap: wrap;
-    min-width: 60%;
-    margin: 20px auto 100px auto;
-    padding: 10px;
-}
-.dept-container-div{
-    display: flex;
-    flex-direction: column;
-}
-/*Placeholder style text*/
-.placeholder {
-    color: #555;
-    margin: 0;
-}
+/* Departments Page Styling */
 
-#filterContainer{
+#filterContainer {
     display: flex;
     justify-content: center;
-    margin: 20px 0px 20px 0px;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f0f4fa 0%, #e8f0f7 100%);
 }
 
-#searchTableItem{
-    border: solid 3px;
-    border-radius: 5px;
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
 }
 
-#searchButton{
-    background-color:transparent;
-    border-radius: 10px;
-    border: none;
-    transition: box-shadow 0.2s;
-}
-
-#searchButton:hover{
-    box-shadow: 1px 1px 5px;
-    transition: box-shadow 0.2s;
-}
-
-#searchButton:active{
-    box-shadow: none;
-    transition: box-shadow 0.1s;
+.search-wrapper:focus-within {
+    box-shadow: 0 4px 20px rgba(0, 186, 205, 0.15);
+    border-color: var(--primary-color);
 }
 
 #searchField {
-    width: 300px;
-    height: 34px;
-    /*Boldness of font*/
-    font-weight: 1000;
-    padding: 4px 8px;
+    flex: 1;
     border: none;
-    border-radius: 5px;
-    background-color: rgb(255, 255, 255);
-    transition: box-shadow 0.2s, border-color 0.5s;
-}
-
-#searchField:focus {
-    /*I want to change property of table instead of text field*/
+    padding: 12px;
+    font-size: 16px;
     outline: none;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
-    border-color: darkturquoise;
+    background: transparent;
 }
 
-#lang {
-    list-style: none;
+#searchButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+#searchButton:hover {
+    transform: scale(1.1);
+}
+
+#searchButton img {
+    height: 24px;
+    width: 24px;
+    border-radius: 5px;
+}
+
+.departments-grid-wrapper {
+    max-width: 1200px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+}
+
+.departments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.dept-card {
+    background: white;
+    border-radius: 15px;
+    border: 1px solid #f0f0f0;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.dept-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary-color);
+}
+
+.dept-card.active {
+    grid-row: span 2;
+}
+
+.extendbtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
     padding: 0;
-    margin: 0;
+    margin-bottom: 0;
 }
 
-@media (max-width: 720px) {
-    .main-dept-container{
-        width: 90%;
-        flex-direction: column;
-    }
-    .dept-container-div{
-        width: auto;
-    }
+.dept-icon-circle {
+    min-width: 50px;
+    width: 50px;
+    height: 50px;
+    background: var(--nav-bg);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-color);
+    box-shadow: 0 4px 10px rgba(133, 226, 245, 0.3);
+}
 
-    .vertical-line{
-        display: none;
-    }
-    #searchTableItem {
-        width: 90%;
-    }
+.extendbtn h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
+.extendbtn-arrow {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+.extend-item {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    margin-top: 0;
+    background: transparent;
+    padding: 0;
+}
+
+.dept-card.active .extend-item {
+    max-height: 500px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.extend-item p {
+    margin: 0;
+    line-height: 1.6;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.placeholder {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .departments-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-wrapper {
+        max-width: 100%;
+    }
 }
