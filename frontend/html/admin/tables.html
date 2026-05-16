@@ -1,0 +1,79 @@
+!<!DOCTYPE html>
+<html lang="en">          
+    <head>      
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin - tables</title>
+  <link rel="stylesheet" href="/frontend/css/global.css">
+  <link rel="stylesheet" href="/frontend/css/admin.css">
+  <script src="/frontend/js/global/global.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+  <script src="/frontend/js/global/admin-dashboard.js" defer></script>   
+    </head>
+    <body>  
+        <header class="page-header flex-wrap-space">
+            <div class="brand flex-center-content"><h1>Admin</h1></div>
+            <div class="header-actions"><a class="logButton" href="/">View Site</a></div>
+        </header>       
+        <div class="admin-shell">
+            <aside class="admin-nav">
+                <div class="admin-brand">Nova<span>Admin</span></div>
+                <div class="admin-banner">
+                    <div class="banner-top">
+                        <span class="banner-badge">Tables</span>
+                        <h3>Manage hospital data</h3>
+                    </div>
+                    <p>View and edit records for patients, doctors, appointments and more.</p>
+                    <div class="banner-row">
+                        <div><strong>1,234</strong><span>Total Records</span></div>
+                        <div><strong>56</strong><span>Updated Today</span></div>    
+                    </div>
+                </div>
+                <ul>
+                    <li><a href="/frontend/html/admin/dashboard.html">Dashboard</a></li>
+                    <li><a href="/frontend/html/admin/patients.html">Patients</a></li>
+                    <li><a href="/frontend/html/admin/appointments.html">Appointments</a></li>
+                    <li><a href="/frontend/html/admin/doctors.html">Doctors</a></li>
+                    <li><a href="/frontend/html/admin/tables.html" class="active">Tables</a></li>
+                </ul>
+            </aside>
+            <main class="admin-main">
+                <header class="admin-topbar">
+                    <div class="search">
+                        <input placeholder="Search records...">
+                    </div>
+                    <div class="top-actions">
+                        <button class="icon-btn">🔔</button>
+                        <button class="icon-btn">⚙️</button>
+                        <div class="avatar">A</div>
+                    </div>
+                </header>
+                <section class="grid">
+                    <div class="panel panel-large">
+                        <h2>Data Tables</h2>
+                        <p>View and manage all hospital records in one place.</p>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dataTableBody">
+                                    <!-- Dynamic rows will be inserted here -->
+                                </tbody>
+                            </table>
+                        </div>  
+                    </div>
+                </section>      
+            </main>
+        </div>
+    </body>
+</html>
+
+
+
