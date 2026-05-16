@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Nova Hospital</title>
+    <link rel="stylesheet" href="../../css/global.css?v=1.2">
+    <link rel="stylesheet" href="../../css/style.css?v=1.2">
+    <script src="../../js/global/global.js" defer></script>
+</head>
+<body class="page-shell">
+    
+    <header class="page-header flex-wrap-space">
+        <div class="brand flex-center-content">
+            <h1 title="hospital name">HOSPITAL</h1>
+            <img src="/imgs/novaLogo.avif" alt="Nova Hospital Logo">   
+        </div>      
+
+        <div class="header-actions flex-center-content">
+            <a class="logButton" href="/login">Log In</a>
+            <a class="logButton" style="background-color: palegreen;" href="/register">Register</a>
+            
+            <div class="dropdown">
+                <button title="lang" class="dropbtn" type="button">EN</button>
+                <ul id="lang" class="dropdown-content">
+                    <li><a href="#">TR</a></li>
+                    <li><a href="#">EN</a></li>
+                    <li><a href="#">AR</a></li>
+                </ul>
+            </div>
+        </div> 
+    </header>       
+
+    <nav id="nav_container" class="flex-center-content" aria-label="Hospital navigation">
+        <button id="close_button">☰</button>
+        <a href="/">Home</a>
+        <a href="/departments">Departments</a>
+        <a href="/doctors">Doctors</a>
+        <a href="/about">About Us</a>
+        <a href="/q&a">Q&A</a>
+        <a href="/contact" style="background-color: rgba(255, 255, 255, 1);">Contact</a>                    
+    </nav>
+
+    <main class="container">
+        <div class="map-container">
+            <h2>Our Location</h2>
+            <iframe
+                src="https://maps.google.com/maps?q=Pa%C5%9Fakonak%20Mah.%20Sa%C4%9Fl%C4%B1k%20Cad.%20No:4%20Band%C4%B1rma&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                width="600"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <h1 class="title">Contact Us</h1>
+        <p class="contact-info">
+           Paşakonak Mah. Sağlık Cad. No:4<br>
+           Bandırma / Balıkesir<br>
+           Turkey
+        </p>
+        <div class="contact-details">
+            <p><strong>Phone:</strong> <a href="tel:+904441527">444 15 27</a></p>
+            <p><strong>Email:</strong>          
+                <a href="mailto:info@novahospital.com">info@novahospital.com</a>
+            </p>
+        </div>
+    </main>
+
+    <form class="contact-form container" action="/submit-contact" method="POST">
+        <h2>Send Us a Message</h2>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+  
+        <label for="telephone">Phone Number:</label>
+        <input type="tel" id="telephone" name="telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>    
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <section class="social-section container">
+        <h2>Connect With Nova Hospital</h2>
+        <div class="social-icons flex-center-content">
+            <a href="#"><img src="/imgs/Facebook.png" alt="Facebook"></a>
+            <a href="#"><img src="/imgs/instagram.jpg" alt="Instagram"></a>
+            <a href="#"><img src="/imgs/X-logo.jpg" alt="X (Twitter)"></a>
+            <a href="#"><img src="/imgs/youtube.avif" alt="YouTube"></a>
+        </div>  
+    </section>
+         
+    <footer class="footer flex-wrap-space">
+        <div class="footer-div">
+            <h3>About Nova</h3>
+            <p>Modern healthcare with trusted medical services.</p>
+        </div>
+        <div class="footer-div">
+            <h3>Quick Links</h3>
+            <p><a href="/doctors">Doctors</a></p>
+            <p><a href="/departments">Departments</a></p>       
+        </div>
+        <div class="footer-div">
+            <h3>Contact</h3>
+            <p><a href="https://maps.google.com" target="_blank" rel="noopener">Balıkesir, Türkiye</a></p>
+            <p>444 15 27</p>
+            <p><a href="mailto:info@novahospital.com">info@novahospital.com</a></p>        
+        </div>
+    </footer>   
+
+</body>
+</html>
