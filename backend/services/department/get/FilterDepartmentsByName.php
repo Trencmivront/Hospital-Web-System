@@ -8,7 +8,7 @@ class FilterDepartmentsByName {
             $name = htmlspecialchars($name);
 
             $query = "SELECT dept_name, descrpt FROM Department
-            WHERE dept_name LIKE :name";
+            WHERE dept_name LIKE :name ORDER BY dept_name";
 
             try {
                 $statement = $pdo->prepare($query);

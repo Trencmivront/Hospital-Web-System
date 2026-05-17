@@ -1,5 +1,8 @@
 window.addEventListener('load', () => {
 
+    // check if the patient has existing jwt
+    checkPatientLoggedIn();
+
     // Initializing fields
     const emailField = document.getElementById("email");
     const passwordField = document.getElementById("password");
@@ -147,3 +150,22 @@ window.addEventListener('load', () => {
     }
 
 })
+
+const checkPatientLoggedIn = async () => {
+    try{
+        const response = await fetch("/api/patient/byId");
+        if (response.status === 403) {
+            return;
+        }
+        if (!response.ok) {
+            console.error(response);
+            return;
+        }
+
+        // if it is okay, then redirect to the login page
+        window.location = "/profile";
+        return;
+    }catch(error){
+        console.log(error);
+    }
+}
