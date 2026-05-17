@@ -9,7 +9,7 @@ CREATE TABLE Department(
 -- This is new table
 CREATE TABLE Specialization(
 	spec_id INT PRIMARY KEY AUTO_INCREMENT,
-	name varchar(100) NOT NULL UNIQUE
+	spec_name varchar(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE Doctor(

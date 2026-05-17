@@ -34,7 +34,7 @@ INSERT INTO Department (dept_name, descrpt, img_path) VALUES
 ('Psychiatry', 'Mental health diagnosis and treatment.', 'imgs/deptImgs/psychiatry.jpg');
 
 -- 3. Specialization
-INSERT INTO Specialization (name) VALUES
+INSERT INTO Specialization (spec_name) VALUES
 ('Interventional Cardiology'),
 ('Electrophysiology'),
 ('Epileptology'),

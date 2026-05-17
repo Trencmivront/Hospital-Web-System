@@ -22,9 +22,9 @@ const listDoctors = (doctors) => {
     doctors.forEach(d => {
         const doctorCard = `<div class="card">
             <h3>${d.first_name} ${d.last_name}</h3>
-            <p>${d.name}</p>
+            <p>${d.spec_name}</p>
         </div>`;
-        doctorListContainer.appendChild(createElementFromHTML(doctorCard));    
+        doctorListContainer.innerHTML += doctorCard;    
     });
 
 

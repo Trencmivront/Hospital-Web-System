@@ -3,7 +3,8 @@
 class GetDoctors {
     function execute(PDO $pdo) : array{
 
-        $query = 'SELECT d.doctor_id, d.first_name, d.last_name FROM Doctor d';
+        $query = 'SELECT d.doctor_id, d.first_name, d.last_name, s.spec_name FROM Doctor d
+        RIGHT JOIN Specialization s ON s.spec_id = d.spec_id';
 
         try{
             $result = $pdo->query($query);
