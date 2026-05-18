@@ -18,6 +18,12 @@ class PatientController {
         global $pdo;
         $data = [];
         switch($action){
+            case 'all' : {
+                $getAllPatients = new GetAllPatients();
+                $data = $getAllPatients->execute($pdo);
+                echo responseEntity($data);
+            }
+            break;
             case 'create' : {
                 // Implementation for registration
             };

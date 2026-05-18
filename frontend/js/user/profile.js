@@ -98,7 +98,7 @@ window.addEventListener('load', () => {
                         return;
                     }
 
-                    if (!response.ok) {
+                    if (response.status !== 204) {
                         alert("Could not cancel appointment");
                         return;
                     }

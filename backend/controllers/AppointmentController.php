@@ -26,6 +26,12 @@
             global $pdo;
             $data = [];
             switch($action){
+                case 'all':{
+                    $getAllAppointments = new GetAllAppointments();
+                    $data= $getAllAppointments->execute($pdo);
+                    echo responseEntity($data);
+                }   
+                break;
                 case 'ofPatient':{
                     $getAppointmentsOfPatient = new GetAppointmentsOfPatient();
                     $data = $getAppointmentsOfPatient->execute($pdo);
@@ -41,7 +47,7 @@
                 case 'delete' :{
                     $deleteAppointment = new DeleteAppointmentById();
                     $data = $deleteAppointment->execute($pdo);
-                    echo responseEntity($data, 200);
+                    echo responseEntity('', 204);
                 }
                 break;
                 case 'getToday' :{

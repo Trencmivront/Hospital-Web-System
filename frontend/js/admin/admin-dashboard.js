@@ -1,9 +1,7 @@
 window.addEventListener('load', ()=>{
   
   const getAppointments = async () => {
-
     try{
-
       const response = await fetch("/api/appointment/getToday");
 
       if(response.status === 403){
@@ -18,26 +16,82 @@ window.addEventListener('load', ()=>{
       }
 
       const dataSet = await response.json();
-
       document.getElementById("todaysAppointmentCount").textContent = dataSet.length;
-
     }catch(error){
-
     }
+  }
 
+  const getPatients = async () => {
+    try{
+      const response = await fetch("/api/patient/all");
+
+      if(response.status === 403){
+        alert("please go away");
+        window.location = "/";
+        return;
+      }
+
+      else if (!response.ok){
+        showError(response);
+        return;
+      }
+
+      const dataSet = await response.json();
+      document.getElementById("totalPatientCount").textContent = dataSet.length;
+    }catch(error){
+      console.error(error);
+    }
+  }
+
+  const getDoctors = async () => {
+    try {
+      const response = await fetch("/api/doctor/all");
+
+      if (!response.ok) {
+        showError(response);
+        return;
+      }
+
+      const dataSet = await response.json();
+      document.getElementById("onDutyDoctors").textContent = dataSet.length;
+    } catch (error) {
+      console.error(error);
+    }
   }
   
   
   // Bar chart (Monthly Sales)
   const barCtx = document.getElementById('barChart');
   if(barCtx){
-    new Chart(barCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-        datasets:[{label:'Sales',data:[120,200,150,220,180,240,300,260,200,320,280,200],backgroundColor:'#4f46e5'}]
-      },
-      options:{responsive:true,plugins:{legend:{display:false}}}
+
+    fetch('/api/bill/monthlyRevenue').then(response => {
+      if(response.status === 403){
+        userIsNotAuthenticated();
+        return;
+      }
+      else if (!response.ok){
+        showError(response);
+        return;
+      }
+
+      return response.json();
+    }).then(dataSet => {
+      if(dataSet){
+        // change the starting point of array of size 12 as index 0
+        const monthlyData = Array(12).fill(0);
+        dataSet.forEach(item => {
+          monthlyData[item.month - 1] = parseFloat(item.monthly_revenue);
+        });
+
+        new Chart(barCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            datasets:[{label:'Sales',data:monthlyData,backgroundColor:'#4f46e5'}]
+          },
+          options:{responsive:true,plugins:{legend:{display:false}}}
+        });
+      }
     });
   }
 
@@ -84,8 +138,14 @@ window.addEventListener('load', ()=>{
     console.log(response);
     const message = await response.json();
   }
+  const userIsNotAuthenticated = () => {
+    alert("Please Go Away");
+    window.location = "/";
+  }
 
   getAppointments();
+  getPatients();
+  getDoctors();
 
 }
 );

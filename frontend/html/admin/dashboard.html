@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Admin - Dashboard</title>
-    <link rel="stylesheet" href="/frontend/css/global.css">
+    <link rel="stylesheet"  href="/frontend/css/global.css">
     <link rel="stylesheet" href="/frontend/css/admin.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="/frontend/js/global/global.js" defer></script>
@@ -60,18 +60,15 @@
                 </div>
                 <div class="card">
                     <h4>Active Patients</h4>
-                    <p class="big">1,234</p>
-                    <small>+2.4% this week</small>
+                    <p class="big" id="totalPatientCount"></p>
                 </div>
                 <div class="card">
                     <h4>On-duty Doctors</h4>
-                    <p class="big">18</p>
-                    <small>3 teams</small>
+                    <p class="big" id="onDutyDoctors"></p>
                 </div>
                 <div class="card">
-                    <h4>Revenue</h4>
-                    <p class="big">$12,450</p>
-                    <small>Monthly</small>
+                    <h4>Monthly Revenue</h4>
+                    <p class="big" id="avarageMonthlyRevenue"></p>
                 </div>
             </section>
 
