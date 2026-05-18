@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Admin Login - Nova Hospital</title>
+    <link rel="stylesheet" href="/frontend/css/global.css">
+    <link rel="stylesheet" href="/frontend/css/admin.css">
+    <script src="/frontend/js/admin/login.js"></script>
+    <style>
+        .login-page {
+            min-height: 100vh;
+            background: #f4f7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+        }
+        .login-card .panel {
+            padding: 32px;
+            box-shadow: 0 12px 30px rgba(29, 63, 166, 0.08);
+            border: 1px solid #eee;
+        }
+        .login-card h2 {
+            margin: 0 0 24px;
+            color: #222;
+            text-align: center;
+            font-size: 22px;
+        }
+        .login-brand {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #333;
+        }
+        .login-brand span {
+            color: #1d3fa6;
+            margin-left: 4px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #e6e6e6;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #1d3fa6;
+            box-shadow: 0 0 0 3px rgba(29, 63, 166, 0.1);
+        }
+        .login-card .btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .back-home:hover {
+            color: #1d3fa6;
+        }
+    </style>
+</head>
+<body class="login-page">
+    <div class="login-card">
+        <div class="login-brand">Nova<span>Admin</span></div>
+        <div class="panel">
+            <h2>Admin Login</h2>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter admin username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter admin password" required>
+                </div>
+                <div id="errorMessage"></div>
+                <button type="submit" class="btn">Sign In to Dashboard</button>
+            </form>
+        </div>
+        <a href="/" class="back-home">&larr; Return to Hospital Site</a>
+    </div>
+</body>
+</html>

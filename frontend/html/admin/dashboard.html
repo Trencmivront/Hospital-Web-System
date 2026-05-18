@@ -10,7 +10,7 @@
     <script src="/frontend/js/global/global.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-    <script src="/frontend/js/global/admin-dashboard.js" defer></script>
+    <script src="/frontend/js/admin/admin-dashboard.js" defer></script>
 </head>
 <body>
     <header class="page-header flex-wrap-space">
@@ -31,16 +31,6 @@
                     <h3>Hospital Insights</h3>
                 </div>
                 <p>Track patients, appointments and staff in one place.</p>
-                <div class="banner-row">
-                    <div>
-                        <strong>24</strong>
-                        <span>Doctors</span>
-                    </div>
-                    <div>
-                        <strong>128</strong>
-                        <span>Today</span>
-                    </div>
-                </div>
             </div>
             <ul>
                 <li><a href="/frontend/html/admin/dashboard.html" class="active">Dashboard</a></li>
@@ -66,8 +56,7 @@
             <section class="cards">
                 <div class="card">
                     <h4>Appointments Today</h4>
-                    <p class="big">42</p>
-                    <small>+8% from yesterday</small>
+                    <p class="big" id="todaysAppointmentCount"></p>
                 </div>
                 <div class="card">
                     <h4>Active Patients</h4>
@@ -90,11 +79,6 @@
                 <div class="panel panel-large">
                     <h3>Monthly Sales</h3>
                     <canvas id="barChart" height="160"></canvas>
-                </div>
-
-                <div class="panel panel-medium">
-                    <h3>Target Progress</h3>
-                    <canvas id="doughnutChart" height="160"></canvas>
                 </div>
 
                 <div class="panel panel-half">

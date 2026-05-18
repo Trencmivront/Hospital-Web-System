@@ -28,7 +28,8 @@ $routes = [
     'register'    => 'frontend/html/global/registration.html',
     'profile'     => 'frontend/html/user/profile.html',
     'q&a'         => 'frontend/html/global/q&a.html',
-    'contact'     => 'frontend/html/global/contact.html'
+    'contact'     => 'frontend/html/global/contact.html',
+    'admin'       => 'frontend/html/admin/login.html'
 ];
 
 // Check if we have given url path in html routes
@@ -48,7 +49,7 @@ if (array_key_exists($parts[1], $routes)) {
 if ($parts[1] === 'api') {
     // what is second part?
     $controllerName = $parts[2] ?? ''; // e.g., "patient", "doctor"
-    // second part is the action
+    // third part is the action
     $action = $parts[3] ?? '';
     // Map URL names to Class names
     $controllerMap = [
@@ -59,6 +60,7 @@ if ($parts[1] === 'api') {
         'blood'       => ['file' => 'BloodTypeController.php',   'class' => 'BloodTypeController'],
         'schedule'    => ['file' => 'ScheduleController.php',    'class' => 'ScheduleController'],
         'punishment'  => ['file' => 'PunishmentController.php',  'class' => 'PunishmentController'],
+        'admin'       => ['file' => 'AdminController.php',       'class' => 'AdminController'],
     ];
 
     if (array_key_exists($controllerName, $controllerMap)) {

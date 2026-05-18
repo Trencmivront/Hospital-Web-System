@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/frontend/css/admin.css">
   <script src="/frontend/js/global/global.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
-  <script src="/frontend/js/global/admin-dashboard.js" defer></script>
+  <script src="/frontend/js/admin/admin-dashboard.js" defer></script>
 </head>
 <body>
   <header class="page-header flex-wrap-space">
@@ -25,10 +25,6 @@
           <h3>Manage patient records</h3>
         </div>
         <p>Monitor admissions, active cases and recovery trends.</p>
-        <div class="banner-row">
-          <div><strong>1,234</strong><span>Total Patients</span></div>
-          <div><strong>24</strong><span>New Today</span></div>
-        </div>
       </div>
       <ul>
         <li><a href="/frontend/html/admin/dashboard.html">Dashboard</a></li>
@@ -54,21 +50,12 @@
         <div class="card"><h4>Total Patients</h4><p class="big">1,234</p><small>Across all departments</small></div>
         <div class="card"><h4>New Today</h4><p class="big">24</p><small>Admissions</small></div>
         <div class="card"><h4>Active Cases</h4><p class="big">284</p><small>Under treatment</small></div>
-        <div class="card"><h4>Average Stay</h4><p class="big">4.2d</p><small>Hospital days</small></div>
       </section>
 
       <section class="grid">
         <div class="panel panel-large">
           <h3>Admissions by Department</h3>
           <canvas id="patientsBarChart" height="180"></canvas>
-        </div>
-        <div class="panel panel-half">
-          <h3>Admissions Trend</h3>
-          <canvas id="patientsLineChart" height="180"></canvas>
-        </div>
-        <div class="panel panel-half">
-          <h3>Patient Status</h3>
-          <canvas id="patientsDoughnutChart" height="180"></canvas>
         </div>
         <div class="panel panel-large">
           <div class="toolbar"><h2>Recent Patients</h2><button class="btn">Add Patient</button></div>

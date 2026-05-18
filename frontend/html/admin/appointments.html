@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/frontend/css/admin.css">
   <script src="/frontend/js/global/global.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
-  <script src="/frontend/js/global/admin-dashboard.js" defer></script>
+  <script src="/frontend/js/admin/admin-dashboard.js" defer></script>
 </head>
 <body>
   <header class="page-header flex-wrap-space">
@@ -25,16 +25,6 @@
           <h3>Today's Schedule</h3>
         </div>
         <p>Manage upcoming bookings and patient check-ins from one place.</p>
-        <div class="banner-row">
-          <div>
-            <strong>08</strong>
-            <span>Pending</span>
-          </div>
-          <div>
-            <strong>14</strong>
-            <span>Confirmed</span>
-          </div>
-        </div>
       </div>
       <ul>
         <li><a href="/frontend/html/admin/dashboard.html">Dashboard</a></li>
@@ -65,20 +55,9 @@
       </section>
 
       <section class="grid">
-        <div class="panel panel-large">
-          <h3>Appointment Trends</h3>
-          <canvas id="appointmentsLineChart" height="180"></canvas>
-        </div>
         <div class="panel panel-half">
           <h3>Doctor Utilization</h3>
           <canvas id="appointmentsBarChart" height="180"></canvas>
-        </div>
-        <div class="panel panel-half">
-          <h3>Today's Highlights</h3>
-          <div class="card" style="padding:18px;margin:0;border:none;box-shadow:none;background:#f8fbff;">
-            <p><strong>8</strong> appointments pending</p>
-            <p><strong>3</strong> urgent reschedules</p>
-          </div>
         </div>
         <div class="panel panel-large">
           <div class="toolbar"><h2>Upcoming Appointments</h2><button class="btn">Add New</button></div>
