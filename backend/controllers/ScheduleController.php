@@ -14,6 +14,18 @@ class ScheduleController {
         global $pdo;
         $data = [];
         switch($action){
+            case 'all': {
+                $getSchedules = new GetSchedules();
+                $data = $getSchedules->execute($pdo);
+                echo responseEntity($data);
+            }
+            break;
+            case 'allActive': {
+                $getAllActiveSchedules = new GetAllActiveSchedules();
+                $data = $getAllActiveSchedules->execute($pdo);
+                echo responseEntity($data);
+            }
+            break;
             case 'byDate': {
                 $getActiveScheduleByDate = new GetActiveScheduleByDate();
                 $data = $getActiveScheduleByDate->execute($pdo);

@@ -97,7 +97,7 @@ INSERT INTO Doctor (first_name, last_name, phone_num, email, gender_name, dept_i
 ('Murat', 'Aydin', '05550000007', 'murat.aydin@nova.com', 'M', 7, 11, NULL, '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
 ('Fatma', 'Arslan', '05550000008', 'fatma.arslan@nova.com', 'F', 8, 12, NULL, '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
 ('Can', 'Yildiz', '05550000009', 'can.yildiz@nova.com', 'M', 1, 2, NULL, '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Selin', 'Koc', '05550000010', 'selin.koc@nova.com', 'F', 2, 4, NULL, '2026-05-16 10:00:00', '2026-05-16 10:00:00');
+('Selin', 'Koc', '05550000010', 'selin.koc@nova.com', 'F', 2, 4, NULL, '2026-05-16 10:00:00', '2026-05-20 10:00:00');
 
 -- 9. Patient
 -- Password requirement: length >= 8, tc_no: 11 chars
@@ -111,7 +111,7 @@ INSERT INTO Patient (first_name, last_name, tc_no, birth_date, gender_name, bloo
 ('Asli', 'Gul', '77777777777', '1995-12-25', 'F', 1, '05440000007', 'asli.gul@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
 ('Emre', 'Tas', '88888888888', '1982-06-18', 'M', 4, '05440000008', 'emre.tas@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
 ('Gizem', 'Bal', '99999999999', '2001-02-14', 'F', 6, '05440000009', 'gizem.bal@email.com', FALSE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Kerem', 'Sol', '10101010101', '1970-10-10', 'M', 7, '05440000010', 'kerem.sol@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00');
+('Kerem', 'Sol', '10101010101', '1970-10-10', 'M', 7, '05440000010', 'kerem.sol@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-20 10:00:00');
 
 -- 10. Doctor_Schedule (Assigning slots to doctors)
 INSERT INTO Doctor_Schedule (schedule_id, doctor_id, is_active, updated_at, created_at) VALUES

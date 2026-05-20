@@ -1,18 +1,6 @@
 
 window.addEventListener('load', ()=>{
 
-  const patientsBarCtx = document.getElementById('patientsBarChart');
-  if (patientsBarCtx) {
-    new Chart(patientsBarCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Cardiology','Orthopedics','General','ER','Pediatrics'],
-        datasets: [{label: 'Admissions', data: [58, 42, 31, 76, 52], backgroundColor: '#2563eb'}]
-      },
-      options: {responsive: true, plugins: {legend: {display: false}}}
-    });
-  }
-
   const appointmentsBarCtx = document.getElementById('appointmentsBarChart');
   if (appointmentsBarCtx) {
     new Chart(appointmentsBarCtx, {

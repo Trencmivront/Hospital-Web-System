@@ -52,3 +52,7 @@ export const getDoctors = () => {
 export const getMonthlyRevenue = () => {
     return fetchData("/api/bill/monthlyRevenue");
 }
+
+export const getActiveSchedules = () => {
+    return fetchData("/api/schedule/allActive");
+}

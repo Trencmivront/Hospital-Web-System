@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/frontend/css/admin.css">
   <script src="/frontend/js/global/global.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
-  <script src="/frontend/js/admin/admin-dashboard.js" defer></script>
+  <script src="/frontend/js/admin/appointments.js" type="module"></script>
 </head>
 <body>
   <header class="page-header flex-wrap-space">
@@ -45,10 +45,10 @@
       </header>
 
       <section class="cards">
-        <div class="card"><h4>Booked</h4><p class="big">22</p><small>Today</small></div>
-        <div class="card"><h4>Completed</h4><p class="big">14</p><small>Already seen</small></div>
-        <div class="card"><h4>Cancelled</h4><p class="big">02</p><small>Need follow-up</small></div>
-        <div class="card"><h4>Available Slots</h4><p class="big">38</p><small>Remaining</small></div>
+        <div class="card"><h4>Booked</h4><p class="big" id="bookedTodayCount">0</p><small>Today</small></div>
+        <div class="card"><h4>Completed</h4><p class="big" id="completedTodayCount">0</p><small>Already seen</small></div>
+        <div class="card"><h4>Cancelled</h4><p class="big" id="cancelledTodayCount">0</p><small>Need follow-up</small></div>
+        <div class="card"><h4>Available Slots</h4><p class="big" id="availableSlotsCount">0</p><small>Remaining</small></div>
       </section>
 
       <section class="grid">
@@ -57,13 +57,11 @@
           <canvas id="appointmentsBarChart" height="180"></canvas>
         </div>
         <div class="panel panel-large">
-          <div class="toolbar"><h2>Upcoming Appointments</h2><button class="btn">Add New</button></div>
+          <div class="toolbar"><h2>Upcoming Appointments</h2></div>
           <table class="list-table">
-            <thead><tr><th>Time</th><th>Patient</th><th>Doctor</th><th>Department</th><th>Status</th></tr></thead>
-            <tbody>
-              <tr><td>09:00</td><td>Ali Veli</td><td>Dr. Kaya</td><td>Cardio</td><td>Checked-in</td></tr>
-              <tr><td>09:30</td><td>Fatma Y.</td><td>Dr. Demir</td><td>Ortho</td><td>Waiting</td></tr>
-              <tr><td>10:00</td><td>John Doe</td><td>Dr. Smith</td><td>General</td><td>Cancelled</td></tr>
+            <thead><tr><th>ID</th><th>Date</th><th>Time</th><th>Patient</th><th>Doctor</th><th>Department</th><th>Status</th></tr></thead>
+            <tbody id="appointmentsTBody">
+             <!--Fetch from database-->
             </tbody>
           </table>
         </div>

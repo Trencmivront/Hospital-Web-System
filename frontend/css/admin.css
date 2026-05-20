@@ -53,3 +53,17 @@ body{background:#f4f7ff}
 
 @media(max-width:900px){.grid{grid-template-columns:1fr}
 .panel-large,.panel-medium,.panel-half{grid-column:1/2}}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+}
+.status-badge.active { background: #e0f2fe; color: #0369a1; }
+.status-badge.completed { background: #dcfce7; color: #15803d; }
+.status-badge.absent { background: #fee2e2; color: #b91c1c; }
+.status-badge.closed { background: #f3f4f6; color: #374151; }
