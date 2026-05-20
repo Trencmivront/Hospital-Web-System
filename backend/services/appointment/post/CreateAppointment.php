@@ -52,10 +52,10 @@ class CreateAppointment {
             $pdo->beginTransaction();
 
             // First status will always be ACTIVE
-            $query1 = "INSERT INTO Appointment (patient_id, doctor_schedule_id, ap_status)
-                      VALUES (:patient_id, :doctor_schedule_id, 'ACTIVE')";
+            $query1 = "INSERT INTO Appointment (patient_id, doctor_schedule_id, ap_status, updated_at, created_at)
+                      VALUES (:patient_id, :doctor_schedule_id, 'ACTIVE', NOW(), NOW())";
 
-            $query2 = "UPDATE Doctor_Schedule SET is_active=0
+            $query2 = "UPDATE Doctor_Schedule SET is_active=0, updated_at = NOW()
             WHERE doctor_schedule_id= :doctor_schedule_id";
 
             $statement = $pdo->prepare($query1);

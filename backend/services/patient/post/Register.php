@@ -54,8 +54,8 @@ class Register {
 
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-            $query = 'INSERT INTO Patient (first_name, last_name, tc_no, birth_date, gender_name, blood_id, phone_num, email, is_email_verified, pat_password, usr_role)
-                      VALUES (:first_name, :last_name, :tc_no, :birth_date, :gender_name, :blood_id, :phone_num, :email, false, :pat_password, \'PATIENT\')';
+            $query = 'INSERT INTO Patient (first_name, last_name, tc_no, birth_date, gender_name, blood_id, phone_num, email, is_email_verified, pat_password, usr_role, updated_at, created_at)
+                      VALUES (:first_name, :last_name, :tc_no, :birth_date, :gender_name, :blood_id, :phone_num, :email, false, :pat_password, \'PATIENT\', NOW(), NOW())';
             $statement = $pdo->prepare($query);
             $statement->execute([
                 'first_name' => $first_name,

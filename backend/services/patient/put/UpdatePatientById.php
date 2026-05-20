@@ -68,8 +68,7 @@ class UpdatePatientById {
                         phone_num = :phone_num, 
                         blood_id = :blood_id, 
                         birth_date = :birth_date,
-                        update_date = CURRENT_DATE,
-                        update_time = CURRENT_TIME";
+                        updated_at = NOW()";
             
             $params = [
                 'first_name' => $first_name,
