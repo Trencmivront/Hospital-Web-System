@@ -2,11 +2,6 @@
     use Firebase\JWT\ExpiredException;
 
     require_once dirname(__FILE__) . "/../../patient/get/JWToken.php";
-
-    if(session_status() === PHP_SESSION_NONE){
-        session_start();
-    }
-
 class GetPunishmentByPatient{
     function execute(PDO $pdo) : array{
         $query = 'SELECT p.punishment_id, p.reason, p.for_days, pp.punishment_date 

@@ -6,9 +6,6 @@ use Firebase\JWT\ExpiredException;
 
 class GetPayedBillsByMonth {
     function execute(PDO $pdo) : array {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
 
         if (!isset($_SESSION['admin_jwt'])) {
             throw new UserIsNotAuthenticatedException();

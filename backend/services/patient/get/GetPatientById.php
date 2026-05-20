@@ -6,9 +6,6 @@ require_once dirname(__FILE__) . "/JWToken.php";
 
 class GetPatientById {
     function execute(PDO $pdo) : array {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
 
         $jwt = new JWToken();
     

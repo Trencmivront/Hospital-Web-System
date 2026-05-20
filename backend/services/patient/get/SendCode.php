@@ -1,9 +1,5 @@
 <?php
 
-if(session_status() === PHP_SESSION_NONE){
-    session_start();
-}
-
 class SendCode {
     function execute(string $email_jwt) : string{
 

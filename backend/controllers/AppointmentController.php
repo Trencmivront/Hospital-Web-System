@@ -1,10 +1,6 @@
 <?php
     require_once '../dbConnect.php';
-
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
+    
     foreach(glob("../services/appointment/*/*.php") as $fileName){
         require_once $fileName;
     }

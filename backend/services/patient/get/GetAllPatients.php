@@ -3,10 +3,6 @@
 
     require_once dirname(__FILE__) . "/JWToken.php";
 
-    if(session_status() === PHP_SESSION_NONE){
-        session_start();
-    }
-
 class GetAllPatients{
     function execute(PDO $pdo) : array{
         $query = 'SELECT * FROM Patient';

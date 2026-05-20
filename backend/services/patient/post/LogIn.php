@@ -1,7 +1,4 @@
 <?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
 class LogIn {
     function execute(PDO $pdo){
         $json = file_get_contents('php://input');

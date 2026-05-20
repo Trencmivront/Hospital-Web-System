@@ -1,10 +1,29 @@
 <?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+
+use Firebase\JWT\ExpiredException;
+
+require_once dirname(__FILE__) . "/../../patient/get/JWToken.php";
 
 class Logout {
     function execute() : bool {
+
+        if(!isset($_SESSION['admin_jwt'])){
+            throw new UserIsNotAuthenticatedException();
+        }
+
+        $jwt = new JWToken();
+
+        try{
+            $jwtContents = $jwt->openToken($_SESSION['admin_jwt']);
+            $admin_id = $jwtContents->user_id;
+            $admin_role = $jwtContents->role;
+            if((empty($admin_id) || empty($admin_role)) || $admin_role !== 'ADMIN'){
+                throw new UserIsNotAuthenticatedException();
+            }
+        }catch(ExpiredException $e){
+            throw new UserIsNotAuthenticatedException();
+        }
+
         // Erase all session content
         $_SESSION = array();
 

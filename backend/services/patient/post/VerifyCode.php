@@ -1,11 +1,5 @@
 <?php
     use Firebase\JWT\ExpiredException;
-
-// if session does not exists, create one
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
 class VerifyCode {
     function execute() : bool {
         $jwt = new JwToken();
