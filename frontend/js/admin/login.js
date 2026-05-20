@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
 
     document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
         e.preventDefault();
-
+        // cut empty spaces
         const username = usernameField.value.trim();
         const password = passwordField.value.trim();
 
@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
         const config = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json; charset=utf-8"
             },
             body: JSON.stringify(body)
         };

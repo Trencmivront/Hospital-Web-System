@@ -35,7 +35,7 @@ class Login {
             }
 
             if(!password_verify($password, $admin['ad_password'])){
-                throw new IncorrectPasswordException();
+                throw new IncorrectPasswordOrEmailException();
             }
 
             $jwt = new JWToken();
@@ -45,7 +45,7 @@ class Login {
             
             return true;
         } catch(PDOException $e) {
-            throw new Exception('Database error during admin login', 500);
+            throw new CouldNotRetrieveAdminDataException();
         }
     }
 }

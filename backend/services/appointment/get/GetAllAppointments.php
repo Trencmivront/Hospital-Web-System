@@ -21,14 +21,14 @@ use Firebase\JWT\ExpiredException;
 
                 $jwtContents = $jwt->openToken($_SESSION['admin_jwt']);
                 $admin_id = $jwtContents->user_id;
-                $admin_role = $jwtContents->user_role;
+                $admin_role = $jwtContents->role;
                 if((empty($admin_id) || empty($admin_role)) || $admin_role !== 'ADMIN'){
                     throw new UserIsNotAuthenticatedException();
                 }
 
                 $query = 'SELECT a.appointment_id, p.first_name AS p_first_name, p.last_name AS p_last_name, 
                          d.first_name AS d_first_name, d.last_name AS d_last_name, 
-                         dept.dept_name, s.s_date, s.s_time, a.ap_status, a.update_date, a.update_time
+                         dept.dept_name, s.s_date, FORMAT(s.s_time, "hh:mm") as s_time, a.ap_status, a.update_date, a.update_time
                   FROM Appointment a
                   JOIN Patient p ON a.patient_id = p.patient_id
                   JOIN Doctor_Schedule ds ON a.doctor_schedule_id = ds.doctor_schedule_id
