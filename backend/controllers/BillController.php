@@ -1,11 +1,11 @@
 <?php
     require_once '../dbConnect.php';
 
-    foreach(glob("../services/punishment/*/*.php") as $fileName){
+    foreach(glob("../services/bill/*/*.php") as $fileName){
         require_once $fileName;
     }
 
-    foreach(glob("../exceptions/punishment/*.php") as $fileName){
+    foreach(glob("../exceptions/bill/*.php") as $fileName){
         require_once $fileName;
     }
 
@@ -14,16 +14,22 @@
         require_once $fileName;
     }
 
-    class PunishmentController {
+    class BillController {
         function execute($action = ''){
             global $pdo;
             $data = [];
             switch($action){
-                case 'byPatient':{
-                    $getPunishmentByPatient = new GetPunishmentByPatient();
-                    $data = $getPunishmentByPatient->execute($pdo);
+                case 'all':{
+                    $getAllBills = new GetAllBills();
+                    $data = $getAllBills->execute($pdo);
                     echo responseEntity($data);
                 };
+                break;
+                case 'monthlyRevenue':{
+                    $getPayedBillsByMonth = new GetPayedBillsByMonth();
+                    $data = $getPayedBillsByMonth->execute($pdo);
+                    echo responseEntity($data);
+                }
                 break;
                 default:
                     echo responseEntity("Unknown Request", 404);

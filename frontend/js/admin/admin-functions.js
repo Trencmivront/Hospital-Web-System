@@ -29,7 +29,6 @@ const fetchData = async (api) =>{
     }
 }
 
-// 
 export const logout = () => {
     return fetchData("/api/admin/logout");
 }
