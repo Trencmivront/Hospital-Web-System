@@ -1,4 +1,4 @@
-!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">          
     <head>      
 <meta charset="utf-8">
@@ -25,13 +25,24 @@
                     </div>
                     <p>View and edit records for patients, doctors, appointments and more.</p>
                 </div>
-                <ul>
-                    <li><a href="/frontend/html/admin/dashboard.html">Dashboard</a></li>
-                    <li><a href="/frontend/html/admin/patients.html">Patients</a></li>
-                    <li><a href="/frontend/html/admin/appointments.html">Appointments</a></li>
-                    <li><a href="/frontend/html/admin/doctors.html">Doctors</a></li>
-                    <li><a href="/frontend/html/admin/tables.html" class="active">Tables</a></li>
-                </ul>
+ <ul>
+    <li><a href="/frontend/html/admin/dashboard.html">Dashboard</a></li>
+    <li><a href="/frontend/html/admin/patients.html">Patients</a></li>
+    <li><a href="/frontend/html/admin/appointments.html">Appointments</a></li>
+    <li><a href="/frontend/html/admin/doctors.html">Doctors</a></li>
+
+    <li class="dropdown">
+        <div class="dropdown-btn" onclick="toggleTablesMenu()">
+            Tables ▾
+        </div>
+
+        <ul id="tablesMenu" class="dropdown-menu">
+            <li><a href="#">Patient Records</a></li>
+            <li><a href="#">Doctor Records</a></li>
+            <li><a href="#">Appointment Records</a></li>
+        </ul>
+    </li>
+</ul>
             </aside>
             <main class="admin-main">
                 <header class="admin-topbar">

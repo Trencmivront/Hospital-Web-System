@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Patient Records</title>
+
+<link rel="stylesheet" href="/frontend/css/global.css">
+<link rel="stylesheet" href="/frontend/css/admin.css">
+
+</head>
+
+<body>
+
+<header class="page-header flex-wrap-space">
+    <div class="brand">
+        <h1>Patient Records</h1>
+    </div>
+
+    <div class="header-actions">
+        <a class="logButton" href="/frontend/html/admin/dashboard.html">Back</a>
+    </div>
+</header>
+
+<div class="admin-shell">
+
+    <!-- Sidebar (copy same sidebar you already have) -->
+    <aside class="admin-nav">
+
+        <ul>
+            <li><a href="/frontend/html/admin/dashboard.html">Dashboard</a></li>
+            <li><a href="/frontend/html/admin/patients.html">Patients</a></li>
+            <li><a href="/frontend/html/admin/appointments.html">Appointments</a></li>
+            <li><a href="/frontend/html/admin/doctors.html">Doctors</a></li>
+
+            <li class="dropdown">
+
+                <div class="dropdown-btn" onclick="toggleTablesMenu()">
+                    Tables ▾
+                </div>
+
+                <ul id="tablesMenu" class="dropdown-menu">
+
+                    <li><a href="/frontend/html/admin/patient-records.html">Patient Records</a></li>
+                    <li><a href="/frontend/html/admin/doctor-records.html">Doctor Records</a></li>
+                    <li><a href="/frontend/html/admin/appointment-records.html">Appointment Records</a></li>
+
+                </ul>
+
+            </li>
+        </ul>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+        <h2>All Patients</h2>
+
+        <!-- Search -->
+        <input type="text" id="searchInput" placeholder="Search patients...">
+
+        <!-- Table -->
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="patientTableBody">
+                    <!-- data will come from backend -->
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="/frontend/js/admin/sidebar.js" defer></script>
+<script src="/frontend/js/admin/patient-records.js" defer></script>
+
+</body>
+</html>

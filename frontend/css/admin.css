@@ -67,3 +67,48 @@ body{background:#f4f7ff}
 .status-badge.completed { background: #dcfce7; color: #15803d; }
 .status-badge.absent { background: #fee2e2; color: #b91c1c; }
 .status-badge.closed { background: #f3f4f6; color: #374151; }
+/* ==========================================================================
+   Sidebar Dropdown Navigation Styles (Matching Your Exact HTML)
+   ========================================================================== */
+
+/* 1. Style the Dropdown Button to look exactly like your standard links */
+.admin-nav .dropdown-btn {
+    display: block;
+    padding: 10px 16px;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none; /* Prevents text highlighting on quick double clicks */
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Hover state matching your standard links */
+.admin-nav .dropdown-btn:hover {
+    background: #f8fbff;
+    color: #1d3fa6;
+}
+
+/* 2. Hide the Dropdown Menu by default */
+.admin-nav .dropdown-menu {
+    display: none;
+    background: #fafbfe; /* Slightly different background to nest it visually */
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* 3. The Active/Open Class (Add this class to <ul id="tablesMenu"> via your JS function) */
+.admin-nav .dropdown-menu.show {
+    display: block;
+}
+
+/* 4. Style the links inside the dropdown */
+.admin-nav .dropdown-menu a {
+    padding: 8px 16px 8px 32px; /* Extra left padding (32px) to indent the sub-items */
+    font-size: 14px; /* Slightly smaller text for better visual hierarchy */
+    color: #555;
+}
+
+/* Hover state for sub-links */
+.admin-nav .dropdown-menu a:hover {
+    background: #f0f6ff;
+    color: #1d3fa6;
+}

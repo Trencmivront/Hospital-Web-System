@@ -27,6 +27,4 @@ const listDoctors = (doctors) => {
         doctorListContainer.innerHTML += doctorCard;    
     });
 
-
-
 }
