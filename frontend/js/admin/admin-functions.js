@@ -19,13 +19,13 @@ const fetchData = async (api) =>{
 
         else if (!response.ok){
             showError(response);
-            return [];
+            return;
         }
 
         return await response.json();      
         }catch(error){
         console.error("Fetch error:", error);
-        return [];
+        return;
     }
 }
 
@@ -55,4 +55,8 @@ export const getMonthlyRevenue = () => {
 
 export const getActiveSchedules = () => {
     return fetchData("/api/schedule/allActive");
+}
+
+export const getActiveAppointmentCountOfDoctors = () => {
+    return fetchData("/api/doctor/appointmentCountOfEach");
 }

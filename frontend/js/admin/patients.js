@@ -19,7 +19,7 @@ window.addEventListener('load', () => {
 
         const recentPatientsTBody = document.getElementById("recentPatientsTBody");
         recentPatientsTBody.innerHTML = "";
-        let patientCounter = 0;
+
         allPatients.forEach(patient => {
             patientCount++;
             let createdAt = patient.created_at;
@@ -28,18 +28,17 @@ window.addEventListener('load', () => {
             // Using tr-TR to match the dd.mm.yyyy format used in 'today' variable
             if(date.toLocaleDateString('tr-TR') === today){
                 todaysRegisteredPatients++;
-                if(patientCounter !== 4){
-                    recentPatientsTBody.innerHTML += `
-                    <tr>
-                        <td>${patient.patient_id}</td>
-                        <td>${patient.first_name} ${patient.last_name}</td>
-                        <td>${patient.birth_date}</td>
-                        <td>${patient.phone_num}</td>
-                        <td>${patient.created_at}</td>
-                    </tr>`;
-                    patientCounter++;
-                }
-                
+            }
+            // list last 5 registered patients
+            if(patientCount <= 5){
+                recentPatientsTBody.innerHTML += `
+                <tr>
+                    <td>${patient.patient_id}</td>
+                    <td>${patient.first_name} ${patient.last_name}</td>
+                    <td>${patient.birth_date}</td>
+                    <td>${patient.phone_num}</td>
+                    <td>${patient.created_at}</td>
+                </tr>`;
             }
         });
         document.getElementById("totalPatients").textContent = patientCount;

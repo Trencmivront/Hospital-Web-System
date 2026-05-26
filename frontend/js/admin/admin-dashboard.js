@@ -1,15 +1,6 @@
 
 window.addEventListener('load', ()=>{
 
-  const appointmentsBarCtx = document.getElementById('appointmentsBarChart');
-  if (appointmentsBarCtx) {
-    new Chart(appointmentsBarCtx, {
-      type:'bar',
-      data:{labels:['Dr. Kaya','Dr. Demir','Dr. Smith','Dr. Aydin','Dr. Yilmaz'],datasets:[{label:'Booked',data:[32,26,21,18,14],backgroundColor:'#2563eb'}]},
-      options:{responsive:true,plugins:{legend:{display:false}}}
-    });
-  }
-
   const doctorBarCtx = document.getElementById('doctorBarChart');
   if (doctorBarCtx) {
     new Chart(doctorBarCtx, {
