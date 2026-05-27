@@ -29,10 +29,17 @@ class DoctorController {
             break;
 
             case 'byName':{
-                $filterDoctorsByName = new FilterDoctorsByName();
+                $filterDoctorsByName = new FilterDoctorsByName($pdo);
                 $data = $filterDoctorsByName->execute($pdo);
                 echo responseEntity($data);
             };
+            break;
+
+            case 'available':{
+                $getAvailableDoctors = new GetAvailableDoctors();
+                $data = $getAvailableDoctors->execute($pdo);
+                echo responseEntity($data);
+            }
             break;
 
             case 'availableDays':{
@@ -41,6 +48,12 @@ class DoctorController {
                 echo responseEntity($data);
             };
             break;
+            case 'appointmentCountOfEach' : {
+                    $getActiveAppointmentCountOfDoctors = new GetActiveAppointmentCountOfDoctors();
+                    $data = $getActiveAppointmentCountOfDoctors->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
             default: echo responseEntity("Unknown Request", 404);
             break;
         }

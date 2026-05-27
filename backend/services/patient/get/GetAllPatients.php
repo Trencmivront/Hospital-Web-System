@@ -5,7 +5,7 @@
 
 class GetAllPatients{
     function execute(PDO $pdo) : array{
-        $query = 'SELECT * FROM Patient';
+        $query = 'SELECT * FROM Patient ORDER BY created_at';
 
         if(!isset($_SESSION['admin_jwt'])){
             throw new UserIsNotAuthenticatedException();

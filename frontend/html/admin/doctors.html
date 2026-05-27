@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/frontend/css/admin.css">
   <script src="/frontend/js/global/global.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
-  <script src="/frontend/js/admin/admin-dashboard.js" defer></script>
+  <script src="/frontend/js/admin/doctors.js" type="module"></script>
 </head>
 <body>
   <header class="page-header flex-wrap-space">
@@ -45,7 +45,7 @@
       </header>
 
       <section class="cards small">
-        <div class="card"><h4>Total Doctors</h4><p class="big">24</p></div>
+        <div class="card"><h4>Total Doctors</h4><p class="big" id="totalDoctorCount">0</p></div>
       </section>
 
       <section class="grid">

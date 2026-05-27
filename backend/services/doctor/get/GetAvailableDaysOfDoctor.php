@@ -21,7 +21,7 @@
             $stmt = $pdo->prepare($query);
             $stmt->execute(['doctor_id' => $doctorId]);
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll();
         } catch (PDOException $e) {
             throw new FetchScheduleException();
         }
