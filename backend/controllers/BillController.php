@@ -31,6 +31,18 @@
                     echo responseEntity($data);
                 }
                 break;
+                case 'ofPatient':{
+                    $getBillsOfPatient = new GetBillsOfPatient();
+                    $data = $getBillsOfPatient->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
+                case 'pay':{
+                    $payBillById = new PayBillById();
+                    $data = $payBillById->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
                 default:
                     echo responseEntity("Unknown Request", 404);
                 break;

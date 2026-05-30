@@ -35,7 +35,7 @@ class CreateAppointment {
 
             // check if the patient has any punishments
             // SQL IS A MIRACLE
-            $query0 = " SELECT COUNT(1) FROM Patient_Punishment pp JOIN Punishment p ON 
+            $query0 = " SELECT 1 FROM Patient_Punishment pp JOIN Punishment p ON 
             pp.punishment_id = p.punishment_id WHERE (pp.punishment_date + p.for_days) >= CURRENT_DATE()
             AND pp.patient_id = :patient_id";
 

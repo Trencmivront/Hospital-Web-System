@@ -2,15 +2,20 @@
 
 use Firebase\JWT\ExpiredException;
 
-    class GetBillsOfPatient {
+    require_once dirname(__FILE__) . "/../../patient/get/JWToken.php";
+
+
+    class GetTreatmentsByPatient {
         function execute(PDO $pdo){
 
-        $query = 'SELECT b.bill_id, b.cost, b.is_paid, b.created_at, t.icd10_code, a.appointment_id
-                  FROM Bill b
-                  JOIN Treatment t ON b.treatment_id = t.treatment_id
-                  JOIN Appointment a ON t.appointment_id = a.appointment_id
-                  WHERE a.patient_id = :patient_id
-                  ORDER BY b.created_at DESC';
+            $query = 'SELECT t.treatment_id, t.icd10_code, t.created_at, d.dept_name
+                      FROM Treatment t
+                      JOIN Appointment a ON t.appointment_id = a.appointment_id
+                      JOIN Doctor_Schedule ds ON a.doctor_schedule_id = ds.doctor_schedule_id
+                      JOIN Doctor doc ON ds.doctor_id = doc.doctor_id
+                      JOIN Department d ON doc.dept_id = d.dept_id
+                      WHERE a.patient_id = :patient_id
+                      ORDER BY t.created_at DESC';
 
             if(!isset($_SESSION['patient_jwt'])){
                 throw new UserIsNotAuthenticatedException();
@@ -36,7 +41,7 @@ use Firebase\JWT\ExpiredException;
                 return $data;
 
             }catch(PDOException $e){
-                throw new CouldNotRetrieveBillDataException();
+                throw new FetchTreatmentsException();
             }catch(ExpiredException $e){
                 throw new UserIsNotAuthenticatedException();
             }

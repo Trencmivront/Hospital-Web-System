@@ -85,8 +85,8 @@ window.addEventListener('load', () => {
 
             if (confirm("Are you sure you want to cancel this appointment?")) {
                 try {
-                    const response = await fetch("/api/appointment/delete", {
-                        method: 'POST', // Using POST as the controller expects it for reading php://input in some cases, though DELETE could also work if configured.
+                    const response = await fetch("/api/appointment/cancel", {
+                        method: 'PUT',
                         headers: {
                             "Content-Type": "application/json; charset=utf-8"
                         },
@@ -99,7 +99,8 @@ window.addEventListener('load', () => {
                     }
 
                     if (response.status !== 204) {
-                        alert("Could not cancel appointment");
+                        const errorData = await response.json();
+                        alert(errorData || "Could not cancel appointment");
                         return;
                     }
 
@@ -434,6 +435,120 @@ window.addEventListener('load', () => {
         });                                      
     }
 
+    const getTreatments = async () => {
+        try{
+            const response = await fetch("/api/treatment/ofPatient");
+
+            if(response.status === 403){
+                displayError(response, "treatmentFetchError");
+                userIsNotAuthenticated();
+                return;
+            }
+            else if(!response.ok){
+                displayError(response, "treatmentFetchError");
+                return;
+            }
+
+            const data = await response.json();
+            listTreatments(data);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    const listTreatments = (data) => {
+        const treatmentContainer = document.getElementById('treatmentContainer');
+        if (!treatmentContainer) return;
+        if(data.length === 0) {
+            treatmentContainer.innerHTML = "<p style='color: grey;'> No Treatments </p>";
+            return;
+        }
+        treatmentContainer.innerHTML = "";
+        data.forEach(t => {
+            treatmentContainer.innerHTML += `<tr>
+                                            <td>${t.created_at.split(' ')[0]}</td>
+                                            <td>${t.dept_name}</td>
+                                            <td>${t.icd10_code}</td>
+                                        </tr>`;
+        });                                      
+    }
+
+    const getBills = async () => {
+        try{
+            const response = await fetch("/api/bill/ofPatient");
+
+            if(response.status === 403){
+                displayError(response, "billFetchError");
+                userIsNotAuthenticated();
+                return;
+            }
+            else if(!response.ok){
+                displayError(response, "billFetchError");
+                return;
+            }
+
+            const data = await response.json();
+            listBills(data);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    const listBills = (data) => {
+        const billContainer = document.getElementById('billContainer');
+        if (!billContainer) return;
+        if(data.length === 0) {
+            billContainer.innerHTML = "<p style='color: grey;'> No Bills </p>";
+            return;
+        }
+        billContainer.innerHTML = "";
+        data.forEach(b => {
+            const statusLabel = b.is_paid ? "<span style='color: green;'>Paid</span>" : "<span style='color: red;'>Unpaid</span>";
+            let actionBtn = b.is_paid ? "---" : `<button class="pay-btn action-btn" data-bill_id="${b.bill_id}">Pay</button>`;
+            
+            billContainer.innerHTML += `<tr>
+                                            <td>${b.created_at.split(' ')[0]}</td>
+                                            <td>${b.icd10_code} (${statusLabel})</td>
+                                            <td>${b.cost} $</td>
+                                            <td>${actionBtn}</td>
+                                        </tr>`;
+        });                                      
+    }
+
+    document.getElementById('billContainer').addEventListener('click', async (e) => {
+        if (e.target.classList.contains('pay-btn')) {
+            const bill_id = e.target.getAttribute('data-bill_id');
+
+            if (confirm("Confirm payment?")) {
+                try {
+                    const response = await fetch("/api/bill/pay", {
+                        method: 'PUT',
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        body: JSON.stringify({ bill_id: bill_id })
+                    });
+
+                    if (response.status === 403) {
+                        userIsNotAuthenticated();
+                        return;
+                    }
+
+                    if (!response.ok) {
+                        alert("Could not process payment");
+                        return;
+                    }
+
+                    alert("payed");
+                    getBills(); // Refresh the list
+                } catch (error) {
+                    alert("Network Error");
+                    console.log(error);
+                }
+            }
+        }
+    });
+
     const fetchPatientData = async () => {
         try {
             const response = await fetch("/api/patient/byId");
@@ -548,4 +663,8 @@ window.addEventListener('load', () => {
     fetchBloodTypes();
     // fetch punishments
     getPunishments();
+    // fetch bills
+    getBills();
+    // fetch treatments
+    getTreatments();
 });

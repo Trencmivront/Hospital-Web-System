@@ -71,6 +71,7 @@ if ($parts[1] === 'api') {
         'punishment'  => ['file' => 'PunishmentController.php',  'class' => 'PunishmentController'],
         'admin'       => ['file' => 'AdminController.php',       'class' => 'AdminController'],
         'bill'        => ['file' => 'BillController.php',        'class' => 'BillController'],
+        'treatment'   => ['file' => 'TreatmentController.php',   'class' => 'TreatmentController'],
     ];
 
     if (array_key_exists($controllerName, $controllerMap)) {

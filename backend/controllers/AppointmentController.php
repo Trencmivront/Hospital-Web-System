@@ -40,6 +40,12 @@
                     echo responseEntity($data, 201);
                 }
                 break;
+                case 'cancel' :{
+                    $cancelAppointment = new CancelAppointmentById();
+                    $data = $cancelAppointment->execute($pdo);
+                    echo responseEntity('', 204);
+                }
+                break;
                 case 'delete' :{
                     $deleteAppointment = new DeleteAppointmentById();
                     $data = $deleteAppointment->execute($pdo);
