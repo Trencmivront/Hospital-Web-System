@@ -21,7 +21,9 @@ class PatientController {
             }
             break;
             case 'create' : {
-                // Implementation for registration
+                $register = new Register();
+                $data = $register->execute($pdo);
+                echo responseEntity($data);
             };
             break;
 

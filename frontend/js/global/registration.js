@@ -1,4 +1,10 @@
 const errorTextContainer = document.getElementById("errorMessage");
+const registrationSection = document.getElementById("registration-section");
+const verificationSection = document.getElementById("verification-section");
+const resendCodeLink = document.getElementById("resendCode");
+const timerDisplay = document.getElementById("timerDisplay");
+
+let timerInterval;
 
 window.addEventListener("load", () => {
     setMaxDateValue();
@@ -17,6 +23,96 @@ document.getElementById("registrationForm").addEventListener("submit", (e) => {
 
     verifyAndSendFormContents();
 });
+
+document.getElementById("verification-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const code = document.getElementById("verificationCode").value;
+
+    if(!code){
+        showError("Please write the code");
+        return;
+    }
+
+    const config = {
+        method: "POST",
+        headers: {'Content-Type' : 'application/json; charset=utf-8'},
+        body: JSON.stringify({code: code})
+    }
+
+    try{
+        const response = await fetch("/api/patient/verifyCode", config);
+
+        if(!response.ok){
+            const message = await response.json();
+            showError(message);
+            return;
+        }
+        
+        // generate jwt of patient in the backend
+        const createJwt = await fetch("/api/patient/jwt");
+        
+        if(!createJwt.ok){
+            const message = await createJwt.json();
+            showError(message);
+            return;
+        }
+
+        alert("Registration and verification successful!");
+        window.location = "/profile";
+    }catch(error){
+        console.log(error);
+        showError("An unexpected error occurred.");
+    }
+});
+
+resendCodeLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    errorTextContainer.textContent = ""; // clear errors
+    try{
+        const response = await fetch("/api/patient/resendCode");
+        
+        if(!response.ok){
+            const message = await response.json();
+            showError(message);
+            return;
+        }
+
+        startTimer(120); // 2 minute timer
+    }catch(error){
+        console.log(error);
+        showError("An unexpected error occurred.");
+    }
+});
+
+const startTimer = (durationInSeconds) => {
+    clearInterval(timerInterval);
+    let timeLeft = durationInSeconds;
+
+    resendCodeLink.style.pointerEvents = "none";
+    resendCodeLink.style.color = "#ccc";
+    timerDisplay.style.display = "inline";
+
+    const updateDisplay = () => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerDisplay.textContent = `(${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')})`;
+    };
+
+    updateDisplay();
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        updateDisplay();
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            resendCodeLink.style.pointerEvents = "auto";
+            resendCodeLink.style.color = ""; // Restore default color
+            timerDisplay.style.display = "none";
+        }
+    }, 1000);
+};
 
 const loadBloodTypes = async () => {
     try{
@@ -47,15 +143,14 @@ const verifyAndSendFormContents = async () => {
         last_name: document.getElementById('last_name').value,
         tc_no: document.getElementById('tc_no').value,
         birth_date: document.getElementById('birth_date').value,
-        gender: document.getElementById('gender').value,
-        blood_group: document.getElementById('blood_group').value,
+        gender_name: document.getElementById('gender').value,
+        blood_id: document.getElementById('blood_group').value,
         phone_num: document.getElementById('phone_num').value,
         email: document.getElementById('email').value,
         password: document.getElementById('pat_password').value
     };
 
     // Check if any value is empty or null
-    // some() determines whether an value of object returns true for condition
     const hasEmptyField = Object.values(formData).some(value => value === "" || value === null);
     
     if(hasEmptyField){
@@ -79,8 +174,10 @@ const verifyAndSendFormContents = async () => {
         if(!response.ok) {
             showError(result);
         } else {
-            alert("Registration successful! You can now log in.");
-            window.location.href = "/login";
+            // Success: show verification section
+            registrationSection.style.display = "none";
+            verificationSection.style.display = "block";
+            startTimer(120);
         }
     } catch (error) {
         console.error("Error during registration:", error);

@@ -13,6 +13,15 @@ function is_string_text(string $str) : bool {
 function is_string_number(string $str) : bool{
     return preg_match('/[^0-9]/', $str) == 0;
 }
+
+function isValidEmail(string $email) {
+    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+}
+
+function isValidPhoneNumber(string $phone_num) {
+    // Phone number verification: check length, is it a number, and is it a form of phone number
+    return (strlen($phone_num) >= 10 && strlen($phone_num) <= 11) && is_string_number($phone_num);
+}
 // Routing system
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
