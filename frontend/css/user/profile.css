@@ -1,11 +1,3 @@
-/* Defining global variables.  */
-:root {
-    --primary-blue: #007185;
-    --hover-bg: #f3f3f3;
-    --border-light: #e6e6e6;
-    --border-blue: rgba(100, 180, 250, 0.8);
-}
-
 nav{
    flex-direction: column;
     width: 300px;
@@ -13,20 +5,13 @@ nav{
 
 #settings .icon{
     transform: rotate(360deg);
-    /*ease-out = slow down to end.
-    ease-in = slow at start.
-    ease-in-out = slow at start, fast at middle, slow at end. */
     transition: transform 1s ease-out;
-}
-
-#payments .icon{
-    transform: translate();
 }
 
 /* Top Bar */
 .profile-top-bar {
-    background-color: #fff;
-    border-bottom: 1px solid var(--border-light);
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-main);
     padding: 8px 40px;
     position: sticky;
     width: 100%;
@@ -51,12 +36,13 @@ nav{
 
 .top-bar-brand span {
     font-weight: bold;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.1rem;
 }
 
 .top-bar-user-name {
     gap: 15px;
+    color: var(--text-color);
 }
 
 .logout-link {
@@ -96,7 +82,7 @@ nav{
 .content-section h1 {
     margin-top: 0;
     font-size: 1.8rem;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 25px;
 }
 
@@ -109,15 +95,15 @@ nav{
 
 /* Boxes */
 .info-box{
-    background-color: #fff;
+    background-color: var(--card-bg);
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-main);
     padding: 20px;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-main);
 }
 
 .box-header {
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-main);
     margin-bottom: 15px;
     padding-bottom: 10px;
 }
@@ -125,13 +111,13 @@ nav{
 .box-header h3 {
     margin: 0;
     font-size: 1.2rem;
-    color: #444;
+    color: var(--text-color);
 }
 
 .action-btn{
     background: none;
-    border: 1px solid var(--primary-blue);
-    color: var(--primary-blue);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
     padding: 4px 12px;
     border-radius: 4px;
     cursor: pointer;
@@ -140,7 +126,7 @@ nav{
 }
 
 .action-btn:hover{
-    background-color: var(--primary-blue);
+    background-color: var(--primary-color);
     color: #fff;
 }
 
@@ -148,7 +134,7 @@ nav{
 .info-row {
     display: flex;
     padding: 10px 0;
-    border-bottom: 1px solid #f9f9f9;
+    border-bottom: 1px solid var(--border-main);
 }
 
 .info-row:last-child {
@@ -157,13 +143,13 @@ nav{
 
 .info-row .label {
     width: 150px;
-    color: #777;
+    color: var(--text-muted);
     font-size: 0.9rem;
     font-weight: bold;
 }
 
 .info-row .value {
-    color: #333;
+    color: var(--text-color);
     font-size: 0.95rem;
 }
 
@@ -174,9 +160,9 @@ nav{
 
 .appointment-sub-section h4 {
     margin: 0 0 10px 0;
-    color: #666;
+    color: var(--text-muted);
     font-size: 1rem;
-    border-left: 3px solid #ddd;
+    border-left: 3px solid var(--primary-color);
     padding-left: 10px;
 }
 
@@ -189,18 +175,18 @@ nav{
 .appointment-table th, .appointment-table td {
     text-align: left;
     padding: 12px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-main);
+    color: var(--text-color);
 }
 
 .appointment-table th {
-    background-color: #f8f9fa;
+    background-color: var(--bg-secondary);
     font-size: 0.85rem;
-    color: #888;
+    color: var(--text-muted);
 }
 
 .appointment-table td {
     font-size: 0.9rem;
-    color: #444;
 }
 /*Appointment window part*/
 
@@ -208,15 +194,14 @@ nav{
     width: 100%;
     height: 100%;
     position: fixed;
-    /*Sticking it to top left corner*/
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.5); /* darkened for better contrast */
+    background-color: rgba(0,0,0,0.5);
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 2000; /* Above everything else */
+    z-index: 2000;
     transition: 0.3s;
 }
 
@@ -225,12 +210,13 @@ nav{
     height: auto;
     min-height: 100px;
     width: 400px;
-    background-color: white;
+    background-color: var(--card-bg);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-main);
     transition: 0.3s;
     position: relative;
+    border: 1px solid var(--border-main);
 }
 
 .corner-button{
@@ -261,14 +247,15 @@ form{
 }
 
 input, select{
-    border: 1px solid var(--border-blue);
-    font-size: 1.2rem;
-    padding: 10px 20px;
+    border: 1px solid var(--border-main);
+    font-size: 1rem;
+    padding: 10px 15px;
     width: 100%;
-    margin: 20px;
+    margin-bottom: 15px;
     border-radius: 7px;
-    background-color: aliceblue;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-family: var(--font-main);
 }
 
 .cancel-btn {
@@ -284,20 +271,20 @@ input, select{
 }
 
 .view-btn {
-    color: var(--primary-blue);
-    border: 1px solid var(--primary-blue);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     width: 100%;
     cursor: pointer;
 }
 
 .view-btn:hover {
-    background-color: var(--primary-blue);
+    background-color: var(--primary-color);
     color: #fff;
 }
 
 .disabled-btn{
-    color: #ddd;
-    border: 1px solid #888;
+    color: var(--text-muted);
+    border: 1px solid var(--border-main);
     cursor: default;
     width: 100%;
 }

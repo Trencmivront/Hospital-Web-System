@@ -10,7 +10,7 @@ class GetAllBills {
             $data = $result->fetchAll();
             return $data;
         } catch (PDOException $e) {
-            throw new FetchBillException();
+            throw new CouldNotRetrieveBillDataException();
         }
     }
 }

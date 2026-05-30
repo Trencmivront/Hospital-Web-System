@@ -45,5 +45,61 @@ window.addEventListener('load', () => {
       // Could resume here if needed
     });
   }
+
+  // Theme Switching Logic
+  const initTheme = () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Inject Theme Toggle UI
+    // Look for various possible injection points
+    const injectionPoints = [
+      '.header-actions',
+      '.top-bar-user-name',
+      '.top-actions',
+      'nav#nav_container',
+      '.profile-top-bar .top-bar-content'
+    ];
+    
+    let target = null;
+    for (const selector of injectionPoints) {
+      target = document.querySelector(selector);
+      if (target) break;
+    }
+
+    const toggleContainer = document.createElement('div');
+    toggleContainer.className = 'theme-toggle-container flex-center-content';
+    toggleContainer.innerHTML = `
+      <label>
+        <input type="radio" name="theme" value="light" ${savedTheme === 'light' ? 'checked' : ''}> Light
+      </label>
+      <label>
+        <input type="radio" name="theme" value="dark" ${savedTheme === 'dark' ? 'checked' : ''}> Dark
+      </label>
+    `;
+
+    if (target) {
+      if (target.tagName === 'NAV') {
+        target.appendChild(toggleContainer);
+      } else {
+        target.prepend(toggleContainer);
+      }
+    } else {
+      // Fallback: Fixed position if no header/nav found
+      toggleContainer.classList.add('fallback');
+      document.body.appendChild(toggleContainer);
+    }
+    
+    toggleContainer.querySelectorAll('input[name="theme"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const theme = e.target.value;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      });
+    });
+  };
+
+  initTheme();
 });
+
    

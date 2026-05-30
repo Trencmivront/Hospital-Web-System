@@ -78,7 +78,7 @@ resendCodeLink.addEventListener('click', async (e) => {
             return;
         }
 
-        startTimer(120); // 2 minute timer
+        startTimer(180); // 2 minute timer
     }catch(error){
         console.log(error);
         showError("An unexpected error occurred.");

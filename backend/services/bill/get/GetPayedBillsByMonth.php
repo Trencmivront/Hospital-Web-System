@@ -24,7 +24,7 @@ class GetPayedBillsByMonth {
             $data = $result->fetchAll();
             return $data;
         } catch (PDOException $e) {
-            throw new FetchBillException();
+            throw new CouldNotRetrieveBillDataException();
         }catch(ExpiredException $e){
             throw new UserIsNotAuthenticatedException();
         }

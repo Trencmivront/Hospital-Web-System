@@ -112,7 +112,7 @@ class Register {
             // only for a short time store email to find user again
             // we will give extra 3 minute for user to press "resend code" button
             // after time passed, kill user
-            $_SESSION['email_jwt'] = $jwt->generateJwt($email, '', 300);
+            $_SESSION['email_jwt'] = $jwt->generateJwt($email, '', 181);
             
             $sendCode = new SendCode();
             // this feels so stupid

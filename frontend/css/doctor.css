@@ -2,13 +2,13 @@
 .doctors-section {
     padding: 60px 20px;
     text-align: center;
-    background: #f5f7fa;
+    background: var(--bg-secondary);
 }
 
 .section-title {
     font-size: 32px;
     margin-bottom: 40px;
-    color: #333;
+    color: var(--text-color);
 }
 
 /* Container */
@@ -23,11 +23,11 @@
 /* Doctor Card */
 .doctor-card {
     width: 270px;
-    background: linear-gradient(to bottom, #4aa3df 40%, #2f5d8a 40%);
+    background: linear-gradient(to bottom, var(--primary-color) 40%, var(--primary-hover) 40%);
     border-radius: 15px;
     overflow: hidden;
     color: white;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-main);
     transition: 0.3s;
 }
 
@@ -67,7 +67,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(7, 183, 242, 0.467);
+    background: var(--primary-color);
     border: none;
     color: white;
     font-size: 30px;
@@ -76,10 +76,12 @@
     cursor: pointer;
     z-index: 10;
     transition: background 0.3s;
+    opacity: 0.7;
 }
 
 .slider-btn:hover {
-    background: rgba(11, 11, 11, 0.438);
+    background: var(--primary-hover);
+    opacity: 1;
 }
 
 .prev-btn { left: 15px; }

@@ -12,10 +12,10 @@
     </head>
 
 <!--Background image for registration page-->
-<body class="page-shell" style="background-image: url('/imgs/registration_background.png'); background-size: cover; background-attachment: fixed;">
+<body class="page-shell">
     <div class="div-form">
 
-        <div id="registration-section" style="width: 100%;">
+        <div id="registration-section">
             <form id="registrationForm">
                 <div class="form-header">
                     <h2>Patient Registration</h2>
@@ -88,12 +88,12 @@
                     <input id="form_submit" type="submit" value="Send">
                 </div>
             </form>
-            <div style="text-align: center; margin-top: 15px;">
+            <div class="text-center" style="margin-top: 15px;">
                 Have an account? <a href="/login">Log In</a>
             </div>
         </div>
 
-        <div id="verification-section" style="display: none; width: 100%;">
+        <div id="verification-section" style="display: none;">
             <div class="form-header">
                 <h2>Verify Your Email</h2>
                 <p>We've sent a 6-digit verification code to your email.</p>
@@ -107,15 +107,15 @@
                     </div>
                 </div>
                 <div class="form-row flex-center-content">
-                    <input id="verifyButton" type="submit" value="Verify Code" style="width: 100%; padding: 12px; background: var(--primary-color); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                    <input id="verifyButton" type="submit" value="Verify Code" class="submit-btn">
                 </div>
             </form>
 
-            <div class="extra-links" style="text-align: center; margin-top: 20px;">
+            <div class="extra-links text-center" style="margin-top: 20px;">
                 <p id="resend-container">
                     Didn't receive the code?
                     <a href="#" id="resendCode">Resend Code</a>
-                    <span id="timerDisplay" style="display: none; color: #686666; font-size: 14px; margin-left: 5px;">(02:00)</span>
+                    <span id="timerDisplay" style="display: none; color: var(--text-muted); font-size: 14px; margin-left: 5px;">(02:00)</span>
                 </p>
             </div>
         </div>

@@ -6,11 +6,12 @@
     <title>Admin Login - Nova Hospital</title>
     <link rel="stylesheet" href="/frontend/css/global.css">
     <link rel="stylesheet" href="/frontend/css/admin.css">
-    <script src="/frontend/js/admin/login.js"></script>
+    <script src="/frontend/js/global/global.js" defer></script>
+    <script src="/frontend/js/admin/login.js" defer></script>
     <style>
         .login-page {
             min-height: 100vh;
-            background: #f4f7ff;
+            background: var(--bg-color, var(--bg-color));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -24,12 +25,14 @@
         }
         .login-card .panel {
             padding: 32px;
+            background: var(--white, white);
             box-shadow: 0 12px 30px rgba(29, 63, 166, 0.08);
-            border: 1px solid #eee;
+            border: 1px solid var(--border-light, #eee);
+            border-radius: 12px;
         }
         .login-card h2 {
             margin: 0 0 24px;
-            color: #222;
+            color: var(--text-color, var(--text-color));
             text-align: center;
             font-size: 22px;
         }
@@ -38,10 +41,10 @@
             font-size: 30px;
             font-weight: 700;
             margin-bottom: 24px;
-            color: #333;
+            color: var(--text-color, var(--text-color));
         }
         .login-brand span {
-            color: #1d3fa6;
+            color: var(--primary-color, var(--primary-color));
             margin-left: 4px;
         }
         .form-group {
@@ -51,13 +54,15 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #555;
+            color: var(--text-color, var(--text-color));
             font-size: 14px;
         }
         .form-group input {
             width: 100%;
             padding: 12px 14px;
-            border: 1px solid #e6e6e6;
+            border: 1px solid var(--border-light, #e6e6e6);
+            background: var(--bg-color, white);
+            color: var(--text-color);
             border-radius: 10px;
             box-sizing: border-box;
             font-size: 15px;
@@ -65,7 +70,7 @@
         }
         .form-group input:focus {
             outline: none;
-            border-color: #1d3fa6;
+            border-color: var(--primary-color, var(--primary-color));
             box-shadow: 0 0 0 3px rgba(29, 63, 166, 0.1);
         }
         .login-card .btn {
@@ -74,18 +79,26 @@
             font-size: 16px;
             font-weight: 600;
             margin-top: 10px;
+            background: var(--primary-color, var(--primary-color));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .login-card .btn:hover {
+            background: var(--dark-cyan, var(--primary-hover));
         }
         .back-home {
             display: block;
             text-align: center;
             margin-top: 30px;
-            color: #888;
+            color: var(--text-color, var(--text-muted));
             text-decoration: none;
             font-size: 14px;
             transition: color 0.2s;
         }
         .back-home:hover {
-            color: #1d3fa6;
+            color: var(--primary-color, var(--primary-color));
         }
     </style>
 </head>

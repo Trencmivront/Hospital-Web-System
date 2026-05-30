@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nova Hospital - Patient Login</title>
 
+<link rel="stylesheet" href="/frontend/css/global.css">
 <link rel="stylesheet" href="/frontend/css/style.css">
+<script src="/frontend/js/global/global.js" defer></script>
 <script src="/frontend/js/user/logIn.js?v=1.3"></script>
 
 <style>
@@ -29,7 +31,7 @@ align-items:center;
 
 /* Login Card */
 .login-card{
-background:rgba(255,255,255,.96);
+background:var(--white, rgba(255,255,255,.96));
 padding:40px;
 border-radius:20px;
 box-shadow:0 20px 40px rgba(5, 5, 5, 0.35);
@@ -39,13 +41,13 @@ text-align:center;
 }
 
 .login-card h2{
-color:#020814;
+color:var(--text-color, var(--text-color));
 font-size:30px;
 margin-bottom:10px;
 }
 
 .login-card p{
-color:#686666;
+color:var(--text-muted);
 margin-bottom:25px;
 }
 
@@ -60,19 +62,22 @@ margin-bottom:20px;
 display:block;
 font-weight:600;
 margin-bottom:8px;
+color:var(--text-color);
 }
 /* to control the width of the input fields whtch boxs of email and password */
 .input-group input{
 width:100%;
 padding:12px;
-border:1px solid #ccc;
+border:1px solid var(--border-light, #ccc);
+background:var(--bg-color);
+color:var(--text-color);
 border-radius:10px;
 box-sizing:border-box;
 }
 
 .input-group input:focus{
 outline:none;
-border-color:#191995;
+border-color:var(--primary-color, var(--primary-color));
 }
 
 
@@ -81,6 +86,7 @@ border-color:#191995;
 text-align:left;
 margin-bottom:18px;
 font-size:14px;
+color:var(--text-color);
 }
 
 
@@ -88,7 +94,7 @@ font-size:14px;
 .submit-btn{
 width:100%;
 padding:15px;
-background:#1d3fa6;
+background:var(--primary-color, var(--primary-color));
 color:white;
 border:none;
 border-radius:10px;
@@ -98,7 +104,7 @@ cursor:pointer;
 }
 
 .submit-btn:hover{
-background:#081d4a;
+background:var(--dark-cyan, var(--primary-hover));
 }
 
 
@@ -110,7 +116,7 @@ line-height:2;
 
 .extra-links a{
 text-decoration:none;
-color:#1d3fa6;
+color:var(--primary-color, var(--primary-color));
 font-weight:500;
 }
 
@@ -123,7 +129,7 @@ display:inline-block;
 margin-top:20px;
 font-size:14px;
 text-decoration:none;
-color:#1d3fa6;
+color:var(--primary-color, var(--primary-color));
 }
 
 </style>
@@ -197,7 +203,7 @@ color:#1d3fa6;
         <p id="resend-container">
             Didn't receive the code?
             <a href="#" id="resendCode">Resend Code</a>
-            <span id="timerDisplay" style="display: none; color: #686666; font-size: 14px; margin-left: 5px;">(02:00)</span>
+            <span id="timerDisplay" style="display: none; color: var(--text-muted); font-size: 14px; margin-left: 5px;">(02:00)</span>
         </p>
     </div>
 </div>

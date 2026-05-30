@@ -3,6 +3,7 @@ CREATE TABLE Department(
 	dept_id INT PRIMARY KEY AUTO_INCREMENT,
 	dept_name varchar(100) NOT NULL UNIQUE,
 	descrpt varchar(500) UNIQUE,
+	img_path varchar(100) UNIQUE,
 	updated_at DATETIME NOT NULL,
 	created_at DATETIME NOT NULL
 );
@@ -24,6 +25,7 @@ CREATE TABLE Doctor(
 	gender_name char(1) NULL,
 	dept_id INT NULL,
 	spec_id INT NOT NULL,
+	img_path varchar(100) UNIQUE,
 	updated_at DATETIME NOT NULL,
 	created_at DATETIME NOT NULL,
 	CONSTRAINT chk_doctor_gender_name CHECK (gender_name IN ('F', 'M')),
@@ -83,7 +85,6 @@ CREATE TABLE Patient(
 	-- allergies INT, removed allergies and created connection below
 	phone_num varchar(11) NOT NULL UNIQUE,
 	email varchar(50) NOT NULL UNIQUE,
-	is_email_verified BOOLEAN,
 	pat_password varchar(256) NOT NULL,
 	-- usr_role will be given by database
 	usr_role varchar(7) NOT NULL,

@@ -1,28 +1,124 @@
 /*global font and color styling*/
 :root {
-    --font-main: Arial, Helvetica, sans-serif;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --text-color: #1a1a1a;
+    --text-muted: #555555;
     --bg-color: #f9fcff;
-    --header-bg: #f0f0fa; /* rgb(240, 240, 250) */
-    --nav-bg: #85e2f5; /* rgb(133, 226, 245) */
-    --nav-cls-btn : ;
-    --footer-bg: #c4e8ff; /* rgb(196, 232, 255) */
+    --bg-secondary: #f0f0fa;
+    --header-bg: #f0f0fa;
+    --nav-bg: #85e2f5;
+    --footer-bg: #c4e8ff;
     --social-bg: #eef7ff;
-    --primary-color: #00bacd; /* rgb(0, 186, 205) */
-    --accent-color: antiquewhite; /* #ffebcd */
-    --accent-hover: #ffffcd;
+    --primary-color: #00bacd;
+    --primary-hover: #009eb0;
+    --secondary-color: #1d3fa6;
+    --secondary-hover: #163ea7;
+    --accent-color: #ffebcd;
+    --accent-hover: #f5deb3;
+    --border-main: #dddddd;
     --border-grey: #707070;
-    --border-light: #dddddd;
     --grey-light: #f0f0f0;
+    --card-bg: #ffffff;
+    --input-bg: #ffffff;
     --dropdown-hover: #ddffdd;
     --white: #ffffff;
     --qa-border: #bdeeee;
     --dark-cyan: darkcyan;
+    --shadow-main: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --transition-speed: 0.3s;
 
     font-family: var(--font-main);
     color: var(--text-color);
 }
-/* width and height as same as written for al*/
+
+[data-theme='dark'] {
+    --text-color: #e0e0e0;
+    --text-muted: #aaaaaa;
+    --bg-color: #121212;
+    --bg-secondary: #1e1e1e;
+    --header-bg: #1e1e1e;
+    --nav-bg: #004d40;
+    --footer-bg: #1a1a1a;
+    --social-bg: #212121;
+    --primary-color: #00897b;
+    --primary-hover: #00796b;
+    --secondary-color: #448aff;
+    --secondary-hover: #2979ff;
+    --accent-color: #37474f;
+    --accent-hover: #455a64;
+    --border-main: #333333;
+    --border-grey: #424242;
+    --grey-light: #2c2c2c;
+    --card-bg: #1e1e1e;
+    --input-bg: #2c2c2c;
+    --dropdown-hover: #1a3a1a;
+    --white: #1e1e1e;
+    --qa-border: #006064;
+    --dark-cyan: #4db6ac;
+    --shadow-main: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Theme Toggle Styling */
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--bg-secondary);
+    padding: 6px 16px;
+    border-radius: 25px;
+    border: 1px solid var(--border-main);
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: var(--shadow-main);
+}
+
+.theme-toggle-container label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+}
+
+/* Modern Radio Button Style */
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--input-bg);
+    transition: var(--transition-speed);
+}
+
+input[type="radio"]:checked {
+    border-color: var(--primary-color);
+}
+
+input[type="radio"]:checked::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: block;
+}
+
+input[type="radio"]:hover {
+    box-shadow: 0 0 0 4px rgba(0, 186, 205, 0.1);
+}
+
+[data-theme='dark'] input[type="radio"]:hover {
+    box-shadow: 0 0 0 4px rgba(0, 137, 123, 0.2);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -55,8 +151,12 @@ nav a {
 }
 
 nav a:hover {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.2);
 }
+[data-theme='dark'] nav a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
 /*For side navigation*/
 nav.open{
     width: 300px;
@@ -66,21 +166,15 @@ nav.open{
     display: none;
     position: absolute;
     top: 10px;
-    right: -60px; /* Positioned outside so it's visible when nav width is 0 */
+    right: -60px;
     font-size: 40px;
     padding: 10px;
     border: none;
-    background-color: var(--nav-cls-btn);
+    background-color: transparent;
     color: var(--text-color);
     cursor: pointer;
-    transition: 0.5s; /* Match nav transition */
+    transition: 0.5s;
     animation: show-fade-show 0.5s;
-}
-
-.flex-center-content{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .flex-center-content{
@@ -112,6 +206,7 @@ nav.open{
     padding: 6px 12px;
     cursor: pointer;
     transition: background-color 0.2s;
+    color: var(--text-color);
 }
 
 .logButton:hover {
@@ -159,6 +254,7 @@ nav.open{
 .social-section h2 {
     margin: 0 0 18px;
     font-size: 1.5rem;
+    color: var(--text-color);
 }
 
 .social-icons {
@@ -173,7 +269,7 @@ nav.open{
     border-radius: 14px;
     overflow: hidden;
     background: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-main);
 }
 
 .social-icons img {
@@ -189,6 +285,7 @@ nav.open{
     gap: 24px;
     padding: 28px 24px;
     background-color: var(--footer-bg);
+    color: var(--text-color);
 }
 
 .footer-div {
@@ -226,21 +323,16 @@ nav.open{
 }
 .extendbtn:hover{
     transform: scale(1.1);
-    color: rgb(150, 20, 100);
-    /*Transform doesn't push neighour elements
-    and changes scale of element*/
-    transition: color 0.2s, transform 0.2s;
+    color: var(--primary-color);
 }
 .extendbtn.active{
-    color: rgb(0,150,200);
+    color: var(--primary-color);
     transform: scale(1.1);
 }
 .extend-container .extendbtn.active{
     background-color: var(--accent-color);
     border-radius: 20px;
     border-bottom: solid 1px var(--dark-cyan);
-    transition: background-color 0.2s ease-out, border-radius 0.2s ease-in,
-    border 0.2s ease-in;
 }
 .extend-item{
     text-align: left;
@@ -252,11 +344,11 @@ nav.open{
     padding-left: 5px;
     padding-right: 5px;
     overflow: hidden;
-    /*From top to bottom*/
     transition: max-height 0.3s ease-out, margin 0.3s ease-out, border 0.2s ease-out,
     justify-content 0.3s ease-out;
     font-size: 14px;
     background-color: var(--grey-light);
+    color: var(--text-color);
 }
 
 .extendbtn-arrow{
@@ -266,8 +358,6 @@ nav.open{
 
 .extendbtn.active .extendbtn-arrow{
     transform: rotate(90deg);
-    display: inline-block;
-    transition: transform 0.3s ease-out;
 }
 .extendbtn.active + .extend-item{
     border-top: solid 1px var(--dark-cyan);
@@ -280,7 +370,7 @@ nav.open{
     color: var(--text-color);
     padding: 10px;
     font-size: 15px;
-    border: solid 1px;
+    border: solid 1px var(--border-main);
     border-radius: 10px;
     font-weight: bold;
     transition: background-color 0.2s;
@@ -295,10 +385,10 @@ nav.open{
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: var(--grey-light);
+    background-color: var(--card-bg);
     min-width: 60px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    box-shadow: var(--shadow-main);
+    z-index: 100;
 }
 
 .dropdown-content a {
@@ -309,7 +399,7 @@ nav.open{
 }
 
 .dropdown-content a:hover {
-    background-color: var(--border-light);
+    background-color: var(--bg-secondary);
 }
 
 .dropdown:hover .dropbtn {
@@ -319,47 +409,34 @@ nav.open{
     display: block;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-left .5s;
   padding: 20px;
 }
 
 /* Q&A Page Styling */
-
-.qa-section{
-width:80%;
-margin:60px auto;
-}
-
-.qa-section h1{
-text-align:center;
-font-size:42px;
-margin-bottom:20px;
-}
-
-.faq-intro{
-text-align:center;
-max-width:800px;
-margin:0 auto 50px;
-}
-
-.qa-section h2{
-margin-top:40px;
-padding-bottom:10px;
-border-bottom:2px solid var(--qa-border);
-}
-
-/* Q&A Section */
 .qa-section {
     max-width: 1200px;
     margin: 60px auto;
     padding: 0 20px;
+    color: var(--text-color);
 }
 
-/* Tab Navigation */
+.qa-section h1 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.faq-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    color: var(--text-muted);
+}
+
 .qa-tabs-container {
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 2px solid var(--border-main);
     margin-bottom: 40px;
 }
 
@@ -376,95 +453,89 @@ border-bottom:2px solid var(--qa-border);
     border-bottom: 3px solid transparent;
     font-size: 16px;
     font-weight: 500;
-    color: #666;
+    color: var(--text-muted);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .qa-tab:hover {
-    color: #1d3fa6;
+    color: var(--secondary-color);
 }
 
 .qa-tab.active {
-    color: #1d3fa6;
-    border-bottom-color: #1d3fa6;
+    color: var(--secondary-color);
+    border-bottom-color: var(--secondary-color);
 }
 
-/* Results Header */
 .qa-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-main);
 }
 
 .qa-results-info {
     font-size: 16px;
     font-weight: 600;
-    color: #1d3fa6;
+    color: var(--secondary-color);
 }
 
 .qa-pagination {
     font-size: 14px;
-    color: #666;
+    color: var(--text-muted);
 }
 
 .qa-filter-btn {
     padding: 8px 15px;
-    background: none;
-    border: 1px solid #ddd;
+    background: var(--card-bg);
+    border: 1px solid var(--border-main);
     border-radius: 4px;
-    color: #1d3fa6;
+    color: var(--secondary-color);
     font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .qa-filter-btn:hover {
-    border-color: #1d3fa6;
-    background: #f9fbfc;
+    border-color: var(--secondary-color);
+    background: var(--bg-secondary);
 }
 
-/* Q&A Container */
 .qa-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* Q&A Item */
 .qa-item {
-    border: 1px solid #e8e8e8;
+    border: 1px solid var(--border-main);
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
+    background: var(--card-bg);
 }
 
 .qa-item:hover {
-    border-color: #1d3fa6;
-    box-shadow: 0 2px 8px rgba(29, 63, 166, 0.1);
+    border-color: var(--secondary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .qa-question {
     width: 100%;
     padding: 20px 24px;
-    background: #f9fbfc;
+    background: var(--bg-secondary);
     border: none;
     text-align: left;
     font-size: 16px;
     font-weight: 500;
-    color: #1d3fa6;
+    color: var(--secondary-color);
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 15px;
     transition: all 0.3s ease;
-}
-
-.qa-question:hover {
-    background: #f0f4fa;
 }
 
 .qa-icon {
@@ -472,18 +543,14 @@ border-bottom:2px solid var(--qa-border);
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: #e8eef7;
+    background: var(--card-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    color: #1d3fa6;
+    color: var(--secondary-color);
     font-size: 14px;
-}
-
-.qa-text {
-    flex: 1;
-    text-align: left;
+    border: 1px solid var(--border-main);
 }
 
 .qa-toggle {
@@ -491,30 +558,29 @@ border-bottom:2px solid var(--qa-border);
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: white;
-    border: 2px solid #ddd;
+    background: var(--card-bg);
+    border: 2px solid var(--border-main);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    color: #666;
+    color: var(--text-muted);
     font-weight: bold;
     transition: all 0.3s ease;
 }
 
 .qa-item.active .qa-toggle {
-    background: #1d3fa6;
-    border-color: #1d3fa6;
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
     color: white;
     transform: rotate(45deg);
 }
 
-/* Q&A Answer */
 .qa-answer {
     display: none;
     padding: 0 24px 20px 24px;
-    background: white;
-    color: #555;
+    background: var(--card-bg);
+    color: var(--text-color);
     line-height: 1.6;
     font-size: 15px;
     animation: slideDown 0.3s ease;
@@ -535,29 +601,20 @@ border-bottom:2px solid var(--qa-border);
     }
 }
 
-/* Position and style the close button (top right corner) */
-
-
-
-/* On smaller screens, nav changes to sidenav and center the header content */
 @media screen and (max-width: 751px) {
     .vertical_line{
         border: none;
     }
     nav{
         flex-direction: column;
-        /*Make container stick to top left*/
         top: 0px;
         left: 0px;
         height: 100%;
         width: 0px;
-        /*Position is free from main container*/
         position: fixed;
-        /*Make it in front of other elements*/
-        z-index: 1;
+        z-index: 1000;
         overflow: visible;
-        padding: 0px 0px 0px 0px;
-        /*Apply transition to all elements*/
+        padding: 0px;
         transition: 0.5s ;
     }
     nav a{
@@ -576,22 +633,15 @@ border-bottom:2px solid var(--qa-border);
         display: block;
     }
     nav.open #close_button{
-        /*The distance from parent element's right border
-        and child element.*/
-        /*We increase it because I want to add close button into */
         right: 30px;
         animation: show-fade-show 0.5s;
         transform: rotate(1080deg);
     }
-    /*@keyframes are used to make compicated animations.
-    Here we can specify in which part of transition, what style
-    will be applied to selected selector.*/
     @keyframes show-fade-show {
         0% {opacity: 1;}
         50%{opacity: 0;}
         100%{opacity: 1;}
     }
-    /* Display close button when page is thight*/
    .page-header {
         padding: 16px;
     }
@@ -606,3 +656,38 @@ border-bottom:2px solid var(--qa-border);
         justify-content: center;
     }
 }
+
+/* Fallback for theme toggle if not injected in header/nav */
+.theme-toggle-container.fallback {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: var(--card-bg);
+}
+
+/* Utility classes for elements previously using inline styles */
+.logButton.register {
+    background-color: #90ee90;
+    color: #1a1a1a;
+    border-color: #7ccd7c;
+}
+
+[data-theme='dark'] .logButton.register {
+    background-color: #2e7d32;
+    color: #ffffff;
+    border-color: #1b5e20;
+}
+
+nav a.active {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme='dark'] nav a.active {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.text-center { text-align: center; }
+.mt-50 { margin-top: 50px; }
+.u-title { text-decoration: underline; }
