@@ -9,6 +9,9 @@
     foreach(glob("../exceptions/patient/*.php") as $fileName){
         require_once $fileName;
     }
+    foreach(glob("../exceptions/admin/*.php") as $fileName){
+        require_once $fileName;
+    }
 
     class AdminController {
         function execute($action = ''){
@@ -25,6 +28,30 @@
                     $logout = new Logout();
                     $data = $logout->execute();
                     echo responseEntity($data);
+                }
+                break;
+                case 'manage_all': {
+                    $getAll = new GetAllAdmins();
+                    $data = $getAll->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
+                case 'create': {
+                    $create = new CreateAdmin();
+                    $data = $create->execute($pdo);
+                    echo responseEntity($data, 201);
+                }
+                break;
+                case 'update': {
+                    $update = new UpdateAdmin();
+                    $data = $update->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
+                case 'delete': {
+                    $delete = new DeleteAdmin();
+                    $data = $delete->execute($pdo);
+                    echo responseEntity('', 204);
                 }
                 break;
                 default:

@@ -28,27 +28,33 @@
                     echo responseEntity($data);
                 }   
                 break;
-                case 'ofPatient':{
-                    $getAppointmentsOfPatient = new GetAppointmentsOfPatient();
-                    $data = $getAppointmentsOfPatient->execute($pdo);
-                    echo responseEntity($data);
-                };
-                break;
                 case 'create' :{
                     $createAppointment = new CreateAppointment();
                     $data = $createAppointment->execute($pdo);
                     echo responseEntity($data, 201);
                 }
                 break;
-                case 'cancel' :{
-                    $cancelAppointment = new CancelAppointmentById();
-                    $data = $cancelAppointment->execute($pdo);
-                    echo responseEntity('', 204);
+                case 'update': {
+                    $update = new UpdateAppointmentAdmin();
+                    $data = $update->execute($pdo);
+                    echo responseEntity($data);
                 }
                 break;
                 case 'delete' :{
-                    $deleteAppointment = new DeleteAppointmentById();
+                    $deleteAppointment = new DeleteAppointmentAdmin();
                     $data = $deleteAppointment->execute($pdo);
+                    echo responseEntity('', 204);
+                }
+                break;
+                case 'ofPatient':{
+                    $getAppointmentsOfPatient = new GetAppointmentsOfPatient();
+                    $data = $getAppointmentsOfPatient->execute($pdo);
+                    echo responseEntity($data);
+                };
+                break;
+                case 'cancel' :{
+                    $cancelAppointment = new CancelAppointmentById();
+                    $data = $cancelAppointment->execute($pdo);
                     echo responseEntity('', 204);
                 }
                 break;
@@ -66,4 +72,3 @@
         }
 
     }
-    

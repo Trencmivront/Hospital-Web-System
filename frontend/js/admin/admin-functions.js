@@ -60,3 +60,22 @@ export const getActiveSchedules = () => {
 export const getActiveAppointmentCountOfDoctors = () => {
     return fetchData("/api/doctor/appointmentCountOfEach");
 }
+
+export const manageTableData = (tableName) => {
+    const endpoints = {
+        'Patient': '/api/patient/all',
+        'Doctor': '/api/doctor/manage_all',
+        'Appointment': '/api/appointment/all',
+        'Department': '/api/department/manage_all',
+        'Specialization': '/api/specialization/all',
+        'Schedule': '/api/schedule/manage_all',
+        'Doctor_Schedule': '/api/doctor_schedule/all',
+        'Blood_Type': '/api/blood/manage_all',
+        'Punishment': '/api/punishment/manage_all',
+        'Patient_Punishment': '/api/patient_punishment/all',
+        'Treatment': '/api/treatment/manage_all',
+        'Bill': '/api/bill/all',
+        'Admin': '/api/admin/manage_all'
+    };
+    return fetchData(endpoints[tableName]);
+}

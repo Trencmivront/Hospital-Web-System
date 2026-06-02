@@ -25,6 +25,30 @@
                     echo responseEntity($data);
                 }
                 break;
+                case 'manage_all': {
+                    $getAll = new GetAllTreatments();
+                    $data = $getAll->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
+                case 'create': {
+                    $create = new CreateTreatment();
+                    $data = $create->execute($pdo);
+                    echo responseEntity($data, 201);
+                }
+                break;
+                case 'update': {
+                    $update = new UpdateTreatment();
+                    $data = $update->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
+                case 'delete': {
+                    $delete = new DeleteTreatment();
+                    $data = $delete->execute($pdo);
+                    echo responseEntity('', 204);
+                }
+                break;
                 default:
                     echo responseEntity("Unknown Request", 404);
                 break;

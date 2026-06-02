@@ -24,6 +24,34 @@ class DepartmentController {
             };
             break;
 
+            case 'manage_all':{
+                $getAll = new GetAllDepartments();
+                $data = $getAll->execute($pdo);
+                echo responseEntity($data);
+            };
+            break;
+
+            case 'create':{
+                $create = new CreateDepartment();
+                $data = $create->execute($pdo);
+                echo responseEntity($data, 201);
+            };
+            break;
+
+            case 'update':{
+                $update = new UpdateDepartment();
+                $data = $update->execute($pdo);
+                echo responseEntity($data);
+            };
+            break;
+
+            case 'delete':{
+                $delete = new DeleteDepartment();
+                $data = $delete->execute($pdo);
+                echo responseEntity('', 204);
+            };
+            break;
+
             case 'byName':{
                 $filterDepartmentsByName = new FilterDepartmentsByName();
                 $data = $filterDepartmentsByName->execute($pdo);

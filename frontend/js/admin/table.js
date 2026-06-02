@@ -1,9 +1,12 @@
+import { manageTableData } from './admin-functions.js';
+
 document.addEventListener("DOMContentLoaded", () => {
     const dropdownBtn = document.querySelector('.dropdown-btn');
     const dropdownMenu = document.querySelector('.dropdown-menu');
     const tableLinks = document.querySelectorAll('.dropdown-menu a');
     const tableBody = document.getElementById('dataTableBody');
-    const panelHeading = document.querySelector('.panel-large h2');
+    const tableHead = document.getElementById('tableHead');
+    const tableTitle = document.getElementById('tableTitle');
 
     // 1. Toggle the Tables sub-menu dropdown open/closed
     if (dropdownBtn && dropdownMenu) {
@@ -21,69 +24,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Handle sub-item clicks and change data dynamically
     tableLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', async (e) => {
             e.preventDefault();
+            const tableName = link.getAttribute('data-table');
+            const selectionLabel = link.textContent.trim();
+            
+            tableTitle.textContent = selectionLabel;
+            
+            // Clear existing table data
+            tableHead.innerHTML = '';
+            tableBody.innerHTML = '<tr><td colspan="100%">Loading...</td></tr>';
 
-            // Clear the existing rows in the <tbody>
-            tableBody.innerHTML = '';
+            const data = await manageTableData(tableName);
 
-            // Get the text of the clicked item to decide what data to show
-            const selection = link.textContent.trim();
-            panelHeading.textContent = selection;
-
-            // Render matching table structural rows based on user click
-            if (selection === "Patient Records") {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>Patient</td>
-                        <td><span class="status-active">Active</span></td>
-                        <td><button>Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>Patient</td>
-                        <td><span class="status-active">Active</span></td>
-                        <td><button>Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>jhon abram</td>
-                        <td>Patient</td>
-                        <td><span class="status-pending">Pending</span></td>
-                        <td><button>Edit</button></td>
-                    </tr>
-                `;
-            } else if (selection === "Doctor Records") {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td>D101</td>
-                        <td>Dr. Alexander</td>
-                        <td>Doctor</td>
-                        <td><span class="status-active">On Duty</span></td>
-                        <td><button>Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>D102</td>
-                        <td>Dr. Watson</td>
-                        <td>Doctor</td>
-                        <td><span class="status-inactive">Off Duty</span></td>
-                        <td><button>Edit</button></td>
-                    </tr>
-                `;
-            } else if (selection === "Appointment Records") {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td>A901</td>
-                        <td>Checkup - John Doe</td>
-                        <td>Appointment</td>
-                        <td><span class="status-completed">Completed</span></td>
-                        <td><button>Edit</button></td>
-                    </tr>
-                `;
+            if (!data || data.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="100%">No records found.</td></tr>';
+                return;
             }
+
+            // Generate Table Headers
+            const headers = Object.keys(data[0]);
+            let headRow = '<tr>';
+            headers.forEach(header => {
+                headRow += `<th>${header}</th>`;
+            });
+            headRow += '<th>Actions</th></tr>';
+            tableHead.innerHTML = headRow;
+
+            // Generate Table Rows
+            tableBody.innerHTML = '';
+            data.forEach(row => {
+                let tr = '<tr>';
+                // reach to values with their names
+                headers.forEach(header => {
+                    tr += `<td>${row[header] !== null ? row[header] : 'N/A'}</td>`;
+                });
+                tr += `<td><button class="action-btn">Edit</button> <button class="action-btn delete">Delete</button></td>`;
+                tr += '</tr>';
+                tableBody.insertAdjacentHTML('beforeend', tr);
+            });
         });
     });
 });

@@ -25,6 +25,24 @@
                     echo responseEntity($data);
                 };
                 break;
+                case 'create': {
+                    $create = new CreateBill();
+                    $data = $create->execute($pdo);
+                    echo responseEntity($data, 201);
+                }
+                break;
+                case 'update': {
+                    $update = new UpdateBill();
+                    $data = $update->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
+                case 'delete': {
+                    $delete = new DeleteBill();
+                    $data = $delete->execute($pdo);
+                    echo responseEntity('', 204);
+                }
+                break;
                 case 'monthlyRevenue':{
                     $getPayedBillsByMonth = new GetPayedBillsByMonth();
                     $data = $getPayedBillsByMonth->execute($pdo);

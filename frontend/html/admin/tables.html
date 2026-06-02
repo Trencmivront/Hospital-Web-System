@@ -39,9 +39,19 @@
                         </div>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#">Patient Records</a></li>
-                            <li><a href="#">Doctor Records</a></li>
-                            <li><a href="#">Appointment Records</a></li>
+                            <li><a href="#" data-table="Patient">Patient Records</a></li>
+                            <li><a href="#" data-table="Doctor">Doctor Records</a></li>
+                            <li><a href="#" data-table="Appointment">Appointment Records</a></li>
+                            <li><a href="#" data-table="Department">Department Records</a></li>
+                            <li><a href="#" data-table="Specialization">Specialization Records</a></li>
+                            <li><a href="#" data-table="Schedule">Schedule Records</a></li>
+                            <li><a href="#" data-table="Doctor_Schedule">Doctor Schedule Records</a></li>
+                            <li><a href="#" data-table="Blood_Type">Blood Type Records</a></li>
+                            <li><a href="#" data-table="Punishment">Punishment Records</a></li>
+                            <li><a href="#" data-table="Patient_Punishment">Patient Punishment Records</a></li>
+                            <li><a href="#" data-table="Treatment">Treatment Records</a></li>
+                            <li><a href="#" data-table="Bill">Bill Records</a></li>
+                            <li><a href="#" data-table="Admin">Admin Records</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -59,21 +69,14 @@
                 </header>
                 <section class="grid">
                     <div class="panel panel-large">
-                        <h2>Data Tables</h2>
-                        <p>View and manage all hospital records in one place.</p>
+                        <h2 id="tableTitle">Data Tables</h2>
+                        <p id="tableDescription">View and manage all hospital records in one place.</p>
                         <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
+                            <table id="mainTable">
+                                <thead id="tableHead" style="border: solid 1px black;">
                                 </thead>
-                                <tbody id="dataTableBody">
-                                    </tbody>
+                                <tbody id="dataTableBody" style="border:solid 1px rgb(130, 130, 130);">
+                                </tbody>
                             </table>
                         </div>  
                     </div>
@@ -81,6 +84,6 @@
             </main>
         </div>
 
-        <script src="../../js/admin/table.js"></script>
+        <script src="../../js/admin/table.js" type="module"></script>
     </body>
 </html>

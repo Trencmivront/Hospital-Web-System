@@ -16,7 +16,27 @@ class SpecializationController {
         $data = [];
         switch($action){
             case 'all': {
-
+                $getAll = new GetAllSpecializations();
+                $data = $getAll->execute($pdo);
+                echo responseEntity($data);
+            }
+            break;
+            case 'create': {
+                $create = new CreateSpecialization();
+                $data = $create->execute($pdo);
+                echo responseEntity($data, 201);
+            }
+            break;
+            case 'update': {
+                $update = new UpdateSpecialization();
+                $data = $update->execute($pdo);
+                echo responseEntity($data);
+            }
+            break;
+            case 'delete': {
+                $delete = new DeleteSpecialization();
+                $data = $delete->execute($pdo);
+                echo responseEntity('', 204);
             }
             break;
             case 'byId': {
@@ -24,6 +44,8 @@ class SpecializationController {
                 $data = $getSpecializationById->execute($pdo);
                 echo responseEntity($data);
             }
+            break;
+            default: echo responseEntity("Unknown Request", 404);
             break;
         }
 
