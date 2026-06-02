@@ -10,6 +10,14 @@ foreach(glob("../exceptions/department/*.php") as $filename){
     require_once $filename;
 }
 
+// Load necessary global exceptions
+foreach(glob("../exceptions/patient/*.php") as $filename){
+    require_once $filename;
+}
+foreach(glob("../exceptions/admin/*.php") as $filename){
+    require_once $filename;
+}
+
 class DepartmentController {
     function execute($action = ''){
         global $pdo;

@@ -4,7 +4,7 @@ use Firebase\JWT\ExpiredException;
 
 require_once dirname(__FILE__) . "/../../patient/get/JWToken.php";
 
-class UpdateDepartment {
+class UpdateBill {
     function execute(PDO $pdo): bool {
         if (!isset($_SESSION['admin_jwt'])) {
             throw new UserIsNotAuthenticatedException();
@@ -21,25 +21,25 @@ class UpdateDepartment {
             $json = file_get_contents("php://input");
             $input = json_decode($json, true);
 
-            $dept_id = $input['dept_id'] ?? null;
-            $dept_name = $input['dept_name'] ?? null;
-            $descrpt = $input['descrpt'] ?? null;
-            $img_path = $input['img_path'] ?? null;
+            $bill_id = $input['bill_id'] ?? null;
+            $treatment_id = $input['treatment_id'] ?? null;
+            $cost = $input['cost'] ?? null;
+            $is_paid = $input['is_paid'] ?? null;
 
-            if (!$dept_id || !$dept_name) {
+            if (!$bill_id) {
                 throw new CouldNotRetrieveAdminDataException();
             }
 
-            $query = "UPDATE Department 
-                      SET dept_name = :dept_name, descrpt = :descrpt, img_path = :img_path, updated_at = NOW()
-                      WHERE dept_id = :dept_id";
+            $query = "UPDATE Bill 
+                      SET treatment_id = :treatment_id, cost = :cost, is_paid = :is_paid, updated_at = NOW()
+                      WHERE bill_id = :bill_id";
 
             $statement = $pdo->prepare($query);
             $statement->execute([
-                'dept_id' => htmlspecialchars($dept_id),
-                'dept_name' => htmlspecialchars($dept_name),
-                'descrpt' => $descrpt ? htmlspecialchars($descrpt) : null,
-                'img_path' => $img_path ? htmlspecialchars($img_path) : null
+                'bill_id' => htmlspecialchars($bill_id),
+                'treatment_id' => htmlspecialchars($treatment_id),
+                'cost' => htmlspecialchars($cost),
+                'is_paid' => htmlspecialchars($is_paid)
             ]);
 
             return true;

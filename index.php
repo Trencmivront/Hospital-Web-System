@@ -72,6 +72,9 @@ if ($parts[1] === 'api') {
         'admin'       => ['file' => 'AdminController.php',       'class' => 'AdminController'],
         'bill'        => ['file' => 'BillController.php',        'class' => 'BillController'],
         'treatment'   => ['file' => 'TreatmentController.php',   'class' => 'TreatmentController'],
+        'patient_punishment' => ['file' => 'PatientPunishmentController.php', 'class' => 'PatientPunishmentController'],
+        'doctor_schedule' => ['file' => 'DoctorScheduleController.php', 'class' => 'DoctorScheduleController'],
+        'specialization' => ['file' => 'SpecializationController.php', 'class' => 'SpecializationController']
     ];
 
     if (array_key_exists($controllerName, $controllerMap)) {

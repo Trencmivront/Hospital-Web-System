@@ -1,6 +1,6 @@
 /* Admin area styles (simple, responsive) */
 body{background:var(--bg-color)}
-.admin-shell{display:flex;gap:18px;max-width:1040px;margin:18px auto;padding:0 12px}
+.admin-shell{display:flex;gap:18px;max-width:device-width;margin:18px auto;padding:0 12px}
 .admin-nav{width:220px;background:var(--card-bg);border:1px solid var(--border-main);border-radius:8px;padding:8px 0;overflow:hidden}
 .admin-nav ul{list-style:none;margin:0;padding:0}
 .admin-nav li{margin:0}
@@ -188,6 +188,22 @@ body{background:var(--bg-color)}
 
 #dataTableBody td button:hover {
     background-color: var(--primary-hover);
+}
+
+#mainTable th{
+    border: 1px solid black;
+    background-color: azure;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+}
+
+#mainTable td{
+    border: 1px solid rgb(130, 130, 130);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#dataTableBody{
+    background-color: cornsilk;
 }
 
 

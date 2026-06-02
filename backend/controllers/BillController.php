@@ -13,6 +13,10 @@
     foreach(glob("../exceptions/patient/*.php") as $fileName){
         require_once $fileName;
     }
+    // Load admin exceptions
+    foreach(glob("../exceptions/admin/*.php") as $fileName){
+        require_once $fileName;
+    }
 
     class BillController {
         function execute($action = ''){
