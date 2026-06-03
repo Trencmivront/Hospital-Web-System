@@ -36,7 +36,7 @@ class DoctorController {
             break;
 
             case 'byName':{
-                $filterDoctorsByName = new FilterDoctorsByName($pdo);
+                $filterDoctorsByName = new FilterDoctorsByName();
                 $data = $filterDoctorsByName->execute($pdo);
                 echo responseEntity($data);
             };

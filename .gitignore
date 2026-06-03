@@ -28,3 +28,6 @@ compose.yaml
 
 #logs
 logs/
+
+#bash
+projectInit.sh
