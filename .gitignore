@@ -30,4 +30,5 @@ compose.yaml
 logs/
 
 #bash
-projectInit.sh
+start.sh
+stop.sh
