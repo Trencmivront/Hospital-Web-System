@@ -28,3 +28,7 @@ compose.yaml
 
 #logs
 logs/
+
+#bash
+start.sh
+stop.sh

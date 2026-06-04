@@ -10,6 +10,14 @@ foreach(glob("../exceptions/department/*.php") as $filename){
     require_once $filename;
 }
 
+// Load necessary global exceptions
+foreach(glob("../exceptions/patient/*.php") as $filename){
+    require_once $filename;
+}
+foreach(glob("../exceptions/admin/*.php") as $filename){
+    require_once $filename;
+}
+
 class DepartmentController {
     function execute($action = ''){
         global $pdo;
@@ -21,6 +29,34 @@ class DepartmentController {
                 $getDepartments = new GetDepartments();
                 $data = $getDepartments->execute($pdo);
                 echo responseEntity($data);
+            };
+            break;
+
+            case 'manage_all':{
+                $getAll = new GetAllDepartments();
+                $data = $getAll->execute($pdo);
+                echo responseEntity($data);
+            };
+            break;
+
+            case 'create':{
+                $create = new CreateDepartment();
+                $data = $create->execute($pdo);
+                echo responseEntity($data, 201);
+            };
+            break;
+
+            case 'update':{
+                $update = new UpdateDepartment();
+                $data = $update->execute($pdo);
+                echo responseEntity($data);
+            };
+            break;
+
+            case 'delete':{
+                $delete = new DeleteDepartment();
+                $data = $delete->execute($pdo);
+                echo responseEntity('', 204);
             };
             break;
 

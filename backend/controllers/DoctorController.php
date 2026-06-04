@@ -20,6 +20,13 @@ class DoctorController {
                 echo responseEntity($data);
             };
             break;
+
+            case 'manage_all':{
+                $getAll = new GetAllDoctorsAdmin();
+                $data = $getAll->execute($pdo);
+                echo responseEntity($data);
+            };
+            break;
             
             case 'byDepartment':{
                 $getDoctorsByDepartment = new GetDoctorsByDepartment();
@@ -29,7 +36,7 @@ class DoctorController {
             break;
 
             case 'byName':{
-                $filterDoctorsByName = new FilterDoctorsByName($pdo);
+                $filterDoctorsByName = new FilterDoctorsByName();
                 $data = $filterDoctorsByName->execute($pdo);
                 echo responseEntity($data);
             };
@@ -54,6 +61,24 @@ class DoctorController {
                     echo responseEntity($data);
                 }
                 break;
+            case 'create': {
+                $create = new CreateDoctor();
+                $data = $create->execute($pdo);
+                echo responseEntity($data, 201);
+            }
+            break;
+            case 'update': {
+                $update = new UpdateDoctor();
+                $data = $update->execute($pdo);
+                echo responseEntity($data);
+            }
+            break;
+            case 'delete': {
+                $delete = new DeleteDoctor();
+                $data = $delete->execute($pdo);
+                echo responseEntity('', 204);
+            }
+            break;
             default: echo responseEntity("Unknown Request", 404);
             break;
         }

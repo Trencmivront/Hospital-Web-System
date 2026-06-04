@@ -74,6 +74,13 @@ class PatientController {
                 $data = $updatePatientById->execute($pdo);
                 echo responseEntity($data);
             }
+            break;
+
+            case 'delete': {
+                $deletePatient = new DeletePatient();
+                $data = $deletePatient->execute($pdo);
+                echo responseEntity($data);
+            }
             break;  
 
             default: echo responseEntity("Unknown Request", 404);

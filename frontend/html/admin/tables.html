@@ -8,8 +8,6 @@
         <link rel="stylesheet" href="../../css/admin.css">
         
         <script src="../../js/global/global.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
-        <script src="../../js/admin/admin-dashboard.js" defer></script>   
         <script src="../../js/admin/sidebr.js" defer></script>    
     </head>
     <body>  
@@ -39,9 +37,19 @@
                         </div>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#">Patient Records</a></li>
-                            <li><a href="#">Doctor Records</a></li>
-                            <li><a href="#">Appointment Records</a></li>
+                            <li><a href="#" data-table="Patient">Patient Records</a></li>
+                            <li><a href="#" data-table="Doctor">Doctor Records</a></li>
+                            <li><a href="#" data-table="Appointment">Appointment Records</a></li>
+                            <li><a href="#" data-table="Department">Department Records</a></li>
+                            <li><a href="#" data-table="Specialization">Specialization Records</a></li>
+                            <li><a href="#" data-table="Schedule">Schedule Records</a></li>
+                            <li><a href="#" data-table="Doctor_Schedule">Doctor Schedule Records</a></li>
+                            <li><a href="#" data-table="Blood_Type">Blood Type Records</a></li>
+                            <li><a href="#" data-table="Punishment">Punishment Records</a></li>
+                            <li><a href="#" data-table="Patient_Punishment">Patient Punishment Records</a></li>
+                            <li><a href="#" data-table="Treatment">Treatment Records</a></li>
+                            <li><a href="#" data-table="Bill">Bill Records</a></li>
+                            <li><a href="#" data-table="Admin">Admin Records</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -59,21 +67,14 @@
                 </header>
                 <section class="grid">
                     <div class="panel panel-large">
-                        <h2>Data Tables</h2>
-                        <p>View and manage all hospital records in one place.</p>
+                        <h2 id="tableTitle">Data Tables</h2>
+                        <p id="tableDescription">View and manage all hospital records in one place.</p>
                         <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
+                            <table id="mainTable">
+                                <thead id="tableHead">
                                 </thead>
                                 <tbody id="dataTableBody">
-                                    </tbody>
+                                </tbody>
                             </table>
                         </div>  
                     </div>
@@ -81,6 +82,17 @@
             </main>
         </div>
 
-        <script src="../../js/admin/table.js"></script>
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Edit Record</h2>
+                <form id="editForm">
+                    <div id="formFields"></div>
+                    <button type="submit" class="btn">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <script src="../../js/admin/table.js" type="module"></script>
     </body>
 </html>

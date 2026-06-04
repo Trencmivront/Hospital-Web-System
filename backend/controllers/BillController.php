@@ -13,6 +13,10 @@
     foreach(glob("../exceptions/patient/*.php") as $fileName){
         require_once $fileName;
     }
+    // Load admin exceptions
+    foreach(glob("../exceptions/admin/*.php") as $fileName){
+        require_once $fileName;
+    }
 
     class BillController {
         function execute($action = ''){
@@ -25,9 +29,39 @@
                     echo responseEntity($data);
                 };
                 break;
+                case 'create': {
+                    $create = new CreateBill();
+                    $data = $create->execute($pdo);
+                    echo responseEntity($data, 201);
+                }
+                break;
+                case 'update': {
+                    $update = new UpdateBill();
+                    $data = $update->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
+                case 'delete': {
+                    $delete = new DeleteBill();
+                    $data = $delete->execute($pdo);
+                    echo responseEntity('', 204);
+                }
+                break;
                 case 'monthlyRevenue':{
                     $getPayedBillsByMonth = new GetPayedBillsByMonth();
                     $data = $getPayedBillsByMonth->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
+                case 'ofPatient':{
+                    $getBillsOfPatient = new GetBillsOfPatient();
+                    $data = $getBillsOfPatient->execute($pdo);
+                    echo responseEntity($data);
+                }
+                break;
+                case 'pay':{
+                    $payBillById = new PayBillById();
+                    $data = $payBillById->execute($pdo);
                     echo responseEntity($data);
                 }
                 break;

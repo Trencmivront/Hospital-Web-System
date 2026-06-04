@@ -20,6 +20,12 @@ class BloodTypeController {
                 echo responseEntity($data);
             }
             break;
+            case 'manage_all' : {
+                $getAll = new GetAllBloodTypes();
+                $data = $getAll->execute($pdo);
+                echo responseEntity($data);
+            }
+            break;
             default: echo responseEntity("Unknown Request", 404);
             break;
         }

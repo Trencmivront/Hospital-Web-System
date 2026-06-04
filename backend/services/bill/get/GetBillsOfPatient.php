@@ -5,7 +5,12 @@ use Firebase\JWT\ExpiredException;
     class GetBillsOfPatient {
         function execute(PDO $pdo){
 
-        $query = '';
+        $query = 'SELECT b.bill_id, b.cost, b.is_paid, b.created_at, t.icd10_code, a.appointment_id
+                  FROM Bill b
+                  JOIN Treatment t ON b.treatment_id = t.treatment_id
+                  JOIN Appointment a ON t.appointment_id = a.appointment_id
+                  WHERE a.patient_id = :patient_id
+                  ORDER BY b.created_at DESC';
 
             if(!isset($_SESSION['patient_jwt'])){
                 throw new UserIsNotAuthenticatedException();
@@ -26,7 +31,7 @@ use Firebase\JWT\ExpiredException;
                 $statement = $pdo->prepare($query);
                 $statement->execute(['patient_id' => $patient_id]);
 
-                $data = $statement->fetchAll();
+                $data = $statement->fetchAll(PDO::FETCH_ASSOC);
 
                 return $data;
 

@@ -20,6 +20,30 @@ class ScheduleController {
                 echo responseEntity($data);
             }
             break;
+            case 'manage_all': {
+                $getAll = new GetAllSchedules();
+                $data = $getAll->execute($pdo);
+                echo responseEntity($data);
+            }
+            break;
+            case 'create': {
+                $create = new CreateSchedule();
+                $data = $create->execute($pdo);
+                echo responseEntity($data, 201);
+            }
+            break;
+            case 'update': {
+                $update = new UpdateSchedule();
+                $data = $update->execute($pdo);
+                echo responseEntity($data);
+            }
+            break;
+            case 'delete': {
+                $delete = new DeleteSchedule();
+                $data = $delete->execute($pdo);
+                echo responseEntity('', 204);
+            }
+            break;
             case 'allActive': {
                 $getAllActiveSchedules = new GetAllActiveSchedules();
                 $data = $getAllActiveSchedules->execute($pdo);

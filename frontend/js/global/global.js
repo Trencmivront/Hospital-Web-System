@@ -98,6 +98,14 @@ window.addEventListener('load', () => {
       });
     });
   };
+  // loading map after page style is loaded
+  const googleMap = document.getElementById("googleMap");
+  if(googleMap){
+    googleMap.setAttribute("src",
+    "https://maps.google.com/maps?q=Pa%C5%9Fakonak%20Mah.%20Sa%C4%9Fl%C4%B1k%20Cad.%20No:4%20Band%C4%B1rma&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  );
+  }
+  
 
   initTheme();
 });
