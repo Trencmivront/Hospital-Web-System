@@ -20,7 +20,7 @@ window.addEventListener('load', ()=>{
             doctorNameLabels.push("Dr." + doctor.last_name);
             doctorAppointmentCounts.push(doctor.ap_count);
         });
-
+        //shehab 
         const doctorBarCtx = document.getElementById('doctorBarChart');
         if (doctorBarCtx) {
             new Chart(doctorBarCtx, {

@@ -66,7 +66,7 @@ window.addEventListener('load', () => {
       target = document.querySelector(selector);
       if (target) break;
     }
-
+     
     const toggleContainer = document.createElement('div');
     toggleContainer.className = 'theme-toggle-container flex-center-content';
     toggleContainer.innerHTML = `

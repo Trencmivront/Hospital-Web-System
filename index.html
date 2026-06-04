@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!--defines  the root of the document and the language as English--> 
 
 <head>
     <meta charset="UTF-8">
+    <!--It defines the character encoding of the webpage and ensures that text is displayed correctly in different languages.
+تحدد طريقة ترميز الأحرف في الصفحة، وتضمن ظهور النصوص بشكل صحيح بمختلف اللغات مثل العربية والإنجليزية .--> 
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Makes the webpage responsive and displays correctly on different screen sizes the zooom will fıt the screen ın mobile or desktop or computer
+     أي الوسم المسؤول عن جعل الموقع متجاوباً مع أحجام الشاشات المختلفة. -->
     <title>Hospital Departments</title>
+    <!--The title tag defines the name of the webpage displayed in the browser tab.-->
+
     <link rel="stylesheet" href="/frontend/css/style.css">
     <link rel="stylesheet" href="/frontend/css/global.css">
     <script src="/frontend/js/global/global.js" defer></script>
@@ -12,18 +20,27 @@
 
 <body class="page-shell">
     <header class="page-header flex-wrap-space">
+        <!--this brand is the header section which contains the hospital brand and navigation actions-->
         <div class="brand flex-center-content">
+          <!--in this in title when put the mouse over the HOSPITAL it shows the"hospital name"-->
             <h1 title="hospital name">HOSPITAL</h1>
+            <!-- -->
             <img src="/imgs/novaLogo.avif" width="40" height="40" draggable="false" alt="Hospital logo">
+            <!-- The img tag is used to display an image on the webpage. The src attribute specifies the path to the image file, width and height define the dimensions of the image, draggable="false" prevents the image from being dragged, and alt provides alternative text for accessibility if the image cannot be displayed.
+             يستخدم لعرض صورة على الصفحة. src يحدد مسار ملف الصورة، width و height يحدد أبعاد الصورة، draggable="false" يمنع سحب الصورة، و alt يوفر نصًا بديلاً لتحسين الوصول في حال عدم عرض الصورة. -->
         </div>
+        <!--in this section we have the header actions like login and register buttons and the language selector-->
         <div class="header-actions flex-center-content">
             <a class="logButton" href="/login">Log In</a>
-            <a class="logButton register"
-                href="/register">Register</a>
+
+            <a class="logButton register" href="/register">Register</a>
 
             <div class="dropdown">
-                <button title="lang" class="dropbtn" type="button">EN</button>
+                <button title="language" class="dropbtn" type="button">EN</button>
+                   <!-- The button element creates a clickable button. The title attribute provides additional information about the button's purpose (language selection in this case), class "dropbtn" is used for styling, and type="button" specifies that this is a button element. --> 
+
                 <ul id="lang" class="dropdown-content">
+
                     <li><a href="#">TR</a></li>
                     <li><a href="#">EN</a></li>
                     <li><a href="#">AR</a></li>
@@ -45,6 +62,7 @@
     <section class="carousel" aria-label="Gallery">
         <ol class="carousel__viewport">
             <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+                <!--tabindex="0" makes the element focusable and includes it in the tab order-->
                 <div class="carousel__snapper">
                     <img src="/imgs/novaho.jpeg" alt="Deep look medical imaging">
                     <a href="#carousel__slide7" class="carousel__prev">Go to last slide</a>
@@ -164,13 +182,15 @@
     </section>
 
 
-
+      <!--in this section  to control social media links-->
     <section class="social-section">
         <h2>Connect With Nova Hospital</h2>
         <div class="social-icons flex-center-content">
             <a href="#"><img src="/imgs/Facebook.png"></a>
             <a href="#"><img src="/imgs/instagram.jpg"></a>
             <a href="#"><img src="/imgs/X-logo.jpg"></a>
+        </div>
+    </section>
     <footer class="footer flex-wrap-space">
         <div class="footer-div">
             <h3><u>About Nova</u></h3>

@@ -42,7 +42,7 @@ body {
     margin: 40px;
     box-shadow: var(--shadow-main);
 }
-/* apply wrap only for row*/
+/* to control the space between rows within the form */
 .form-row {
     display: flex;
     flex-wrap: wrap;

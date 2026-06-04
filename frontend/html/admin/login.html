@@ -9,6 +9,7 @@
     <script src="/frontend/js/global/global.js" defer></script>
     <script src="/frontend/js/admin/login.js" defer></script>
     <style>
+        /* to control the login page layout */
         .login-page {
             min-height: 100vh;
             background: var(--bg-color, var(--bg-color));
@@ -23,19 +24,22 @@
             max-width: 400px;
             margin: 20px;
         }
+        /*to control the box border*/
         .login-card .panel {
             padding: 32px;
-            background: var(--white, white);
+            background: var(--white, rgb(246, 243, 243));
             box-shadow: 0 12px 30px rgba(29, 63, 166, 0.08);
-            border: 1px solid var(--border-light, #eee);
+            border: 1px solid var(--border-light, #e7e5e5);
             border-radius: 12px;
         }
+        /* to control the appearance of the admin login in heading */
         .login-card h2 {
             margin: 0 0 24px;
             color: var(--text-color, var(--text-color));
             text-align: center;
             font-size: 22px;
         }
+        /* to control the appearance of the word "nova admin" */
         .login-brand {
             text-align: center;
             font-size: 30px;
@@ -43,13 +47,16 @@
             margin-bottom: 24px;
             color: var(--text-color, var(--text-color));
         }
+        /* to controlthe space btween "nova and admin"*/
         .login-brand span {
             color: var(--primary-color, var(--primary-color));
             margin-left: 4px;
         }
+        /* to control the space between the boxes  */
         .form-group {
             margin-bottom: 20px;
         }
+        /* to control the space and the appearance of the words "username" and "password" */
         .form-group label {
             display: block;
             margin-bottom: 8px;
@@ -57,10 +64,11 @@
             color: var(--text-color, var(--text-color));
             font-size: 14px;
         }
+            /* to control the space and the appearance of the input boxes which are used for entering username and password */
         .form-group input {
             width: 100%;
             padding: 12px 14px;
-            border: 1px solid var(--border-light, #e6e6e6);
+            border: 1px solid var(--border-light, #e1e1e1);
             background: var(--bg-color, white);
             color: var(--text-color);
             border-radius: 10px;
@@ -73,6 +81,7 @@
             border-color: var(--primary-color, var(--primary-color));
             box-shadow: 0 0 0 3px rgba(29, 63, 166, 0.1);
         }
+        /* to control the space and appearance of the box signin to.... */
         .login-card .btn {
             width: 100%;
             padding: 14px;
@@ -88,6 +97,7 @@
         .login-card .btn:hover {
             background: var(--dark-cyan, var(--primary-hover));
         }
+        /* to control the appearance of the "Return to Hospital Site" link */
         .back-home {
             display: block;
             text-align: center;
@@ -98,7 +108,7 @@
             transition: color 0.2s;
         }
         .back-home:hover {
-            color: var(--primary-color, var(--primary-color));
+            color: var(--primary-color, var(--primary-color));;
         }
     </style>
 </head>
@@ -120,6 +130,7 @@
                 <button type="submit" class="btn">Sign In to Dashboard</button>
             </form>
         </div>
+        <!-- this &larr; is a left arrow that show next the "Return to Hospital Site" link -->
         <a href="/" class="back-home">&larr; Return to Hospital Site</a>
     </div>
 </body>

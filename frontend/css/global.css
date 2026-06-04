@@ -212,7 +212,7 @@ nav.open{
 .logButton:hover {
     background-color: var(--accent-hover);
 }
-
+/*here to control the head of index page */
 .page-header {
     align-items: center;
     gap: 20px;
