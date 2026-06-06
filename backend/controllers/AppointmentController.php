@@ -35,13 +35,13 @@
                 }
                 break;
                 case 'update': {
-                    $update = new UpdateAppointmentAdmin();
+                    $update = new UpdateAppointment();
                     $data = $update->execute($pdo);
                     echo responseEntity($data);
                 }
                 break;
                 case 'delete' :{
-                    $deleteAppointment = new DeleteAppointmentAdmin();
+                    $deleteAppointment = new DeleteAppointment();
                     $data = $deleteAppointment->execute($pdo);
                     echo responseEntity('', 204);
                 }

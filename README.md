@@ -1,6 +1,103 @@
 # Hospital-Web-System
 A full-stack hospital web application template. Patients can log in to see their appointments, treatments and bills. Admins can add, remove doctor information, make changes over everything. And doctors, they are data, not user.
 
+## Setup Instructions
+
+### 1. Prerequisites
+You need to install the following tools:
+- **PHP** (Latest stable version)
+- **Apache**
+- **MySQL**
+- **Composer**
+- **Mailhog** (For email testing)
+- **Firebase JWT** (PHP Library)
+- **PHPMailer** (PHP Library)
+
+### 2. Installation Guide
+
+#### Linux (Ubuntu/Debian)
+1. **Update packages:**
+   ```bash
+   sudo apt update
+   ```
+2. **Install Apache, MySQL, and PHP:**
+   ```bash
+   sudo apt install apache2 mysql-server php libapache2-mod-php php-mysql php-curl php-gd php-mbstring php-xml php-zip
+   ```
+3. **Install Composer:**
+   ```bash
+   curl -sS https://getcomposer.org/installer | php
+   sudo mv composer.phar /usr/local/bin/composer
+   ```
+4. **Install Mailhog:**
+   ```bash
+   sudo curl -L -o /usr/local/bin/mailhog https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64
+   sudo chmod +x /usr/local/bin/mailhog
+   ```
+
+#### Windows
+1. **Apache, MySQL, PHP:** The easiest way is to install [XAMPP](https://www.apachefriends.org/index.html) or [WampServer](https://www.wampserver.com/en/).
+2. **Composer:** Download and run the [Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe).
+3. **Mailhog:** Download the `MailHog_windows_amd64.exe` from [MailHog Releases](https://github.com/mailhog/MailHog/releases) and run it.
+
+#### MacOS
+1. **Install Homebrew** (if not already installed):
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+2. **Install PHP, Apache, and MySQL:**
+   ```bash
+   brew install php httpd mysql
+   ```
+3. **Install Composer:**
+   ```bash
+   brew install composer
+   ```
+4. **Install Mailhog:**
+   ```bash
+   brew install mailhog
+   ```
+
+### 3. Project Dependencies
+After installing Composer, run the following commands in the project root to install the required PHP libraries:
+```bash
+composer require firebase/php-jwt phpmailer/phpmailer
+```
+
+### 4. Apache Configuration
+1. **Create Virtual Host:**
+   Create a new configuration file (e.g., `hospital.conf`) in your Apache sites-available directory (e.g., `/etc/apache2/sites-available/hospital.conf` on Linux).
+
+   Add the following content:
+   ```apache
+   <VirtualHost *:80>
+       DocumentRoot "path_to_project_folder"
+       ServerName hospital.test
+       <Directory "path_to_project_folder">
+           Options Indexes FollowSymLinks
+           AllowOverride All
+           Require all granted
+       </Directory>
+       ErrorLog ${APACHE_LOG_DIR}/error.log
+       CustomLog ${APACHE_LOG_DIR}/access.log combined
+   </VirtualHost>
+   ```
+
+2. **Enable Site and Rewrite Module (Linux):**
+   Run the following commands in your terminal:
+   ```bash
+   sudo a2ensite hospital.conf
+   sudo a2enmod rewrite
+   sudo systemctl restart apache2
+   ```
+
+3. **Update Hosts File:**
+   To access the site via `http://hospital.test`, add the following line to your system's hosts file:
+   ```text
+   127.0.0.1 hospital.test
+   ```
+   - **Linux/MacOS:** `/etc/hosts`
+   - **Windows:** `C:\Windows\System32\drivers\etc\hosts`
 
 ## Database Connection File
 
