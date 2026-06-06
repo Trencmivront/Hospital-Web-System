@@ -1,5 +1,40 @@
 # Hospital-Web-System
-A full-stack hospital web application template. Patients can log in to see their appointments, treatments and bills. Admins can add, remove doctor information, make changes over everything. And doctors, they are data, not user.
+A full-stack hospital web application template. Patients can log in to see their appointments, treatments and bills. Admins can add, remove doctor information, make changes over everything. And doctors can see their patients' information.
+
+## Screenshots
+
+### Main
+![Main](ss/main.png)
+
+### About Us
+![About Us](ss/about_us.png)
+
+### Admin Login
+![Admin Login](ss/admin_login.png)
+
+### Admin Dashboard
+![Admin Dashboard](ss/admin_dashboard.png)
+
+### Patient Login
+![Patient Login](ss/patient_login.png)
+
+### Patient Register
+![Patient Register](ss/patient_register.png)
+
+### Patient Profile
+![Patient Profile](ss/patient_profile.png)
+
+### Departments
+![Departments](ss/departments.png)
+
+### Doctors
+![Doctors](ss/doctors.png)
+
+### Contact
+![Contact](ss/contact.png)
+
+### Q&A
+![Q&A](ss/q_and_a.png)
 
 ## Setup Instructions
 
@@ -17,23 +52,23 @@ You need to install the following tools:
 
 #### Linux (Ubuntu/Debian)
 1. **Update packages:**
-   ```bash
-   sudo apt update
-   ```
+    ```bash
+    sudo apt update
+    ```
 2. **Install Apache, MySQL, and PHP:**
-   ```bash
-   sudo apt install apache2 mysql-server php libapache2-mod-php php-mysql php-curl php-gd php-mbstring php-xml php-zip
-   ```
+    ```bash
+    sudo apt install apache2 mysql-server php libapache2-mod-php php-mysql php-curl php-gd php-mbstring php-xml php-zip
+    ```
 3. **Install Composer:**
-   ```bash
-   curl -sS https://getcomposer.org/installer | php
-   sudo mv composer.phar /usr/local/bin/composer
-   ```
+    ```bash
+    curl -sS https://getcomposer.org/installer | php
+    sudo mv composer.phar /usr/local/bin/composer
+    ```
 4. **Install Mailhog:**
-   ```bash
-   sudo curl -L -o /usr/local/bin/mailhog https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64
-   sudo chmod +x /usr/local/bin/mailhog
-   ```
+    ```bash
+    sudo curl -L -o /usr/local/bin/mailhog https://github.com/mailhog/MailHog/releases/download/v1.0.1/MailHog_linux_amd64
+    sudo chmod +x /usr/local/bin/mailhog
+    ```
 
 #### Windows
 1. **Apache, MySQL, PHP:** The easiest way is to install [XAMPP](https://www.apachefriends.org/index.html) or [WampServer](https://www.wampserver.com/en/).
@@ -42,21 +77,21 @@ You need to install the following tools:
 
 #### MacOS
 1. **Install Homebrew** (if not already installed):
-   ```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
 2. **Install PHP, Apache, and MySQL:**
-   ```bash
-   brew install php httpd mysql
-   ```
+    ```bash
+    brew install php httpd mysql
+    ```
 3. **Install Composer:**
-   ```bash
-   brew install composer
-   ```
+    ```bash
+    brew install composer
+    ```
 4. **Install Mailhog:**
-   ```bash
-   brew install mailhog
-   ```
+    ```bash
+    brew install mailhog
+    ```
 
 ### 3. Project Dependencies
 After installing Composer, run the following commands in the project root to install the required PHP libraries:
@@ -66,38 +101,38 @@ composer require firebase/php-jwt phpmailer/phpmailer
 
 ### 4. Apache Configuration
 1. **Create Virtual Host:**
-   Create a new configuration file (e.g., `hospital.conf`) in your Apache sites-available directory (e.g., `/etc/apache2/sites-available/hospital.conf` on Linux).
+    Create a new configuration file (e.g., `hospital.conf`) in your Apache sites-available directory (e.g., `/etc/apache2/sites-available/hospital.conf` on Linux).
 
-   Add the following content:
-   ```apache
-   <VirtualHost *:80>
-       DocumentRoot "path_to_project_folder"
-       ServerName hospital.test
-       <Directory "path_to_project_folder">
-           Options Indexes FollowSymLinks
-           AllowOverride All
-           Require all granted
-       </Directory>
-       ErrorLog ${APACHE_LOG_DIR}/error.log
-       CustomLog ${APACHE_LOG_DIR}/access.log combined
-   </VirtualHost>
-   ```
+    Add the following content:
+    ```apache
+    <VirtualHost *:80>
+        DocumentRoot "path_to_project_folder"
+        ServerName hospital.test
+        <Directory "path_to_project_folder">
+            Options Indexes FollowSymLinks
+            AllowOverride All
+            Require all granted
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </VirtualHost>
+    ```
 
 2. **Enable Site and Rewrite Module (Linux):**
-   Run the following commands in your terminal:
-   ```bash
-   sudo a2ensite hospital.conf
-   sudo a2enmod rewrite
-   sudo systemctl restart apache2
-   ```
+    Run the following commands in your terminal:
+    ```bash
+    sudo a2ensite hospital.conf
+    sudo a2enmod rewrite
+    sudo systemctl restart apache2
+    ```
 
 3. **Update Hosts File:**
-   To access the site via `http://hospital.test`, add the following line to your system's hosts file:
-   ```text
-   127.0.0.1 hospital.test
-   ```
-   - **Linux/MacOS:** `/etc/hosts`
-   - **Windows:** `C:\Windows\System32\drivers\etc\hosts`
+    To access the site via `http://hospital.test`, add the following line to your system's hosts file:
+    ```text
+    127.0.0.1 hospital.test
+    ```
+    - **Linux/MacOS:** `/etc/hosts`
+    - **Windows:** `C:\Windows\System32\drivers\etc\hosts`
 
 ## Database Connection File
 
