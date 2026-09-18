@@ -3,7 +3,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once 'vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 // function to check if string contains special characters or numbers
 function is_string_text(string $str) : bool {

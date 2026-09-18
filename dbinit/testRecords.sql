@@ -101,17 +101,17 @@ INSERT INTO Doctor (first_name, last_name, phone_num, email, gender_name, dept_i
 
 -- 9. Patient
 -- Password requirement: length >= 8, tc_no: 11 chars
-INSERT INTO Patient (first_name, last_name, tc_no, birth_date, gender_name, blood_id, phone_num, email, is_email_verified, pat_password, usr_role, updated_at, created_at) VALUES
-('Ali', 'Can', '11111111111', '1980-01-01', 'M', 1, '05440000001', 'ali.can@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Veli', 'Han', '22222222222', '1985-05-12', 'M', 7, '05440000002', 'veli.han@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Merve', 'Tan', '33333333333', '1992-09-20', 'F', 3, '05440000003', 'merve.tan@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Deniz', 'Ak', '44444444444', '1975-03-15', 'M', 5, '05440000004', 'deniz.ak@email.com', FALSE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Seda', 'Nur', '55555555555', '1998-11-30', 'F', 2, '05440000005', 'seda.nur@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Burak', 'Oz', '66666666666', '1988-07-04', 'M', 8, '05440000006', 'burak.oz@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Asli', 'Gul', '77777777777', '1995-12-25', 'F', 1, '05440000007', 'asli.gul@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Emre', 'Tas', '88888888888', '1982-06-18', 'M', 4, '05440000008', 'emre.tas@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Gizem', 'Bal', '99999999999', '2001-02-14', 'F', 6, '05440000009', 'gizem.bal@email.com', FALSE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
-('Kerem', 'Sol', '10101010101', '1970-10-10', 'M', 7, '05440000010', 'kerem.sol@email.com', TRUE, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-20 10:00:00');
+INSERT INTO Patient (first_name, last_name, tc_no, birth_date, gender_name, blood_id, phone_num, email, pat_password, usr_role, updated_at, created_at) VALUES
+('Ali', 'Can', '11111111111', '1980-01-01', 'M', 1, '05440000001', 'ali.can@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
+('Veli', 'Han', '22222222222', '1985-05-12', 'M', 7, '05440000002', 'veli.han@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
+('Merve', 'Tan', '33333333333', '1992-09-20', 'F', 3, '05440000003', 'merve.tan@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
+('Deniz', 'Ak', '44444444444', '1975-03-15', 'M', 5, '05440000004', 'deniz.ak@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
+('Seda', 'Nur', '55555555555', '1998-11-30', 'F', 2, '05440000005', 'seda.nur@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
+('Burak', 'Oz', '66666666666', '1988-07-04', 'M', 8, '05440000006', 'burak.oz@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
+('Asli', 'Gul', '77777777777', '1995-12-25', 'F', 1, '05440000007', 'asli.gul@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
+('Emre', 'Tas', '88888888888', '1982-06-18', 'M', 4, '05440000008', 'emre.tas@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
+('Gizem', 'Bal', '99999999999', '2001-02-14', 'F', 6, '05440000009', 'gizem.bal@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-16 10:00:00'),
+('Kerem', 'Sol', '10101010101', '1970-10-10', 'M', 7, '05440000010', 'kerem.sol@email.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PATIENT', '2026-05-16 10:00:00', '2026-05-20 10:00:00');
 
 -- 10. Doctor_Schedule (Assigning slots to doctors)
 INSERT INTO Doctor_Schedule (schedule_id, doctor_id, is_active, updated_at, created_at) VALUES

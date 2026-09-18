@@ -1,10 +1,11 @@
 <?php
 
-require dirname(__FILE__) . '/../../../../vendor/autoload.php';
+    use Mailtrap\Helper\ResponseHelper;
+    use Mailtrap\MailtrapClient;
+    use Mailtrap\Mime\MailtrapEmail;
+    use Symfony\Component\Mime\Address;
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+    require dirname(__FILE__) . '/../../../../vendor/autoload.php';
 
 //Function to generate a random verification code
 function generateVerificationCode($length = 6) {
@@ -17,6 +18,32 @@ function generateVerificationCode($length = 6) {
 }
 
 // Function to send a verification email using PHPMailer
+
+
+
+    function sendVerificationEmail(string $email, string $verificationCode){
+
+        $apiKey = $env['MAILTRAP_API'];
+        $mailtrap = MailtrapClient::initSendingEmails(
+            apiKey: $apiKey,
+        );
+
+        $email = (new MailtrapEmail())
+            ->from(new Address('hello@demomailtrap.co', 'Nova Hospital'))
+            ->to(new Address($email))
+            ->subject('Verification Code')
+            ->text('Your verification code is: ' . $verificationCode)
+            ->category('Email Verification')
+        ;
+        $response = $mailtrap->send($email);
+        return $response ? true:false;
+    }
+/*
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 function sendVerificationEmail(string $email, string $verificationCode) {
     $mail = new PHPMailer (true);
 
@@ -43,5 +70,30 @@ function sendVerificationEmail(string $email, string $verificationCode) {
         return true;
     }catch (Exception $e) {
         return false;
-    }
+    }*/
+
+
+/*    use Mailtrap\Helper\ResponseHelper;
+    use Mailtrap\MailtrapClient;
+    use Mailtrap\Mime\MailtrapEmail;
+    use Symfony\Component\Mime\Address;
+
+    require __DIR__ . '/vendor/autoload.php';
+
+    $apiKey = '<YOUR_API_TOKEN>';
+    $mailtrap = MailtrapClient::initSendingEmails(
+        apiKey: $apiKey,
+    );
+
+    $email = (new MailtrapEmail())
+        ->from(new Address('hello@demomailtrap.co', 'Mailtrap Test'))
+        ->to(new Address("ysonmez824@gmail.com"))
+        ->subject('You are awesome!')
+        ->text('Congrats for sending test email with Mailtrap!')
+        ->category('Integration Test')
+    ;
+
+    $response = $mailtrap->send($email);
+
+    var_dump(ResponseHelper::toArray($response));*/
 }

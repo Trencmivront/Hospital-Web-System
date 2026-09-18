@@ -1,16 +1,18 @@
 Options -MultiViews
 RewriteEngine On
 
+<Files .env>
+    Require all denied
+</Files>
+
 # 1. Prevent direct browser access to .php files for security
 # But allow the server to process them internally (like index.php)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.php\ HTTP/
+RewriteCond %{REQUEST_URI} !\.(?:css|js)$ [NC]
 RewriteRule ^.*\.php$ - [F,L]
 
-# 2. Allow existing files and directories to be accessed directly
-# This covers CSS, JS, Images, and existing HTML files
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 
 # 3. Route everything else to index.php
 # This enables clean URLs like /login, /doctors, etc.

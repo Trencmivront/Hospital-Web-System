@@ -58,7 +58,7 @@ const listDepartments = async () => {
             departmentsContainer.innerHTML = `<p style="color:red;">${error}</p>`;
             return;
         }
-
+        
         const dataSet = await response.json();
         createDepartmentContainerHtmls(dataSet);
     }catch(error){
