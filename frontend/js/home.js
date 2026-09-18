@@ -1,3 +1,8 @@
+window.addEventListener('load', ()=>{
+    alert("UYARI: Bu website test amaçlıdır. Lütfen kişisel bilgilerinizi yazmayın.\n"+
+        "WARNING: This is a test website. Please do not share your personal information.");
+} )
+
 /* JavaScript Function to link thumbnails to the slider */
 function currentSlide(n) {
     let slides = document.getElementsByClassName("slide");
